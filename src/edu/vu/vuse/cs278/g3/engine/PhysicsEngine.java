@@ -6,6 +6,21 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class PhysicsEngine {
 
+	/*
+	 * Singleton Object
+	 */
+	private static PhysicsEngine instance;
+	public static PhysicsEngine getInstance() {
+		if(instance == null)
+			instance = new PhysicsEngine();
+		return instance;
+	}
+	private PhysicsEngine () {}
+	
+	
+	
+	
+	
 	QueueExecutor exec = new QueueExecutor();
 	
 	/**
@@ -48,6 +63,7 @@ public class PhysicsEngine {
 						Runnable r = this.queue.take();
 						r.run();
 					}
+					this.queue.clear();
 				} catch (InterruptedException e) {	}
 			
 		}

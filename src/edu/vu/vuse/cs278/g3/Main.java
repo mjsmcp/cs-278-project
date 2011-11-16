@@ -40,7 +40,7 @@ public class Main {
 */
 
 		try {
-			PhysicsEngine pe = new PhysicsEngine();
+			PhysicsEngine pe = PhysicsEngine.getInstance();
 			pe.enable();
 			for (int i = 0; i <20; ++i) {
 				pe.addtoQueue(new Runnable() {
