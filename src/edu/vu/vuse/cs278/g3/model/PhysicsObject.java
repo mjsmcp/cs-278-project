@@ -4,6 +4,7 @@ public interface PhysicsObject {
 	//Object(){}
 	abstract double getXCoord();
 	abstract double getYCoord();
+	abstract void commitChanges();
 	abstract void updatePosition(double xcoord, double ycoord);
 }
 

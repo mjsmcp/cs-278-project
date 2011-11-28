@@ -15,11 +15,10 @@ public class SquareObject implements PhysicsObject {
 		try {
 			//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
 			App.app.command("create-SquareObjects 1");			//create object at origin
-			App.app.command("ask SquareObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
-			App.app.command("ask SquareObject " + array_num + " [set ycor " + (int)yCoord + "]");
 		} catch (CompilerException e) {
 			e.printStackTrace();
 		}
+		commitChanges(); //set location
 	}
 	
 	public double getXCoord() {
@@ -38,9 +37,7 @@ public class SquareObject implements PhysicsObject {
 		return width;
 	}
 	
-	public void updatePosition(double xcoord, double ycoord) {
-		xCoord = xcoord;
-		yCoord = ycoord;
+	public void commitChanges(){
 		try {
 			App.app.command("ask SquareObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
 			App.app.command("ask SquareObject " + array_num + " [set ycor " + (int)yCoord + "]");
@@ -48,8 +45,13 @@ public class SquareObject implements PhysicsObject {
 			e.printStackTrace();
 		}
 	}
-	private
-		int array_num; //number that this object is accessed by in netlogo
-		int width, height;
-		double xCoord, yCoord;	
+	
+	public void updatePosition(double xcoord, double ycoord) {
+		xCoord = xcoord;
+		yCoord = ycoord;
+	}
+	
+	private	int array_num; //number that this object is accessed by in netlogo
+	private int width, height;
+    private double xCoord, yCoord;	
 }
