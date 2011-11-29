@@ -2,7 +2,7 @@ package edu.vu.vuse.cs278.g3.model;
 import org.nlogo.api.CompilerException;
 import org.nlogo.app.App;
 
-public class SquareObject implements PhysicsObject {
+public class SquareObject extends PhysicsObject {
 
 	public SquareObject(int _array_num, double _xCoord, double _yCoord, int _width, int _height)
 	{
@@ -48,8 +48,14 @@ public class SquareObject implements PhysicsObject {
 			e.printStackTrace();
 		}
 	}
-	private
-		int array_num; //number that this object is accessed by in netlogo
-		int width, height;
-		double xCoord, yCoord;	
+	private int array_num; //number that this object is accessed by in netlogo
+	private int width, height;
+
+	
+	@Override
+	public void commit() {
+		
+		
+	}
+		
 }

@@ -4,14 +4,17 @@ package edu.vu.vuse.cs278.g3.model;
 import org.nlogo.api.CompilerException;
 import org.nlogo.app.App;
 
-public class RoundObject implements PhysicsObject {
-
-	public RoundObject(int _array_num, double _xCoord, double _yCoord, int _radius)
-	{
-		array_num = _array_num;
+public class RoundObject extends PhysicsObject {
+	
+	/*
+	 * Member Elements
+	 */
+	
+	
+	public RoundObject(int _array_num, double _xCoord, double _yCoord, int _radius) {
+		super(_xCoord, _yCoord, 0,0);
 		radius=_radius;
-		xCoord=_xCoord;
-		yCoord=_yCoord;
+
 		
 		try { 
 			//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
@@ -21,14 +24,6 @@ public class RoundObject implements PhysicsObject {
 		} catch (CompilerException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public double getXCoord() {
-		return xCoord;
-	}
-
-	public double getYCoord() {
-		return yCoord;
 	}
 	
 	public int getRadius() {

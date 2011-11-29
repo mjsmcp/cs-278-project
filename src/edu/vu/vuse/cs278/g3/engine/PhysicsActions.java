@@ -1,5 +1,8 @@
 package edu.vu.vuse.cs278.g3.engine;
 
+import edu.vu.vuse.cs278.g3.model.ObjectManager;
+import edu.vu.vuse.cs278.g3.model.SquareObject;
+
 public class PhysicsActions {
 
 	/**
@@ -12,8 +15,10 @@ public class PhysicsActions {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-			
+			SquareObject busObject = (SquareObject) ObjectManager.getInstance().getObject("bus");
+			busObject.setSpeed(busObject.getAcceleration() + busObject.getSpeed());
+			busObject.setXCoord(busObject.getSpeed() + busObject.getXCoord());
+			busObject.commit();
 		}
 		
 	}
@@ -22,7 +27,9 @@ public class PhysicsActions {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			SquareObject busObject = (SquareObject) ObjectManager.getInstance().getObject("bus");
+			busObject.setAcceleration(busObject.getAcceleration() + 1);
+			
 			
 		}
 		
