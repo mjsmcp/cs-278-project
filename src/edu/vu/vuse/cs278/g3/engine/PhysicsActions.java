@@ -34,4 +34,14 @@ public class PhysicsActions {
 		}
 		
 	}
+	
+	public class deccelerateBus implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 }
