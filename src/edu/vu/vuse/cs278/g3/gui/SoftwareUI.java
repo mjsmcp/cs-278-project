@@ -273,7 +273,7 @@ private void Add_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_Add_ButtonActionPerformed
 
 private void Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_ButtonActionPerformed
-    System.exit(0);
+	this.dispose();
 }//GEN-LAST:event_Cancel_ButtonActionPerformed
 
 private void Clear_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_ButtonActionPerformed
