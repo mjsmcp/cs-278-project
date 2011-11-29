@@ -14,6 +14,7 @@ public class ObjectManager {
 			instance = new ObjectManager();
 		return instance;
 	}
+	
 	private ObjectManager() {}
 	
 	
@@ -21,7 +22,7 @@ public class ObjectManager {
 	 * Member Elements
 	 */
 	private Map<String, PhysicsObject> objects = new HashMap<String, PhysicsObject>();
-	
+	private int obj_count = 0;
 	
 	/*
 	 * Methods
@@ -41,4 +42,13 @@ public class ObjectManager {
 	public void removeObject(String id) {
 		this.objects.remove(id);
 	}
+	
+	public SquareObject createSquare(double _xCoord, double _yCoord, int _width, int _height){
+		return new SquareObject(obj_count++, _xCoord, _yCoord, _width, _height);
+	}
+	
+	public RoundObject createCircle(double _xCoord, double _yCoord, int _radius){
+		return new RoundObject(obj_count++, _xCoord, _yCoord, _radius);
+	}
+	
 }

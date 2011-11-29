@@ -1,5 +1,6 @@
 package edu.vu.vuse.cs278.g3.model;
 
+<<<<<<< HEAD
 public abstract class PhysicsObject {
 	
 	protected double xCoord = 0;
@@ -60,5 +61,13 @@ public abstract class PhysicsObject {
 		this.xCoord = xcoord;
 		this.yCoord = ycoord;
 	}
+=======
+public interface PhysicsObject {
+	//Object(){}
+	abstract double getXCoord();
+	abstract double getYCoord();
+	abstract void commitChanges();
+	abstract void updatePosition(double xcoord, double ycoord);
+>>>>>>> 624f0b80d64eb4caebc73d2cc0836302bea1343a
 }
 

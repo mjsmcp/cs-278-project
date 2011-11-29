@@ -19,20 +19,17 @@ public class RoundObject extends PhysicsObject {
 		try { 
 			//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
 			App.app.command("create-RoundObjects 1");			//create object at origin
-			App.app.command("ask RoundObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
-			App.app.command("ask RoundObject " + array_num + " [set ycor " + (int)yCoord + "]");
 		} catch (CompilerException e) {
 			e.printStackTrace();
 		}
+		commitChanges(); //set position
 	}
 	
 	public int getRadius() {
 		return radius;
 	}
 	
-	public void updatePosition(double xcoord, double ycoord) {
-		xCoord = xcoord;
-		yCoord = ycoord;
+	public void commitChanges(){
 		try {
 			App.app.command("ask RoundObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
 			App.app.command("ask RoundObject " + array_num + " [set ycor " + (int)yCoord + "]");
@@ -40,8 +37,12 @@ public class RoundObject extends PhysicsObject {
 			e.printStackTrace();
 		}
 	}
-	private
-		int array_num; 
-		int radius;
-		double xCoord, yCoord;	
+	public void updatePosition(double xcoord, double ycoord) {
+		xCoord = xcoord;
+		yCoord = ycoord;
+	}
+	
+	private	int array_num; 
+	private int radius;
+	private double xCoord, yCoord;	
 }
