@@ -18,7 +18,7 @@ public class SquareObject extends PhysicsObject {
 		} catch (CompilerException e) {
 			e.printStackTrace();
 		}
-		commitChanges(); //set location
+		commit(); //set location
 	}
 	
 	public double getXCoord() {
@@ -36,15 +36,6 @@ public class SquareObject extends PhysicsObject {
 	public int getWidth() {
 		return width;
 	}
-	
-	public void commitChanges(){
-		try {
-			App.app.command("ask SquareObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
-			App.app.command("ask SquareObject " + array_num + " [set ycor " + (int)yCoord + "]");
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}
-	}
 
 	private int array_num; //number that this object is accessed by in netlogo
 	private int width, height;
@@ -52,8 +43,12 @@ public class SquareObject extends PhysicsObject {
 	
 	@Override
 	public void commit() {
-		
-		
+		try {
+			App.app.command("ask SquareObject " + array_num + " [set xcor " + (int)xCoord + "]");	//move to desired location
+			App.app.command("ask SquareObject " + array_num + " [set ycor " + (int)yCoord + "]");
+		} catch (CompilerException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	
