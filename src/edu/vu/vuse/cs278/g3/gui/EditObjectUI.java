@@ -1,4 +1,4 @@
-package my.software;
+package edu.vu.vuse.cs278.g3.gui;
 
 /*
  * To change this template, choose Tools | Templates

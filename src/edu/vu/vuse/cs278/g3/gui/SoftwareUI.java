@@ -8,7 +8,7 @@
  *
  * Created on Nov 28, 2011, 3:06:41 AM
  */
-package my.software;
+package edu.vu.vuse.cs278.g3.gui;
 
 /**
  *

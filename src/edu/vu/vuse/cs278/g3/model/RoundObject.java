@@ -44,5 +44,10 @@ public class RoundObject extends PhysicsObject {
 	
 	private	int array_num; 
 	private int radius;
-	private double xCoord, yCoord;	
+	private double xCoord, yCoord;
+	@Override
+	public void commit() {
+		// TODO Auto-generated method stub
+		
+	}	
 }

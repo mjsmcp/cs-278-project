@@ -6,11 +6,11 @@ public class SquareObject extends PhysicsObject {
 
 	public SquareObject(int _array_num, double _xCoord, double _yCoord, int _width, int _height)
 	{
+		super(_xCoord, _yCoord, 0,0);
 		array_num = _array_num;
 		width=_width;
 		height=_height;
-		xCoord=_xCoord;
-		yCoord=_yCoord;
+
 		
 		try {
 			//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
@@ -45,7 +45,7 @@ public class SquareObject extends PhysicsObject {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	private int array_num; //number that this object is accessed by in netlogo
 	private int width, height;
 
@@ -55,16 +55,12 @@ public class SquareObject extends PhysicsObject {
 		
 		
 	}
-		
-=======
+
 	
 	public void updatePosition(double xcoord, double ycoord) {
 		xCoord = xcoord;
 		yCoord = ycoord;
 	}
 	
-	private	int array_num; //number that this object is accessed by in netlogo
-	private int width, height;
-    private double xCoord, yCoord;	
->>>>>>> 624f0b80d64eb4caebc73d2cc0836302bea1343a
+
 }

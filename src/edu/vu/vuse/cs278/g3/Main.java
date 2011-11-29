@@ -7,9 +7,9 @@ import edu.vu.vuse.cs278.g3.model.SquareObject;
 
 
 public class Main {
-
+	/*
 	public static void main(String[] args) {
-/*		
+		
 		App.main(args);	//setup netlogo
 		try {
 			java.awt.EventQueue.invokeAndWait(new Runnable() {
@@ -37,7 +37,7 @@ public class Main {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-*/
+
 
 		try {
 			PhysicsEngine pe = PhysicsEngine.getInstance();
@@ -76,5 +76,5 @@ public class Main {
 		
 		
 	}
-
+*/
 }
