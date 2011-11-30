@@ -43,11 +43,11 @@ public class ObjectManager {
 		this.objects.remove(id);
 	}
 	
-	public SquareObject createSquare(double _xCoord, double _yCoord, int _width, int _height){
+	public SquareObject createSquare(double _xCoord, double _yCoord, double _width, double _height){
 		return new SquareObject(obj_count++, _xCoord, _yCoord, _width, _height);
 	}
 	
-	public RoundObject createCircle(double _xCoord, double _yCoord, int _radius){
+	public RoundObject createCircle(double _xCoord, double _yCoord, double _radius){
 		return new RoundObject(obj_count++, _xCoord, _yCoord, _radius);
 	}
 	
