@@ -53,6 +53,12 @@ public abstract class PhysicsObject {
 	}
 	
 	/**
+	 * Immediately changes the object's shape. Must exist in netlogo shapes library.
+	 * @param shape
+	 */
+	public abstract void setShape(String shape);
+	
+	/**
 	 * Commits the changes to the NetLogo backend to update the graphical display.
 	 * You do not need to call this function unless the POSITION has changed.
 	 */
