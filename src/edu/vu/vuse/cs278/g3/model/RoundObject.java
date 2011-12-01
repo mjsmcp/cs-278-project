@@ -6,15 +6,13 @@ import org.nlogo.app.App;
 
 public class RoundObject extends PhysicsObject {
 	
-	/*
-	 * Member Elements
-	 */
+	/** The radius of the circle object*/
+	private double radius;
 	
-	
-	RoundObject(int _array_num, double _xCoord, double _yCoord, double _radius) {
-		super(_xCoord, _yCoord, 0,0);
+	RoundObject(int _array_num, double _xCoord, double _yCoord, double _radius, double mass) {
+		super(_array_num, _xCoord, _yCoord, 0,0, mass);
 		radius=_radius;
-		array_num = _array_num;
+		
 		
 		try { 
 			//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
@@ -35,9 +33,9 @@ public class RoundObject extends PhysicsObject {
 		yCoord = ycoord;
 	}
 	
-	final private int array_num; 
-	private double radius;
-	private double xCoord, yCoord;
+ 
+	
+	
 	@Override
 	public void commit() {
 		try {

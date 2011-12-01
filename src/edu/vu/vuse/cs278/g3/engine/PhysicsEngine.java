@@ -13,10 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class PhysicsEngine {
 
-	/*
-	 * Singleton Object
-	 */
-	
+	/** Instance object for the Singleton PhysicsEngine */
 	private static PhysicsEngine instance;
 	
 	/**
@@ -38,7 +35,7 @@ public class PhysicsEngine {
 	
 	
 	
-	
+	/** QueueExecutor on which to execute PhysicsActions */
 	QueueExecutor exec = new QueueExecutor();
 	
 	/**
@@ -80,7 +77,15 @@ public class PhysicsEngine {
 	 */
 	private class QueueExecutor extends Thread implements Executor {
 
+		/** Boolean value which represents the status of the Executor
+		 * True: The Executor will proceed to the next item on the queue.
+		 * False: The Executor will terminate after the current item is executed.*/
 		boolean enabled = true;
+		
+		/**
+		 * The work queue for the executor. New Runnables are added to this queue
+		 * for execution.
+		 */
 		private BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
 		
 		@Override

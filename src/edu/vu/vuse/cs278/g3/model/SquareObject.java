@@ -4,9 +4,9 @@ import org.nlogo.app.App;
 
 public class SquareObject extends PhysicsObject {
 
-	SquareObject(int _array_num, double _xCoord, double _yCoord, double _width, double _height)
+	SquareObject(int _array_num, double _xCoord, double _yCoord, double _width, double _height, double mass)
 	{
-		super(_xCoord, _yCoord, 0,0);
+		super(_array_num, _xCoord, _yCoord, 0,0, mass);
 		array_num = _array_num;
 		width=_width;
 		height=_height;

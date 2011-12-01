@@ -3,6 +3,13 @@ package edu.vu.vuse.cs278.g3.engine;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 import edu.vu.vuse.cs278.g3.model.SquareObject;
 
+/**
+ * Class that contains inner classes that implement the Runnable interface.
+ * All inner classes should implement the Runnable interface and be designed as 
+ * one specific action for the PhysicsEngine work queue.
+ * @author Matthew Shea
+ *
+ */
 public class PhysicsActions {
 
 	/**
@@ -23,6 +30,12 @@ public class PhysicsActions {
 		
 	}
 	
+	
+	/**
+	 * Calculates the new speed for the bus based on the current speed and the acceleration.
+	 * @author Matthew Shea
+	 *
+	 */
 	public class accelerateBus implements Runnable {
 
 		@Override
@@ -35,6 +48,11 @@ public class PhysicsActions {
 		
 	}
 	
+	/**
+	 * Slows the bus based on the current speed and acceleration.
+	 * @author syddraf
+	 *
+	 */
 	public class deccelerateBus implements Runnable {
 
 		@Override
