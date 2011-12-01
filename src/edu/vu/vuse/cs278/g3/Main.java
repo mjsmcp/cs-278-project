@@ -7,6 +7,7 @@ import edu.vu.vuse.cs278.g3.model.SquareObject;
 
 
 public class Main {
+	
 	/*
 	public static void main(String[] args) {
 		

@@ -8,7 +8,7 @@ public class PhysicsActions {
 	/**
 	 * The bus itself should never move on the screen. 
 	 * We will simulate movement by adjusting the position of the background.
-	 * @author syddraf
+	 * @author Matthew Shea
 	 *
 	 */
 	public class moveBus implements Runnable{

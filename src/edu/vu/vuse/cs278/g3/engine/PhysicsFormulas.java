@@ -2,23 +2,16 @@ package edu.vu.vuse.cs278.g3.engine;
 
 public class PhysicsFormulas {
 
-	public static void main(String [] args) {
-		try {
-			System.out.println(frictionalForce(null, null, 2.0));
-		} catch (TooManyNullArgumentsException e) {
-			System.out.println(e.getError());
-			e.printStackTrace();
-		}
-	}
 	/**
 	 * Implements the formula F = um;
 	 * Pass one parameter as null and the calculated value of that
 	 * parameter will be returned.
-	 * @param f
-	 * @param m
-	 * @param u
-	 * @return
-	 * @throws TooManyNullArgumentsException 
+	 * @param f The frictional force applied to the object
+	 * @param m The mass of the object
+	 * @param u The coefficient of friction
+	 * @return The returned value is the calculated value of the parameter that
+	 * was passed as null.
+	 * @throws TooManyNullArgumentsException Thrown if more than one argument is null. 
 	 */
 	public static Double frictionalForce(Double f, Double m, Double u) throws TooManyNullArgumentsException {
 		int code = 0;
@@ -45,6 +38,14 @@ public class PhysicsFormulas {
 		throw new TooManyNullArgumentsException(code);
 	}
 	
+	/**
+	 * This function implements the formula for an objects momentum. 
+	 * @param P The momentum of the object.
+	 * @param m The mass of the object.
+	 * @param v The velocity of the object.
+	 * @return The value returned is the argument that was set to null in the arguments.
+	 * @throws TooManyNullArgumentsException Thrown if more than one argument is null.
+	 */
 	public static Double momentum(Double P, Double m, Double v) throws TooManyNullArgumentsException {
 		int code = 0;
 		code += (P == null) ? 1 : 0;
@@ -70,11 +71,15 @@ public class PhysicsFormulas {
 		throw new TooManyNullArgumentsException(code);
 	}
 	
+	
+	/**
+	 * This exception indicates that too many null arguments were passed to
+	 * one of the above PhysicsFormulas.
+	 * @author Matthew Shea
+	 *
+	 */
 	public static class TooManyNullArgumentsException extends Exception {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 579634328683341549L;
 		int number = 0;
 		public TooManyNullArgumentsException(int number) {
