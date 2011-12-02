@@ -13,6 +13,13 @@ import edu.vu.vuse.cs278.g3.model.SquareObject;
  */
 public class PhysicsActions {
 
+	/**
+	 * This Runnable adds the sequence of other runnables to the physics engine
+	 * and then itself at the end. This is added to the PhysicsEngine's work queue
+	 * on the enable() call.
+	 * @author Matthew Shea
+	 *
+	 */
 	public static class loadNewFrame implements Runnable {
 
 		@Override
@@ -67,6 +74,11 @@ public class PhysicsActions {
 		
 	}
 	
+	/**
+	 * Accelerates the object based on the calculated friction and speed of the object
+	 * @author Matthew Shea
+	 *
+	 */
 	public static class accelerateObject implements Runnable {
 
 		@Override
@@ -85,6 +97,12 @@ public class PhysicsActions {
 		
 	}
 	
+	
+	/**
+	 * Updates the object's position on the netlogo display
+	 * @author Matthew Shea
+	 *
+	 */
 	public static class updateObjectPosition implements Runnable {
 
 		@Override
