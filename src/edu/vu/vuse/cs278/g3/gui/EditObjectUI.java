@@ -1,4 +1,5 @@
 package edu.vu.vuse.cs278.g3.gui;
+import javax.swing.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -35,7 +36,7 @@ public class EditObjectUI extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         weightText = new javax.swing.JTextField();
         radiusText = new javax.swing.JTextField();
-        lengthText = new javax.swing.JTextField();
+        widthText = new javax.swing.JTextField();
         heightText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -60,24 +61,29 @@ public class EditObjectUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
-        weightText.setText("jTextField1");
         weightText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 weightTextActionPerformed(evt);
             }
         });
 
-        radiusText.setText("jTextField2");
+        radiusText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radiusTextActionPerformed(evt);
+            }
+        });
 
-        lengthText.setText("jTextField3");
-
-        heightText.setText("jTextField4");
+        widthText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                widthTextActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Weight");
 
         jLabel2.setText("Radius");
 
-        jLabel3.setText("Length");
+        jLabel3.setText("Width");
 
         jLabel4.setText("Height");
 
@@ -85,6 +91,7 @@ public class EditObjectUI extends javax.swing.JFrame {
 
         jLabel6.setText("Object Attributes");
 
+        relationshipGroup.add(topButton);
         topButton.setText("On Top");
         topButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,12 +99,16 @@ public class EditObjectUI extends javax.swing.JFrame {
             }
         });
 
+        relationshipGroup.add(insideRButton);
         insideRButton.setText("Inside (with a seat belt)");
 
+        relationshipGroup.add(insideUButton);
         insideUButton.setText("Inside (without a seat belt)");
 
+        relationshipGroup.add(behindButton);
         behindButton.setText("Behind (dragged)");
 
+        relationshipGroup.add(frontButton);
         frontButton.setText("In Front (pushed)");
         frontButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,12 +161,12 @@ public class EditObjectUI extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(heightText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lengthText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radiusText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(weightText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editButton))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(heightText, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(widthText, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(radiusText, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(editButton)
+                            .addComponent(weightText, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -179,7 +190,7 @@ public class EditObjectUI extends javax.swing.JFrame {
                         .addComponent(clearButton)
                         .addGap(18, 18, 18)
                         .addComponent(cancelButton)))
-                .addGap(17, 17, 17))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +223,7 @@ public class EditObjectUI extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lengthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(widthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -247,7 +258,7 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 // TODO add your handling code here:
     weightText.setText("");
     heightText.setText("");
-    lengthText.setText("");
+    widthText.setText("");
     radiusText.setText("");
     relationshipGroup.clearSelection();
 }//GEN-LAST:event_clearButtonActionPerformed
@@ -259,8 +270,22 @@ private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
 // TODO add your handling code here:
+    String weight = weightText.getText();
+    String radius = radiusText.getText();
+    String height = heightText.getText();
+    String width = widthText.getText();
+    ButtonModel relationship = relationshipGroup.getSelection();
+    // return {weight, radius, height, width, object, relationship};
     this.dispose();
 }//GEN-LAST:event_editButtonActionPerformed
+
+private void radiusTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiusTextActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_radiusTextActionPerformed
+
+private void widthTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_widthTextActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_widthTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,10 +343,10 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField lengthText;
     private javax.swing.JTextField radiusText;
     private javax.swing.ButtonGroup relationshipGroup;
     private javax.swing.JRadioButton topButton;
     private javax.swing.JTextField weightText;
+    private javax.swing.JTextField widthText;
     // End of variables declaration//GEN-END:variables
 }

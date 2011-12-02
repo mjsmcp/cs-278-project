@@ -39,12 +39,12 @@
                           <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="heightText" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lengthText" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="radiusText" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="weightText" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="heightText" alignment="1" max="32767" attributes="1"/>
+                          <Component id="widthText" alignment="1" max="32767" attributes="1"/>
+                          <Component id="radiusText" alignment="1" max="32767" attributes="1"/>
                           <Component id="editButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="weightText" alignment="1" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -78,7 +78,7 @@
                       <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,7 +116,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lengthText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="widthText" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -152,27 +152,21 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="weightText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="weightTextActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="radiusText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiusTextActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="lengthText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="widthText">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="widthTextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="heightText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -186,7 +180,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Length"/>
+        <Property name="text" type="java.lang.String" value="Width"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -206,6 +200,9 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="topButton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="relationshipGroup"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="On Top"/>
       </Properties>
       <Events>
@@ -214,21 +211,33 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="insideRButton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="relationshipGroup"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Inside (with a seat belt)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="insideUButton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="relationshipGroup"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Inside (without a seat belt)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="behindButton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="relationshipGroup"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Behind (dragged)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="frontButton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="relationshipGroup"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="In Front (pushed)"/>
       </Properties>
       <Events>

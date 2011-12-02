@@ -31,16 +31,22 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
-        jSlider2 = new javax.swing.JSlider();
-        jLabel1 = new javax.swing.JLabel();
+        addObject = new javax.swing.JButton();
+        editObject = new javax.swing.JButton();
+        runSimulation = new javax.swing.JButton();
+        stopSimulation = new javax.swing.JButton();
+        pauseSimulation = new javax.swing.JButton();
+        busAcceleration = new javax.swing.JSlider();
+        busDeceleration = new javax.swing.JSlider();
+        busAccelerationLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        sillyNetLogo = new javax.swing.JInternalFrame();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        busAccelerationLabelValue = new javax.swing.JLabel();
+        busDecelerationLabelValue = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -50,34 +56,56 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Add Object");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addObject.setText("Add Object");
+        addObject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addObjectActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Edit Object");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        editObject.setText("Edit Object");
+        editObject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                editObjectActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Run Simulation");
+        runSimulation.setText("Run Simulation");
+        runSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runSimulationActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Stop Simulation");
+        stopSimulation.setText("Stop Simulation");
 
-        jButton5.setText("Pause Simulation");
+        pauseSimulation.setText("Pause Simulation");
+        pauseSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseSimulationActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Bus Acceleration");
+        busAcceleration.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                busAccelerationStateChanged(evt);
+            }
+        });
+
+        busDeceleration.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                busDecelerationStateChanged(evt);
+            }
+        });
+
+        busAccelerationLabel.setText("Bus Acceleration");
 
         jLabel2.setText("Bus Deceleration");
 
-        jInternalFrame1.setVisible(true);
-        jInternalFrame1.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+        sillyNetLogo.setVisible(true);
+        sillyNetLogo.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                jInternalFrame1InternalFrameActivated(evt);
+                //sillyNetLogoInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -93,16 +121,28 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout sillyNetLogoLayout = new javax.swing.GroupLayout(sillyNetLogo.getContentPane());
+        sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
+        sillyNetLogoLayout.setHorizontalGroup(
+            sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 316, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+        sillyNetLogoLayout.setVerticalGroup(
+            sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
+
+        jLabel3.setText("0");
+
+        jLabel4.setText("100");
+
+        jLabel5.setText("0");
+
+        jLabel6.setText("100");
+
+        busAccelerationLabelValue.setText("50");
+
+        busDecelerationLabelValue.setText("50");
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,94 +172,94 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                        .addGap(249, 249, 249)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(busAcceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(busDeceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))))
+                            .addComponent(stopSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(runSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editObject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addObject, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(pauseSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(593, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel1)
-                .addContainerGap(652, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(593, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel2)
-                .addContainerGap(652, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addComponent(busAccelerationLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(busAccelerationLabelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(busDecelerationLabelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(sillyNetLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(addObject)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(editObject)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(runSimulation)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(stopSimulation)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(22, 22, 22)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pauseSimulation)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(busAcceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(busAccelerationLabel)
+                            .addComponent(busAccelerationLabelValue))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(busDeceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(busDecelerationLabelValue)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(sillyNetLogo)))
                 .addContainerGap())
         );
 
-    	try 
-        {
-    		//final javax.swing.JFrame frame = new javax.swing.JFrame();
-            final InterfaceComponent comp = new InterfaceComponent(this);
-            java.awt.EventQueue.invokeAndWait
-                ( new Runnable()
-                    { public void run() {
-                        //frame.setSize(1000,700);
-                        MainWindow.this.add(comp);
-                        //frame.setVisible(true);
-                        try {
-                          comp.open("./CS278.nlogo");
-                        }
-                        catch(Exception ex) {
-                          ex.printStackTrace();
-                        }
-                    } } ) ;
-        }
-        catch(Exception ex) {
-            ex.printStackTrace();
-        }
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void addObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObjectActionPerformed
 // TODO add your handling code here:
     new ObjectUI().setVisible(true);
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_addObjectActionPerformed
 
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+private void editObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editObjectActionPerformed
 // TODO add your handling code here:
     new EditObjectUI().setVisible(true);
-}//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_editObjectActionPerformed
 
 private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
 // TODO add your handling code here:
@@ -231,6 +271,32 @@ private void jInternalFrame1InternalFrameActivated(javax.swing.event.InternalFra
 
 }
 //GEN-LAST:event_jInternalFrame1InternalFrameActivated
+
+private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
+// TODO add your handling code here:
+    int busAccel = busAcceleration.getValue();
+    int busDecel = busDeceleration.getValue();
+}//GEN-LAST:event_runSimulationActionPerformed
+
+private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSimulationActionPerformed
+// TODO add your handling code here:
+    
+}//GEN-LAST:event_pauseSimulationActionPerformed
+
+private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busAccelerationStateChanged
+// TODO add your handling code here:
+    int tmp = busAcceleration.getValue();
+    String tmpBusAccel = Integer.toString(tmp);
+    busAccelerationLabelValue.setText(tmpBusAccel);
+}//GEN-LAST:event_busAccelerationStateChanged
+
+private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busDecelerationStateChanged
+// TODO add your handling code here:
+    int tmp = busDeceleration.getValue();
+    String tmpBusDecel = Integer.toString(tmp);
+    busDecelerationLabelValue.setText(tmpBusDecel);
+    busDecelerationLabelValue.setEnabled(true);                   
+}//GEN-LAST:event_busDecelerationStateChanged
 
     /**
      * @param args the command line arguments
@@ -269,21 +335,27 @@ private void jInternalFrame1InternalFrameActivated(javax.swing.event.InternalFra
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addObject;
+    private javax.swing.JSlider busAcceleration;
+    private javax.swing.JLabel busAccelerationLabel;
+    private javax.swing.JLabel busAccelerationLabelValue;
+    private javax.swing.JSlider busDeceleration;
+    private javax.swing.JLabel busDecelerationLabelValue;
+    private javax.swing.JButton editObject;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
+    private javax.swing.JButton pauseSimulation;
+    private javax.swing.JButton runSimulation;
+    private javax.swing.JInternalFrame sillyNetLogo;
+    private javax.swing.JButton stopSimulation;
     // End of variables declaration//GEN-END:variables
 }
