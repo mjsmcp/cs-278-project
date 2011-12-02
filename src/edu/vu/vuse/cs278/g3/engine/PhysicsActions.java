@@ -1,6 +1,7 @@
 package edu.vu.vuse.cs278.g3.engine;
 
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
+import edu.vu.vuse.cs278.g3.model.PhysicsObject;
 import edu.vu.vuse.cs278.g3.model.SquareObject;
 
 /**
@@ -12,20 +13,31 @@ import edu.vu.vuse.cs278.g3.model.SquareObject;
  */
 public class PhysicsActions {
 
+	public static class loadNewFrame implements Runnable {
+
+		@Override
+		public void run() {
+			PhysicsEngine.getInstance().addtoQueue(new accelerateBus());
+			PhysicsEngine.getInstance().addtoQueue(new moveBus());
+			PhysicsEngine.getInstance().addtoQueue(new accelerateObject());
+			PhysicsEngine.getInstance().addtoQueue(new updateObjectPosition());
+			PhysicsEngine.getInstance().addtoQueue(new loadNewFrame());
+			
+		}
+		
+	}
+	
 	/**
 	 * The bus itself should never move on the screen. 
 	 * We will simulate movement by adjusting the position of the background.
 	 * @author Matthew Shea
 	 *
 	 */
-	public class moveBus implements Runnable{
+	public static class moveBus implements Runnable{
 
 		@Override
 		public void run() {
-			SquareObject busObject = (SquareObject) ObjectManager.getInstance().getObject("bus");
-			busObject.setSpeed(busObject.getAcceleration() + busObject.getSpeed());
-			busObject.setXCoord(busObject.getSpeed() + busObject.getXCoord());
-			busObject.commit();
+			// TODO Update the background or something to make things appear that they are moving
 		}
 		
 	}
@@ -36,28 +48,50 @@ public class PhysicsActions {
 	 * @author Matthew Shea
 	 *
 	 */
-	public class accelerateBus implements Runnable {
+	public static class accelerateBus implements Runnable {
 
 		@Override
 		public void run() {
+			// Retrieve Bus Object
 			SquareObject busObject = (SquareObject) ObjectManager.getInstance().getObject("bus");
-			busObject.setAcceleration(busObject.getAcceleration() + 1);
 			
+			// Update speed of the bus
+			busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
 			
+			if(busObject.getAcceleration() > 0) {
+				ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
+			}
+			// Commit changes
+			busObject.commit();
 		}
 		
 	}
 	
-	/**
-	 * Slows the bus based on the current speed and acceleration.
-	 * @author syddraf
-	 *
-	 */
-	public class deccelerateBus implements Runnable {
+	public static class accelerateObject implements Runnable {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			// Retrieve Object
+			PhysicsObject object = ObjectManager.getInstance().getObject("object");
+			
+			// Update speed of object
+			double opposingFrictionalForce = PhysicsFormulas.frictionalForce(null, object.getMass(), 0.125);
+			double modifiedAcceleration = object.getAcceleration() - opposingFrictionalForce/object.getMass();
+			object.setSpeed(object.getSpeed() + modifiedAcceleration);
+			
+			// Commit changes
+			object.commit();
+		}
+		
+	}
+	
+	public static class updateObjectPosition implements Runnable {
+
+		@Override
+		public void run() {
+			PhysicsObject object = ObjectManager.getInstance().getObject("object");
+			object.setXCoord(object.getXCoord() + object.getSpeed());
+			object.commit();
 			
 		}
 		
