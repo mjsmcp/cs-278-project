@@ -46,6 +46,7 @@ public class PhysicsEngine {
 		if(exec != null && exec.isAlive()) exec.interrupt();
 		exec = new QueueExecutor();
 		exec.start();
+		exec.execute(new PhysicsActions.loadNewFrame());
 	}
 	
 	/**

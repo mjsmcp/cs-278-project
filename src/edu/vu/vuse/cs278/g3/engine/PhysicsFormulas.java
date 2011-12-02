@@ -13,7 +13,7 @@ public class PhysicsFormulas {
 	 * was passed as null.
 	 * @throws TooManyNullArgumentsException Thrown if more than one argument is null. 
 	 */
-	public static Double frictionalForce(Double f, Double m, Double u) throws TooManyNullArgumentsException {
+	public static Double frictionalForce(Double f, Double m, Double u) {
 		int code = 0;
 		code += (f == null) ? 1 : 0;
 		code += (m == null) ? 10 : 0;
@@ -21,21 +21,23 @@ public class PhysicsFormulas {
 		
 		switch(code) {
 		// Solving for F
-		// Formula is F = um
+		// Formula is F = umg
 		case 1:
-			return u*m;
+			return u*m*9.81;
 			
 		// Solving for m
-		// Formula is m = F/u
+		// Formula is m = F/ug
 		case 10:
-			return f/u;
+			return f/(u*9.81);
 			
 		// Solving for u
-		// Formula is u = F/m
+		// Formula is u = F/mg
 		case 100:
-			return f/m;
+			return f/(m*9.81);
 		}
-		throw new TooManyNullArgumentsException(code);
+		
+		return 0.0;
+		
 	}
 	
 	/**
