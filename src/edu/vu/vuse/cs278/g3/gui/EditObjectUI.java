@@ -114,6 +114,11 @@ public class EditObjectUI extends javax.swing.JFrame {
         jLabel10.setText("cm");
 
         editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         clearButton.setText("Clear");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -251,6 +256,11 @@ private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 // TODO add your handling code here:
     this.dispose();
 }//GEN-LAST:event_cancelButtonActionPerformed
+
+private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+// TODO add your handling code here:
+    this.dispose();
+}//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * @param args the command line arguments

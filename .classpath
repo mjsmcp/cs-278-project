@@ -3,5 +3,19 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/NetLogo.jar"/>
+	<classpathentry kind="lib" path="lib/lib/scala-library.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/asm-commons-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/asm-util-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/BehaviorSpace.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/jhotdraw.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/jogl.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/MRJAdapter.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/picocontainer.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/quaqua.jar"/>
+	<classpathentry kind="lib" path="C:/cygwin/cs-278-project/lib/lib/swing-layout.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
