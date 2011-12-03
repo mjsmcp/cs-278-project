@@ -1,4 +1,5 @@
 package edu.vu.vuse.cs278.g3.gui;
+import edu.vu.vuse.cs278.g3.model.*;
 import javax.swing.*;
 
 /*
@@ -20,6 +21,50 @@ public class EditObjectUI extends javax.swing.JFrame {
     /** Creates new form EditObjectUI */
     public EditObjectUI() {
         initComponents();
+        
+        // display the current values for the current object
+        PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
+        int weight = (int)myObj.getMass();
+        int height = 0;
+        int width = 0;
+        int radius = 0;
+        
+        if(myObj.getClass().equals(RoundObject.class))
+        {
+        	radius = (int)((RoundObject)myObj).getRadius();
+        	widthValue.setEnabled(false);
+        	heightValue.setEnabled(false);
+        	radiusValue.setEnabled(true);
+        }
+        else if (myObj.getClass().equals(SquareObject.class))
+        {
+        	height = (int)((SquareObject)myObj).getHeight();
+        	width = (int)((SquareObject)myObj).getWidth();
+        	widthValue.setEnabled(true);
+        	heightValue.setEnabled(true);
+        	radiusValue.setEnabled(false);
+        }
+        
+        weightValue.setValue(weight);
+        heightValue.setValue(height);
+        widthValue.setValue(width);
+        radiusValue.setValue(radius);
+        
+        int tmp = weightValue.getValue();
+        String tmpStr = Integer.toString(tmp);
+        weightLabelValue.setText(tmpStr);
+        
+        tmp = heightValue.getValue();
+        tmpStr = Integer.toString(tmp);
+        heightLabelValue.setText(tmpStr);
+        
+        tmp = widthValue.getValue();
+        tmpStr = Integer.toString(tmp);
+        widthLabelValue.setText(tmpStr);
+        
+        tmp = radiusValue.getValue();
+        tmpStr = Integer.toString(tmp);
+        radiusLabelValue.setText(tmpStr);
     }
 
     /** This method is called from within the constructor to
@@ -34,10 +79,6 @@ public class EditObjectUI extends javax.swing.JFrame {
         relationshipGroup = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        weightText = new javax.swing.JTextField();
-        radiusText = new javax.swing.JTextField();
-        widthText = new javax.swing.JTextField();
-        heightText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,35 +90,21 @@ public class EditObjectUI extends javax.swing.JFrame {
         insideUButton = new javax.swing.JRadioButton();
         behindButton = new javax.swing.JRadioButton();
         frontButton = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         editButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        weightValue = new javax.swing.JSlider();
+        radiusValue = new javax.swing.JSlider();
+        widthValue = new javax.swing.JSlider();
+        heightValue = new javax.swing.JSlider();
+        weightLabelValue = new javax.swing.JLabel();
+        radiusLabelValue = new javax.swing.JLabel();
+        widthLabelValue = new javax.swing.JLabel();
+        heightLabelValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jEditorPane1);
-
-        weightText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                weightTextActionPerformed(evt);
-            }
-        });
-
-        radiusText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radiusTextActionPerformed(evt);
-            }
-        });
-
-        widthText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                widthTextActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Weight");
 
@@ -116,14 +143,6 @@ public class EditObjectUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("grams");
-
-        jLabel8.setText("cm");
-
-        jLabel9.setText("cm");
-
-        jLabel10.setText("cm");
-
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,37 +164,91 @@ public class EditObjectUI extends javax.swing.JFrame {
             }
         });
 
+        weightValue.setMaximum(4);
+        weightValue.setSnapToTicks(true);
+        weightValue.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                weightValueStateChanged(evt);
+            }
+        });
+
+        radiusValue.setMaximum(4);
+        radiusValue.setSnapToTicks(true);
+        radiusValue.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                radiusValueStateChanged(evt);
+            }
+        });
+
+        widthValue.setMaximum(4);
+        widthValue.setSnapToTicks(true);
+        widthValue.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                widthValueStateChanged(evt);
+            }
+        });
+
+        heightValue.setMaximum(4);
+        heightValue.setSnapToTicks(true);
+        heightValue.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                heightValueStateChanged(evt);
+            }
+        });
+
+        weightLabelValue.setText("jLabel7");
+
+        radiusLabelValue.setText("jLabel8");
+
+        widthLabelValue.setText("jLabel9");
+
+        heightLabelValue.setText("jLabel10");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(heightText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(widthText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(radiusText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(editButton)
-                            .addComponent(weightText, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(243, Short.MAX_VALUE)
+                                .addComponent(editButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(weightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(widthValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(radiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(weightLabelValue)
+                            .addGap(132, 132, 132)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(radiusLabelValue)
+                        .addGap(133, 133, 133)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(53, 53, 53)
+                        .addComponent(clearButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton)
+                        .addGap(246, 246, 246))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
@@ -185,58 +258,70 @@ public class EditObjectUI extends javax.swing.JFrame {
                                     .addComponent(topButton)
                                     .addComponent(insideUButton)
                                     .addComponent(behindButton)
-                                    .addComponent(frontButton)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(clearButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton)))
-                .addGap(25, 25, 25))
+                                    .addComponent(frontButton))))
+                        .addGap(97, 97, 97))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(widthLabelValue)
+                .addContainerGap(515, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(heightLabelValue)
+                .addContainerGap(511, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(topButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(insideRButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(insideUButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(insideUButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(weightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(weightLabelValue))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(radiusLabelValue)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(behindButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(frontButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(weightText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radiusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(widthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(heightText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10))))
-                .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(widthValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(9, 9, 9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(widthLabelValue)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(heightLabelValue)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
                     .addComponent(cancelButton)
                     .addComponent(clearButton))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -250,42 +335,93 @@ private void topButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 // TODO add your handling code here:
 }//GEN-LAST:event_topButtonActionPerformed
 
-private void weightTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weightTextActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_weightTextActionPerformed
-
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-// TODO add your handling code here:
-    weightText.setText("");
-    heightText.setText("");
-    widthText.setText("");
-    radiusText.setText("");
+    weightValue.setValue(0);
+    heightValue.setValue(0);
+    widthValue.setValue(0);
+    radiusValue.setValue(0);
     relationshipGroup.clearSelection();
 }//GEN-LAST:event_clearButtonActionPerformed
 
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-// TODO add your handling code here:
     this.dispose();
 }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-// TODO add your handling code here:
-    String weight = weightText.getText();
-    String radius = radiusText.getText();
-    String height = heightText.getText();
-    String width = widthText.getText();
+    double weight = weightValue.getValue();
+    double radius = radiusValue.getValue();
+    double height = heightValue.getValue();
+    double width = widthValue.getValue();
+    
+    int x=0, y=0;
+    
     ButtonModel relationship = relationshipGroup.getSelection();
-    // return {weight, radius, height, width, object, relationship};
+    // get bus's coordinates
+    if (relationship == topButton) 
+    {
+        x = 0;
+        y = 0;
+    }
+    else if (relationship == insideRButton) 
+    {
+        x = 0;
+        y = 0;
+    }
+    else if (relationship == insideUButton) 
+    {
+        x = 0;
+        y = 0;
+    }
+    else if (relationship == behindButton)
+    {
+        x = 0;
+        y = 0;
+    }
+    
+    PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
+    if(myObj.getClass().equals(RoundObject.class)) 
+    {
+        myObj.setMass(weight);
+        ((RoundObject)myObj).setRadius(radius);
+        ((RoundObject)myObj).setXCoord(x);
+        ((RoundObject)myObj).setYCoord(y);
+        ObjectManager.getInstance().updateObject("leObj", myObj);
+    }
+    else if (myObj.getClass().equals(SquareObject.class))
+    {
+        myObj.setMass(weight);
+        ((SquareObject)myObj).setHeight(height);
+        ((SquareObject)myObj).setWidth(width);        
+        myObj.setXCoord(x);
+        myObj.setYCoord(y);
+        ObjectManager.getInstance().updateObject("leObj", myObj);
+    }
     this.dispose();
 }//GEN-LAST:event_editButtonActionPerformed
 
-private void radiusTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiusTextActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_radiusTextActionPerformed
+private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_weightValueStateChanged
+    int tmp = weightValue.getValue();
+    String tmpWeight = Integer.toString(tmp);
+    weightLabelValue.setText(tmpWeight);
+}//GEN-LAST:event_weightValueStateChanged
 
-private void widthTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_widthTextActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_widthTextActionPerformed
+private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radiusValueStateChanged
+    int tmp = radiusValue.getValue();
+    String tmpRadius = Integer.toString(tmp);
+    radiusLabelValue.setText(tmpRadius);
+}//GEN-LAST:event_radiusValueStateChanged
+
+private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_widthValueStateChanged
+    int tmp = widthValue.getValue();
+    String tmpWidth = Integer.toString(tmp);
+    widthLabelValue.setText(tmpWidth);
+}//GEN-LAST:event_widthValueStateChanged
+
+private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightValueStateChanged
+    int tmp = heightValue.getValue();
+    String tmpHeight = Integer.toString(tmp);
+    heightLabelValue.setText(tmpHeight);
+}//GEN-LAST:event_heightValueStateChanged
 
     /**
      * @param args the command line arguments
@@ -328,25 +464,25 @@ private void widthTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JButton clearButton;
     private javax.swing.JButton editButton;
     private javax.swing.JRadioButton frontButton;
-    private javax.swing.JTextField heightText;
+    private javax.swing.JLabel heightLabelValue;
+    private javax.swing.JSlider heightValue;
     private javax.swing.JRadioButton insideRButton;
     private javax.swing.JRadioButton insideUButton;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField radiusText;
+    private javax.swing.JLabel radiusLabelValue;
+    private javax.swing.JSlider radiusValue;
     private javax.swing.ButtonGroup relationshipGroup;
     private javax.swing.JRadioButton topButton;
-    private javax.swing.JTextField weightText;
-    private javax.swing.JTextField widthText;
+    private javax.swing.JLabel weightLabelValue;
+    private javax.swing.JSlider weightValue;
+    private javax.swing.JLabel widthLabelValue;
+    private javax.swing.JSlider widthValue;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,6 +21,8 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         
+        // this is disabled until we add an object
+        editObject.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -79,6 +81,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         stopSimulation.setText("Stop Simulation");
+        stopSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopSimulationActionPerformed(evt);
+            }
+        });
 
         pauseSimulation.setText("Pause Simulation");
         pauseSimulation.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +127,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
-        });        
+        });
 
         javax.swing.GroupLayout sillyNetLogoLayout = new javax.swing.GroupLayout(sillyNetLogo.getContentPane());
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
@@ -130,38 +137,10 @@ public class MainWindow extends javax.swing.JFrame {
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 364, Short.MAX_VALUE)
         );
-        
-		new Thread() {
-			
-			public void run() {
-				try 
-		        {
-		            //final javax.swing.JFrame frame = new javax.swing.JFrame();
-		            final InterfaceComponent comp = new InterfaceComponent(MainWindow.this);
-		            java.awt.EventQueue.invokeAndWait	//breaks here
-		                ( new Runnable()
-		                    { public void run() {
-		                   	 add(comp);
-		                        try {
-		                          comp.open("./CS278.nlogo");
-		                        }
-		                        catch(Exception ex) {
-		                          ex.printStackTrace();
-		                        }
-		                    } } ) ;
-		
-		        }
-		        catch(Exception ex) {
-		            ex.printStackTrace();
-		        }
-		
-		
-			}
-		}.start();
 
-jLabel3.setText("0");
+        jLabel3.setText("0");
 
         jLabel4.setText("100");
 
@@ -281,17 +260,16 @@ jLabel3.setText("0");
     }// </editor-fold>//GEN-END:initComponents
 
 private void addObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObjectActionPerformed
-// TODO add your handling code here:
     new ObjectUI().setVisible(true);
+    editObject.setEnabled(true);
+    addObject.setEnabled(false);
 }//GEN-LAST:event_addObjectActionPerformed
 
 private void editObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editObjectActionPerformed
-// TODO add your handling code here:
     new EditObjectUI().setVisible(true);
 }//GEN-LAST:event_editObjectActionPerformed
 
 private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-// TODO add your handling code here:
     System.exit(0);
 }//GEN-LAST:event_jMenu1ActionPerformed
 
@@ -302,30 +280,41 @@ private void jInternalFrame1InternalFrameActivated(javax.swing.event.InternalFra
 //GEN-LAST:event_jInternalFrame1InternalFrameActivated
 
 private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
-// TODO add your handling code here:
     int busAccel = busAcceleration.getValue();
     int busDecel = busDeceleration.getValue();
+    editObject.setEnabled(false);
+    addObject.setEnabled(false);
+    busAcceleration.setEnabled(false);
+    busDeceleration.setEnabled(false);
 }//GEN-LAST:event_runSimulationActionPerformed
 
 private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSimulationActionPerformed
-// TODO add your handling code here:
+    editObject.setEnabled(true);
+    addObject.setEnabled(false);
+    busAcceleration.setEnabled(true);
+    busDeceleration.setEnabled(true);
     
 }//GEN-LAST:event_pauseSimulationActionPerformed
 
 private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busAccelerationStateChanged
-// TODO add your handling code here:
     int tmp = busAcceleration.getValue();
     String tmpBusAccel = Integer.toString(tmp);
     busAccelerationLabelValue.setText(tmpBusAccel);
 }//GEN-LAST:event_busAccelerationStateChanged
 
 private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busDecelerationStateChanged
-// TODO add your handling code here:
     int tmp = busDeceleration.getValue();
     String tmpBusDecel = Integer.toString(tmp);
     busDecelerationLabelValue.setText(tmpBusDecel);
     busDecelerationLabelValue.setEnabled(true);                   
 }//GEN-LAST:event_busDecelerationStateChanged
+
+private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
+    editObject.setEnabled(true);
+    addObject.setEnabled(true);
+    busAcceleration.setEnabled(true);
+    busDeceleration.setEnabled(true);
+}//GEN-LAST:event_stopSimulationActionPerformed
 
     /**
      * @param args the command line arguments
