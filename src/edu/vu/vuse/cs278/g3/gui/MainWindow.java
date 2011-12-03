@@ -139,7 +139,7 @@ public class MainWindow extends javax.swing.JFrame {
 				try 
 		        {
 		            //final javax.swing.JFrame frame = new javax.swing.JFrame();
-		            final InterfaceComponent comp = new InterfaceComponent(this);
+		            final InterfaceComponent comp = new InterfaceComponent(MainWindow.this);
 		            java.awt.EventQueue.invokeAndWait	//breaks here
 		                ( new Runnable()
 		                    { public void run() {
