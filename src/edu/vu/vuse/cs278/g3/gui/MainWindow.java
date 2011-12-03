@@ -138,12 +138,12 @@ public class MainWindow extends javax.swing.JFrame {
 			public void run() {
 				try 
 		        {
-		            //final javax.swing.JFrame frame = new javax.swing.JFrame();
-		            final InterfaceComponent comp = new InterfaceComponent(MainWindow.this);
-		            java.awt.EventQueue.invokeAndWait	//breaks here
+		            final javax.swing.JFrame frame = new javax.swing.JFrame();
+		            final InterfaceComponent comp = new InterfaceComponent(frame);//MainWindow.this);
+		            java.awt.EventQueue.invokeAndWait
 		                ( new Runnable()
 		                    { public void run() {
-		                   	 add(comp);
+		                    	frame.add(comp);
 		                        try {
 		                          comp.open("./CS278.nlogo");
 		                        }
