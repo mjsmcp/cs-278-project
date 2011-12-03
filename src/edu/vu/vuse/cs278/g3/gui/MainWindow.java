@@ -132,29 +132,36 @@ public class MainWindow extends javax.swing.JFrame {
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 360, Short.MAX_VALUE)
         );
-        /*
-      	 try 
-         {
-             //final javax.swing.JFrame frame = new javax.swing.JFrame();
-             final InterfaceComponent comp = new InterfaceComponent(this);
-             java.awt.EventQueue.invokeAndWait	//breaks here
-                 ( new Runnable()
-                     { public void run() {
-                    	 add(comp);
-                         try {
-                           comp.open("./CS278.nlogo");
-                         }
-                         catch(Exception ex) {
-                           ex.printStackTrace();
-                         }
-                     } } ) ;
+        
+		new Thread() {
+			
+			public void run() {
+				try 
+		        {
+		            //final javax.swing.JFrame frame = new javax.swing.JFrame();
+		            final InterfaceComponent comp = new InterfaceComponent(this);
+		            java.awt.EventQueue.invokeAndWait	//breaks here
+		                ( new Runnable()
+		                    { public void run() {
+		                   	 add(comp);
+		                        try {
+		                          comp.open("./CS278.nlogo");
+		                        }
+		                        catch(Exception ex) {
+		                          ex.printStackTrace();
+		                        }
+		                    } } ) ;
+		
+		        }
+		        catch(Exception ex) {
+		            ex.printStackTrace();
+		        }
+		
+		
+			}
+		}.start();
 
-         }
-         catch(Exception ex) {
-             ex.printStackTrace();
-         }
-*/
-        jLabel3.setText("0");
+jLabel3.setText("0");
 
         jLabel4.setText("100");
 
