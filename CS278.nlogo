@@ -1,5 +1,6 @@
 breed [RoundObjects RoundObject]
 breed [SquareObjects SquareObject]
+breed [BusObjects BusObject]
 
 to set-background
   ask patches with [pycor < 0][
@@ -13,9 +14,9 @@ end
 GRAPHICS-WINDOW
 210
 10
-649
+1208
 470
-16
+-1
 16
 13.0
 1
@@ -27,8 +28,8 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
+0
+75
 -16
 16
 0

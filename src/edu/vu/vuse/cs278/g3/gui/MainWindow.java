@@ -20,6 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
     /** Creates new form MainWindow */
     public MainWindow() {
         initComponents();
+        
     }
 
     /** This method is called from within the constructor to
@@ -119,7 +120,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
-        });
+        });        
 
         javax.swing.GroupLayout sillyNetLogoLayout = new javax.swing.GroupLayout(sillyNetLogo.getContentPane());
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
@@ -131,7 +132,28 @@ public class MainWindow extends javax.swing.JFrame {
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 360, Short.MAX_VALUE)
         );
+        /*
+      	 try 
+         {
+             //final javax.swing.JFrame frame = new javax.swing.JFrame();
+             final InterfaceComponent comp = new InterfaceComponent(this);
+             java.awt.EventQueue.invokeAndWait	//breaks here
+                 ( new Runnable()
+                     { public void run() {
+                    	 add(comp);
+                         try {
+                           comp.open("./CS278.nlogo");
+                         }
+                         catch(Exception ex) {
+                           ex.printStackTrace();
+                         }
+                     } } ) ;
 
+         }
+         catch(Exception ex) {
+             ex.printStackTrace();
+         }
+*/
         jLabel3.setText("0");
 
         jLabel4.setText("100");

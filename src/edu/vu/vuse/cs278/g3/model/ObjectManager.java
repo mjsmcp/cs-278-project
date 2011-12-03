@@ -92,4 +92,8 @@ public class ObjectManager {
 		return new RoundObject(obj_count++, _xCoord, _yCoord, _radius, mass);
 	}
 	
+	public BusObject createBus(double _xCoord, double _yCoord, double _length, double mass){
+		return new BusObject(obj_count++, _xCoord, _yCoord, _length, mass);
+	}
+	
 }
