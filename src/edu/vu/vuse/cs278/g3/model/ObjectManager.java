@@ -47,6 +47,14 @@ public class ObjectManager {
 	}
 
 	/**
+	 * Replaces the specified key with the new object.
+	 * @param id Identifier
+	 * @param obj New Object
+	 */
+	public void updateObject(String id, PhysicsObject obj) {
+		this.objects.put(id, obj);
+	}
+	/**
 	 * Adds an object to the manager with the specified id.
 	 * @param id the UNIQUE identifier of the object
 	 * @param object The object reference
