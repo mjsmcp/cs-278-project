@@ -4,20 +4,19 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/NetLogo.jar"/>
 	<classpathentry kind="lib" path="lib/lib/scala-library.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/asm-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/asm-commons-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/asm-util-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/BehaviorSpace.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/BehaviorSpace-src.zip"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/jhotdraw.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/jmf.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/jogl.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/log4j-1.2.14.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/MRJAdapter.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/picocontainer.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/quaqua.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/scala-library.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/NetLogo 4.1.3/lib/swing-layout.jar"/>
+	<classpathentry kind="lib" path="lib/lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/lib/asm-commons-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/lib/asm-util-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/lib/BehaviorSpace-src.zip"/>
+	<classpathentry kind="lib" path="lib/lib/BehaviorSpace.jar"/>
+	<classpathentry kind="lib" path="lib/lib/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="lib/lib/jhotdraw.jar"/>
+	<classpathentry kind="lib" path="lib/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="lib/lib/jogl.jar"/>
+	<classpathentry kind="lib" path="lib/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/lib/MRJAdapter.jar"/>
+	<classpathentry kind="lib" path="lib/lib/picocontainer.jar"/>
+	<classpathentry kind="lib" path="lib/lib/quaqua.jar"/>
+	<classpathentry kind="lib" path="lib/lib/swing-layout.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

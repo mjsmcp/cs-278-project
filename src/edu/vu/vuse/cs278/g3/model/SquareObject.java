@@ -36,12 +36,12 @@ public class SquareObject extends PhysicsObject {
 		return width;
 	}
 
-	public void setHeight(double _height) {
-		height = _height;
+	public void setHeight(double height) {
+		this.height = height;
 	}
-
-	public void setWidth(double _width) {
-		width = _width;
+	
+	public void setWidth(double width) {
+		this.width = width;
 	}
 	
 	final private int array_num; //number that this object is accessed by in netlogo

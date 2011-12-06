@@ -33,9 +33,11 @@ public class RoundObject extends PhysicsObject {
 		yCoord = ycoord;
 	}
 	
- 
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
 	
-	
+
 	@Override
 	public void commit() {
 		try {
