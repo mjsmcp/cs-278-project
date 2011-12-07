@@ -10,6 +10,8 @@
  */
 package edu.vu.vuse.cs278.g3.gui;
 import org.nlogo.lite.InterfaceComponent;
+import org.nlogo.api.CompilerException;
+import org.nlogo.app.App;
 
 /**
  *
@@ -17,14 +19,34 @@ import org.nlogo.lite.InterfaceComponent;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+	private static MainWindow instance = null;
+	
+	public static MainWindow getInstance(){
+		if (instance == null)
+			instance = new MainWindow();
+		return instance;
+	}
+	
     /** Creates new form MainWindow */
-    public MainWindow() {
+    private MainWindow() {
         initComponents();
         
         // this is disabled until we add an object
         editObject.setEnabled(false);
     }
-
+    /** Sends arg to embedded NetLogo  
+     * @param arg
+     */
+    public void command(String arg){
+        try {
+			MainWindow.getInstance().comp.command(arg);
+		} catch (CompilerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -129,47 +151,29 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        comp = new InterfaceComponent(MainWindow.this);
+    	
         javax.swing.GroupLayout sillyNetLogoLayout = new javax.swing.GroupLayout(sillyNetLogo.getContentPane());
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
         sillyNetLogoLayout.setHorizontalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            //.addGap(0, 316, Short.MAX_VALUE)
+            .addComponent(comp)
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
+            //.addGap(0, 364, Short.MAX_VALUE)
+            .addComponent(comp)
         );
-
-        /*
-		new Thread() {
-			
-			public void run() {
-				try 
-		        {
-		            final javax.swing.JFrame frame = new javax.swing.JFrame();
-		            final InterfaceComponent comp = new InterfaceComponent(frame);//MainWindow.this);
-		            java.awt.EventQueue.invokeAndWait
-		                ( new Runnable()
-		                    { public void run() {
-		                    	frame.add(comp);
-		                        try {
-		                          comp.open("./CS278.nlogo");
-		                        }
-		                        catch(Exception ex) {
-		                          ex.printStackTrace();
-		                        }
-		                    } } ) ;
-		
-		        }
-		        catch(Exception ex) {
-		            ex.printStackTrace();
-		        }
-		
-		
-			}
-		}.start();
-
-		*/
+        
+        //inilialize the embedded NetLogo
+        try {
+          comp.open("./CS278.nlogo");
+        }
+        catch(Exception ex) {
+          ex.printStackTrace();
+        }
+        
         jLabel3.setText("0");
 
         jLabel4.setText("100");
@@ -350,6 +354,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -374,12 +379,18 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
+        try{
+	        java.awt.EventQueue.invokeAndWait(new Runnable() {
+	            public void run() {
+	        		MainWindow.getInstance().setVisible(true);
+	             }            
+	        });
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+		//MainWindow.getInstance().command("create-turtles 10");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -405,5 +416,6 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
+    private InterfaceComponent comp;
     // End of variables declaration//GEN-END:variables
 }

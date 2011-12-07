@@ -1,6 +1,6 @@
 package edu.vu.vuse.cs278.g3.model;
-import org.nlogo.api.CompilerException;
-import org.nlogo.app.App;
+
+import edu.vu.vuse.cs278.g3.gui.MainWindow;
 
 public class SquareObject extends PhysicsObject {
 
@@ -11,12 +11,8 @@ public class SquareObject extends PhysicsObject {
 		width=_width;
 		height=_height;
 
-		try {
-			//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
-			App.app.command("create-SquareObjects 1");			//create object at origin
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}
+		//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
+		MainWindow.getInstance().command("create-SquareObjects 1");			//create object at origin
 		commit(); //set location
 	}
 	
@@ -49,21 +45,13 @@ public class SquareObject extends PhysicsObject {
 	
 	@Override
 	public void commit() {
-		try {
-			App.app.command("ask SquareObject " + array_num + " [set xcor " + xCoord + "]");	//move to desired location
-			App.app.command("ask SquareObject " + array_num + " [set ycor " + yCoord + "]");
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}		
+		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set xcor " + xCoord + "]");	//move to desired location
+		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set ycor " + yCoord + "]");
 	}
 
 	@Override
 	public void setShape(String shape) {
-		try {
-			App.app.command("ask SquareObject " + array_num + " [set shape " + shape + "]");
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}		
+		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set shape " + shape + "]");
 	}	
 	
 	public void updatePosition(double xcoord, double ycoord) {

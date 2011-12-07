@@ -1,8 +1,6 @@
 package edu.vu.vuse.cs278.g3.model;
 
-
-import org.nlogo.api.CompilerException;
-import org.nlogo.app.App;
+import edu.vu.vuse.cs278.g3.gui.MainWindow;
 
 public class RoundObject extends PhysicsObject {
 	
@@ -13,14 +11,9 @@ public class RoundObject extends PhysicsObject {
 		super(_array_num, _xCoord, _yCoord, 0,0, mass);
 		radius=_radius;
 		
-		
-		try { 
-			//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
-			App.app.command("create-RoundObjects 1");			//create object at origin
-			App.app.command("ask RoundObject " + array_num + "[set shape \"circle\"]");
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}
+		//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
+		MainWindow.getInstance().command("create-RoundObjects 1");			//create object at origin
+		MainWindow.getInstance().command("ask RoundObject " + array_num + "[set shape \"circle\"]");
 		commit(); //set position
 	}
 	
@@ -40,21 +33,13 @@ public class RoundObject extends PhysicsObject {
 
 	@Override
 	public void commit() {
-		try {
-			App.app.command("ask RoundObject " + array_num + " [set xcor " + xCoord + "]");	//move to desired location
-			App.app.command("ask RoundObject " + array_num + " [set ycor " + yCoord + "]");
-			App.app.command("ask RoundObject " + array_num + " [set size " + (radius*2) + "]"); //update obj size
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}
+		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set xcor " + xCoord + "]");	//move to desired location
+		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set ycor " + yCoord + "]");
+		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set size " + (radius*2) + "]"); //update obj size
 	}
 
 	@Override
 	public void setShape(String shape) {
-		try {
-			App.app.command("ask RoundObject " + array_num + " [set shape " + shape + "]");
-		} catch (CompilerException e) {
-			e.printStackTrace();
-		}		
+		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set shape " + shape + "]");
 	}	
 }
