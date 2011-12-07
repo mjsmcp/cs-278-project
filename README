@@ -1,3 +1,8 @@
-
-For embedding in swing ("Example (embedding)" section):
-http://ccl.northwestern.edu/netlogo/docs/controlling.html
+Getting all the NetLogo embedding stuff required some major changes to MainWindow class:
+	It is now a singleton. This was done because of the way NetLogo lite api handles command passing.
+	Minor changes were made to the main method to prevent concurrency errors when writing commands to NetLogo.
+	Changes were made to the initComponents() method. 
+		WARNING: Regenerating the MainWindow UI codes with NetBeans will break the embedding.
+	     
+All the object classes were changed to work with the new command calls.
+	     
