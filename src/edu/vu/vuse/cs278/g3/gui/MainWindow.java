@@ -14,19 +14,28 @@ import org.nlogo.api.CompilerException;
 import org.nlogo.app.App;
 
 /**
- *
+ * This class handles the main window of the program where the NetLogo is embedded.
  * @author Amber Maria
  */
 public class MainWindow extends javax.swing.JFrame {
-
+/**
+ * The single instance of the Main Window
+ */
 	private static MainWindow instance = null;
 	
+	/**
+	 * Gets the single instance of the Main Window
+	 * @return instance of Main Window
+	 */
 	public static MainWindow getInstance(){
 		if (instance == null)
 			instance = new MainWindow();
 		return instance;
 	}
 	
+	/**
+	 * Constructor for the class. Calls initComponents to set up all the buttons on the window
+	 */
     /** Creates new form MainWindow */
     private MainWindow() {
         initComponents();
@@ -292,27 +301,49 @@ public class MainWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * The action that happens with the Add Object button is pressed. The Add Object dialog comes up and we allow
+ * the user to now edit that object from the main window.
+ * @param evt
+ */
 private void addObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObjectActionPerformed
     new ObjectUI().setVisible(true);
     editObject.setEnabled(true);
     addObject.setEnabled(false);
 }//GEN-LAST:event_addObjectActionPerformed
 
+/**
+ * The action that happens when the Edit Object button is pressed. The Edit Object dialog comes up.
+ * @param evt
+ */
 private void editObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editObjectActionPerformed
     new EditObjectUI().setVisible(true);
 }//GEN-LAST:event_editObjectActionPerformed
 
+/**
+ * 
+ * @param evt
+ */
 private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
     System.exit(0);
 }//GEN-LAST:event_jMenu1ActionPerformed
 
+/**
+ * This holds the NetLogo display for displaying the simulation.
+ * @param evt
+ */
 private void jInternalFrame1InternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
 	//GEN-FIRST:event_jInternalFrame1InternalFrameActivated
 
 }
 //GEN-LAST:event_jInternalFrame1InternalFrameActivated
 
+/**
+ * The action that happens when the Run Simulation button is pressed.  We get the values of the bus 
+ * acceleration and deceleration to pass to the physics engine and disable all buttons, so the user 
+ * can't do anything while the simulation is running.
+ * @param evt
+ */
 private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
     int busAccel = busAcceleration.getValue();
     int busDecel = busDeceleration.getValue();
@@ -322,6 +353,11 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     busDeceleration.setEnabled(false);
 }//GEN-LAST:event_runSimulationActionPerformed
 
+/**
+ * The action that happens when the Pause Simulation button is pressed. We pause the action in the NetLogo
+ * window and re-enable the components of the main window to allow for changes to be made.
+ * @param evt
+ */
 private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSimulationActionPerformed
     editObject.setEnabled(true);
     addObject.setEnabled(false);
@@ -330,12 +366,22 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
     
 }//GEN-LAST:event_pauseSimulationActionPerformed
 
+/**
+ * The action that happens when the Bus Acceleration bar is moved.  We update the label below it 
+ * for the student to see the value.
+ * @param evt
+ */
 private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busAccelerationStateChanged
     int tmp = busAcceleration.getValue();
     String tmpBusAccel = Integer.toString(tmp);
     busAccelerationLabelValue.setText(tmpBusAccel);
 }//GEN-LAST:event_busAccelerationStateChanged
 
+/**
+ * The action that happens when the Bus Deceleration bar is moved.  We update the label beow it
+ * for the user to see its value.
+ * @param evt
+ */
 private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busDecelerationStateChanged
     int tmp = busDeceleration.getValue();
     String tmpBusDecel = Integer.toString(tmp);
@@ -343,6 +389,11 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
     busDecelerationLabelValue.setEnabled(true);                   
 }//GEN-LAST:event_busDecelerationStateChanged
 
+/**
+ * The action that happens when the Stop Simulation button is pressed. We kill the action in the 
+ * NetLogo window and re-enable everything in the main window.
+ * @param evt
+ */
 private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
     editObject.setEnabled(true);
     addObject.setEnabled(true);

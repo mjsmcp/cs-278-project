@@ -14,12 +14,15 @@ import edu.vu.vuse.cs278.g3.model.*;
 import javax.swing.*;
 
 /**
- *
- * @author Brandon
+ * Class that handles the Add Object dialog
+ * @author Amber
  */
 public class ObjectUI extends javax.swing.JFrame {
-
-    /** Creates new form ObjectUI */
+	
+    /**
+     * Constructor. Calls initComponents to declare and initialize all fields of the dialog and
+     * sets the sliders to a neutral value.
+     */
     public ObjectUI() {
         initComponents();
         weightValue.setValue(2);
@@ -309,6 +312,11 @@ private void insideRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 // TODO add your handling code here:
 }//GEN-LAST:event_insideRButtonActionPerformed
 
+/**
+ * The action that happens when the Add Button is pressed.  We save all the values and create a
+ * new object, giving it those values. The object is then passed to NetLogo for displaying.
+ * @param evt
+ */
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
     System.out.println("add object");
 	double weight = weightValue.getValue();
@@ -365,10 +373,20 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     this.dispose();
 }//GEN-LAST:event_addButtonActionPerformed
 
+/**
+ * Action that happens when the cancel button is pressed. This closes the dialog without saving
+ * any of that data.
+ * @param evt
+ */
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 	this.dispose();
 }//GEN-LAST:event_cancelButtonActionPerformed
 
+/**
+ * The action that happens when the Clear Button is pressed.  All fields go to 0, empty of neutral
+ * and re-enables things as needed.
+ * @param evt
+ */
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
     weightValue.setValue(0);
     radiusValue.setValue(0);
@@ -384,6 +402,11 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     widthValue.setEnabled(true);
 }//GEN-LAST:event_clearButtonActionPerformed
 
+/**
+ * If the user selects Ball as object type, we disable the fields for height and weight because
+ * they do not apply.
+ * @param evt
+ */
 private void ballButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ballButtonActionPerformed
 // TODO add your handling code here:
     widthValue.setEnabled(false);
@@ -391,6 +414,10 @@ private void ballButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     radiusValue.setEnabled(true);
 }//GEN-LAST:event_ballButtonActionPerformed
 
+/**
+ * If the user selects Box as object type, we disable the field for radius because it does not apply.
+ * @param evt
+ */
 private void boxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxButtonActionPerformed
 // TODO add your handling code here:
     radiusValue.setEnabled(false);
@@ -398,6 +425,11 @@ private void boxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     widthValue.setEnabled(true);
 }//GEN-LAST:event_boxButtonActionPerformed
 
+/**
+ * Action that happens when the Weight Slider is changed. We update the label beside it so the user
+ * can see the weight of the object.
+ * @param evt
+ */
 private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_weightValueStateChanged
 // TODO add your handling code here:
     int tmp = weightValue.getValue();
@@ -405,6 +437,11 @@ private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     weightLabelValue.setText(tmpWeight);
 }//GEN-LAST:event_weightValueStateChanged
 
+/**
+ * Action that happens when the Radius Slider is changed. We update the label beside it so the user
+ * can see the radius of the object.
+ * @param evt
+ */
 private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radiusValueStateChanged
 // TODO add your handling code here:
     int tmp = radiusValue.getValue();
@@ -412,6 +449,11 @@ private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     radiusLabelValue.setText(tmpRadius);
 }//GEN-LAST:event_radiusValueStateChanged
 
+/**
+ * Action that happens when the Height Slider is changed. We update the label beside it so the user
+ * can see the height of the object.
+ * @param evt
+ */
 private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightValueStateChanged
 // TODO add your handling code here:
     int tmp = heightValue.getValue();
@@ -419,6 +461,11 @@ private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     heightLabelValue.setText(tmpHeight);
 }//GEN-LAST:event_heightValueStateChanged
 
+/**
+ * Action that happens when the width Slider is changed. We update the label beside it so the user
+ * can see the width of the object.
+ * @param evt
+ */
 private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_widthValueStateChanged
 // TODO add your handling code here:
     int tmp = widthValue.getValue();

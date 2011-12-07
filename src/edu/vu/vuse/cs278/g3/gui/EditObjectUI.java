@@ -13,12 +13,15 @@ import javax.swing.*;
  * Created on Nov 29, 2011, 12:40:41 AM
  */
 /**
- *
+ * This class holds the code for the Edit Oject Dialog box.
  * @author Amber Maria
  */
 public class EditObjectUI extends javax.swing.JFrame {
 
-    /** Creates new form EditObjectUI */
+    /**
+     * The constructor for the class.  Since this is Edit Object, we want to "fill in" the fields
+     * for the user to see what the current attributes are.
+     */
     public EditObjectUI() {
         initComponents();
         
@@ -327,14 +330,26 @@ public class EditObjectUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+/**
+ * This is for one of the radio buttons
+ * @param evt
+ */
 private void frontButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frontButtonActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_frontButtonActionPerformed
 
+/**
+ * This is for one of the radio buttons
+ * @param evt
+ */
 private void topButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topButtonActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_topButtonActionPerformed
 
+/**
+ * The actio that happens when the clear button is pressed.  All values go to null.
+ * @param evt
+ */
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
     weightValue.setValue(0);
     heightValue.setValue(0);
@@ -343,10 +358,19 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     relationshipGroup.clearSelection();
 }//GEN-LAST:event_clearButtonActionPerformed
 
+/**
+ * Action that happens when the cancel button is pressd. The dialog closes without saving any data.
+ * @param evt
+ */
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
     this.dispose();
 }//GEN-LAST:event_cancelButtonActionPerformed
 
+/**
+ * The action that happens when the Edit button is pressed.  This saves all the values, updates the
+ * object's instance, and closes the dialog.
+ * @param evt
+ */
 private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
     double weight = weightValue.getValue();
     double radius = radiusValue.getValue();
@@ -399,24 +423,44 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     this.dispose();
 }//GEN-LAST:event_editButtonActionPerformed
 
+/**
+ * Action that happens when the Weight slider is moved. We update the label so the student can see
+ * the current mass of the object (in terms of small, medium, large, extra large)
+ * @param evt
+ */
 private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_weightValueStateChanged
     int tmp = weightValue.getValue();
     String tmpWeight = Integer.toString(tmp);
     weightLabelValue.setText(tmpWeight);
 }//GEN-LAST:event_weightValueStateChanged
 
+/**
+ * Action that happens when the Radius slider is moved. We update the label so the student can see
+ * the current radius of the round object (in terms of small, medium, large, extra large)
+ * @param evt
+ */
 private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radiusValueStateChanged
     int tmp = radiusValue.getValue();
     String tmpRadius = Integer.toString(tmp);
     radiusLabelValue.setText(tmpRadius);
 }//GEN-LAST:event_radiusValueStateChanged
 
+/**
+ * Action that happens when the Width slider is moved. We update the label so the student can see
+ * the current width of the square object (in terms of small, medium, large, extra large)
+ * @param evt
+ */
 private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_widthValueStateChanged
     int tmp = widthValue.getValue();
     String tmpWidth = Integer.toString(tmp);
     widthLabelValue.setText(tmpWidth);
 }//GEN-LAST:event_widthValueStateChanged
 
+/**
+ * Action that happens when the height slider is moved. We update the label so the student can see
+ * the current height of the square object (in terms of small, medium, large, extra large)
+ * @param evt
+ */
 private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightValueStateChanged
     int tmp = heightValue.getValue();
     String tmpHeight = Integer.toString(tmp);
