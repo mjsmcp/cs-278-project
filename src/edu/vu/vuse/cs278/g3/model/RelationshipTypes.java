@@ -1,5 +1,10 @@
 package edu.vu.vuse.cs278.g3.model;
 
+/**
+ * Enumeration that defines possible relationship types
+ * @author Matthew Shea
+ *
+ */
 public enum RelationshipTypes {
 	INSIDE_UNRESTRAINED, 
 	INSIDE_RESTRAINED, 
