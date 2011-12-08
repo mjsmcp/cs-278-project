@@ -10,35 +10,6 @@ import org.nlogo.lite.InterfaceComponent;
 
 public class Main {
 	 public static void main(String[] argv) {
-		 try 
-	     {
-			 //all this works
-	         final javax.swing.JFrame frame = new javax.swing.JFrame();
-	         final InterfaceComponent comp = new InterfaceComponent(frame);
-	         java.awt.EventQueue.invokeAndWait
-	             ( new Runnable()
-	                 { public void run() {
-	                     frame.setSize(1000,700);
-	                     frame.add(comp);
-	                     frame.setVisible(true);
-	                     try {
-	                       comp.open("./CS278.nlogo");
-	                     }
-	                     catch(Exception ex) {
-	                       ex.printStackTrace();
-	                     }
-	                 } } ) ;
-			 try {
-				comp.command("create-turtles 10");
-			} catch (CompilerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-	     }
-	     catch(Exception ex) {
-	         ex.printStackTrace();
-	     }
-	 
 		 
 	       /* Create and display the form */
 	        try{

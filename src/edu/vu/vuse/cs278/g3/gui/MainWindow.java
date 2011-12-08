@@ -10,6 +10,8 @@
  */
 package edu.vu.vuse.cs278.g3.gui;
 import java.awt.AWTEvent;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
@@ -44,29 +46,40 @@ public class MainWindow extends javax.swing.JFrame {
         
         // this is disabled until we add an object
         editObject.setEnabled(false);
+        this.threadExec.start();
     }
+    
+   
     /** Sends arg to embedded NetLogo  
      * @param arg
      */
     public void command(String arg){
-    	final String inarg = arg;
-    	
-    		// TODO potentially unclean solution.
-        	new Thread() {
-        		
-        		public void run() {
-        			try {
-						MainWindow.getInstance().comp.command(inarg);
-					} catch (CompilerException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-        		}
-        	}.start();
-
+    	this.threadExec.addCommand(arg);
     }
     
-    
+    private ThreadExecutor threadExec = new ThreadExecutor();
+    private class ThreadExecutor extends Thread {
+    	
+    	BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+    	public void run() {
+    		while(true) {
+    			try {
+					MainWindow.getInstance().comp.command(this.queue.take());
+				} catch (CompilerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}
+    	
+    	public void addCommand(String s) {
+    		this.queue.add(s);
+    	}
+    }
+    //private final Object commandMonitor = new Object();
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
