@@ -11,7 +11,8 @@
 package edu.vu.vuse.cs278.g3.gui;
 import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
-import org.nlogo.app.App;
+
+import edu.vu.vuse.cs278.g3.model.ObjectManager;
 
 /**
  * This class handles the main window of the program where the NetLogo is embedded.
@@ -440,8 +441,8 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-		//MainWindow.getInstance().command("create-turtles 10");
+        //create the bus, 250cm, 10000kg
+        ObjectManager.getInstance().addObject("bus",ObjectManager.getInstance().createBus(0, 0, 250, 10000));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

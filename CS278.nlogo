@@ -14,11 +14,11 @@ end
 GRAPHICS-WINDOW
 210
 10
-883
-470
+1146
+442
 -1
-16
-13.0
+200
+1.0
 1
 10
 1
@@ -28,10 +28,10 @@ GRAPHICS-WINDOW
 1
 1
 1
-0
-50
--16
-16
+-125
+800
+-200
+200
 0
 0
 1
@@ -115,6 +115,21 @@ Circle -7500403 true true 110 127 80
 Circle -7500403 true true 110 75 80
 Line -7500403 true 150 100 80 30
 Line -7500403 true 150 100 220 30
+
+bus
+false
+0
+Rectangle -1184463 true false 4 105 210 187
+Polygon -1184463 true false 296 193 296 150 259 134 244 104 208 104 207 194
+Rectangle -1 true false 195 60 195 105
+Polygon -16777216 true false 238 112 252 141 219 141 218 112
+Circle -16777216 true false 234 174 42
+Rectangle -1184463 true false 181 185 214 194
+Circle -16777216 true false 144 174 42
+Circle -16777216 true false 24 174 42
+Circle -1 false false 24 174 42
+Circle -1 false false 144 174 42
+Circle -1 false false 234 174 42
 
 butterfly
 true

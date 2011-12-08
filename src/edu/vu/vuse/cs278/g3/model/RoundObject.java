@@ -40,6 +40,6 @@ public class RoundObject extends PhysicsObject {
 
 	@Override
 	public void setShape(String shape) {
-		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set shape " + shape + "]");
+		MainWindow.getInstance().command("ask RoundObject " + array_num + " [set shape \"" + shape + "\"]");
 	}	
 }

@@ -100,6 +100,13 @@ public class ObjectManager {
 		return new RoundObject(obj_count++, _xCoord, _yCoord, _radius, mass);
 	}
 	
+	/**
+	 * Creates a BusObject with the specified parameters and returns the reference.
+	 * @param _xCoord The x position of the bus
+	 * @param _yCoord The y position of the bus
+	 * @param _length The length of the bus
+	 * @return Object reference
+	 */
 	public BusObject createBus(double _xCoord, double _yCoord, double _length, double mass){
 		return new BusObject(obj_count++, _xCoord, _yCoord, _length, mass);
 	}

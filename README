@@ -1,3 +1,6 @@
+I changed the model scale do that each coord is one pixel. -125 to 800 on the x-axis, -50 to 50 on the y-axis
+I think it might also be best to say 1 pixel == 1cm. 
+
 Getting all the NetLogo embedding stuff required some major changes to MainWindow class:
 	It is now a singleton. This was done because of the way NetLogo lite api handles command passing.
 	Minor changes were made to the main method to prevent concurrency errors when writing commands to NetLogo.

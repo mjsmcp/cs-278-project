@@ -51,7 +51,7 @@ public class SquareObject extends PhysicsObject {
 
 	@Override
 	public void setShape(String shape) {
-		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set shape " + shape + "]");
+		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set shape \"" + shape + "\"]");
 	}	
 	
 	public void updatePosition(double xcoord, double ycoord) {

@@ -14,7 +14,7 @@ public class BusObject extends PhysicsObject{
 	
 		//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
 		MainWindow.getInstance().command("create-BusObjects 1");			//create object at origin
-		MainWindow.getInstance().command("ask BusObject " + array_num + "[set shape \"circle\"]");
+		//MainWindow.getInstance().command("ask BusObject " + array_num + "[set shape \"circle\"]");
 			
 		setShape("bus");
 		commit(); //set position
@@ -39,6 +39,6 @@ public class BusObject extends PhysicsObject{
 
 	@Override
 	public void setShape(String shape) {
-		MainWindow.getInstance().command("ask BusObject " + array_num + " [set shape " + shape + "]");
+		MainWindow.getInstance().command("ask BusObject " + array_num + " [set shape \"" + shape + "\"]");
 	}	
 }
