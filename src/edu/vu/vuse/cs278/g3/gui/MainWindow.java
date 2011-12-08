@@ -9,6 +9,8 @@
  * Created on Nov 29, 2011, 1:13:19 AM
  */
 package edu.vu.vuse.cs278.g3.gui;
+import java.awt.AWTEvent;
+
 import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
 
@@ -47,12 +49,21 @@ public class MainWindow extends javax.swing.JFrame {
      * @param arg
      */
     public void command(String arg){
-        try {
-			MainWindow.getInstance().comp.command(arg);
-		} catch (CompilerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	final String inarg = arg;
+    	
+    		// TODO potentially unclean solution.
+        	new Thread() {
+        		
+        		public void run() {
+        			try {
+						MainWindow.getInstance().comp.command(inarg);
+					} catch (CompilerException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        		}
+        	}.start();
+
     }
     
     
@@ -400,17 +411,17 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
 }//GEN-LAST:event_stopSimulationActionPerformed
-
+/*
     /**
      * @param args the command line arguments
-     */
+     
     public static void main(String args[]) {
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -429,7 +440,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         try{
 	        java.awt.EventQueue.invokeAndWait(new Runnable() {
 	            public void run() {
@@ -443,7 +454,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
         //create the bus, 250cm, 10000kg
         ObjectManager.getInstance().addObject("bus",ObjectManager.getInstance().createBus(0, 0, 250, 10000));
     }
-
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addObject;
     private javax.swing.JSlider busAcceleration;
