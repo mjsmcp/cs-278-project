@@ -37,7 +37,6 @@ public class MainWindow extends javax.swing.JFrame {
 	/**
 	 * Constructor for the class. Calls initComponents to set up all the buttons on the window
 	 */
-    /** Creates new form MainWindow */
     private MainWindow() {
         initComponents();
         
