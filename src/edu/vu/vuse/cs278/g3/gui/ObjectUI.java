@@ -31,6 +31,11 @@ public class ObjectUI extends javax.swing.JFrame {
         heightValue.setValue(2);
         widthValue.setValue(2);
         radiusValue.setValue(2);
+        ballButton.setSelected(true);
+        widthValue.setEnabled(false);
+        heightValue.setEnabled(false);
+        insideRButton.setSelected(true);
+        this.requestFocus();
     }
 
     /** This method is called from within the constructor to
@@ -101,7 +106,7 @@ public class ObjectUI extends javax.swing.JFrame {
         Relationship.setText("Relationship to Bus");
 
         Relationship_Group.add(insideRButton);
-        insideRButton.setText("On Top");
+        insideRButton.setText("Inside (with a seatbelt)");
         insideRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insideRButtonActionPerformed(evt);
@@ -109,10 +114,10 @@ public class ObjectUI extends javax.swing.JFrame {
         });
 
         Relationship_Group.add(insideUButton);
-        insideUButton.setText("Inside (with a seatbelt)");
+        insideUButton.setText("Inside (without a seatbelt)");
 
         Relationship_Group.add(topButton);
-        topButton.setText("Inside (without a seatbelt)");
+        topButton.setText("On Top");
         topButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 topButtonActionPerformed(evt);
@@ -145,36 +150,40 @@ public class ObjectUI extends javax.swing.JFrame {
 
         jLabel2.setText("Object Attributes");
 
-        weightValue.setMaximum(3);
+        weightValue.setMaximum(4);
+        weightValue.setMinimum(1);
         weightValue.setSnapToTicks(true);
-        weightValue.setValue(1);
+        weightValue.setValue(2);
         weightValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 weightValueStateChanged(evt);
             }
         });
 
-        radiusValue.setMaximum(3);
+        radiusValue.setMaximum(4);
+        radiusValue.setMinimum(1);
         radiusValue.setSnapToTicks(true);
-        radiusValue.setValue(1);
+        radiusValue.setValue(2);
         radiusValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radiusValueStateChanged(evt);
             }
         });
 
-        heightValue.setMaximum(3);
+        heightValue.setMaximum(4);
+        heightValue.setMinimum(1);
         heightValue.setSnapToTicks(true);
-        heightValue.setValue(1);
+        heightValue.setValue(2);
         heightValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 heightValueStateChanged(evt);
             }
         });
 
-        widthValue.setMaximum(3);
+        widthValue.setMaximum(4);
+        widthValue.setMinimum(1);
         widthValue.setSnapToTicks(true);
-        widthValue.setValue(1);
+        widthValue.setValue(2);
         widthValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 widthValueStateChanged(evt);
@@ -321,6 +330,12 @@ private void insideRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
  * @param evt
  */
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+	// "preprocessor"
+	int MY_OFFSET = 5;
+	int BUS_STREET_CONTACT = -33;
+	int BUS_LENGTH = 286;
+	int BOX_OFFSET = 100;
+	
     System.out.println("add object");
 	double weight = weightValue.getValue();
     double radius = radiusValue.getValue();
@@ -328,83 +343,96 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     double width = widthValue.getValue();
     int x = 0, y = 0;
     
-    // get the bus object
+    // get the bus object for the x, y coordinates
     PhysicsObject bus = ObjectManager.getInstance().getObject("bus");
     double busX = bus.getXCoord();
     double busY = bus.getYCoord();
-    
-    // determines the type of object and creates it with the given information
-    ButtonModel object = Object_Group.getSelection();
-    if (object==null)
-    {
-    	JOptionPane.showMessageDialog(null,  "Please select either a ball or a box.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    ButtonModel relationship = Relationship_Group.getSelection();
-    if (relationship==null)
-    {
-    	JOptionPane.showMessageDialog(null,  "Please select a relationship for the object.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    if (object.toString().equals("Box"))
+    System.out.println("busX = " + busX + "\tbusY = " + busY);
+
+    // If we are creating a box...
+    if (boxButton.isSelected())
     {
     	System.out.println("making box");
-    	if (relationship == topButton) {
+    	if (topButton.isSelected())
+    	{
         	x = (int)busX;
-        	y = (int)(busY + radius);
+        	y = (int)(busY + height*MY_OFFSET);
     	}
-    	else if (relationship == insideRButton) {
+    	else if (insideRButton.isSelected())
+    	{
+    		/// TODO
             x = (int)busX;
-            y = (int)(busY - (3*radius));
+            y = (int)(busY - ((0.5*height)*MY_OFFSET));
     	}
-    	else if (relationship == insideUButton) {
+    	else if (insideUButton.isSelected())
+    	{
+    		/// TODO
     		x = (int)busX;
-            y = (int)(busY - (3*radius));
+            y = (int)(busY - ((0.5*height)*MY_OFFSET));
     	}
-    	else if (relationship == behindButton) {
-    		x = (int)(busX - (0.5*busX));
-            y = 0;
+    	else if (behindButton.isSelected())
+    	{
+    		x = (int)(-0.5*BUS_LENGTH);
+            y = BUS_STREET_CONTACT;
     	}
-    	else if (relationship == inFrontButton) {
-        	x = (int)(busX + (0.5*busX));
-        	y = 0;
+    	else if (inFrontButton.isSelected())
+    	{
+        	x = (int)(0.5*BUS_LENGTH);
+        	y = BUS_STREET_CONTACT;
     	}
         	
-        PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, width, height, weight);
+        PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, (width*BOX_OFFSET), (height*BOX_OFFSET), weight);
         ObjectManager.getInstance().addObject("leObj", boxOb);
-        System.out.println(object.toString());
         System.out.println("width = " + ((SquareObject)boxOb).getWidth());
         System.out.println("height = " + ((SquareObject)boxOb).getHeight());
         System.out.println("weight = " + boxOb.getMass());
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
     }
-    else
+    // else if we are creating a ball...
+    else if (ballButton.isSelected())
     {
     	System.out.println("making ball");
-    	if (relationship == topButton) {
+    	if (topButton.isSelected())
+    	{
         	x = (int)busX;
-        	y = (int)(busY + radius);
+        	y = (int)(busY + radius*MY_OFFSET);
     	}
-    	else if (relationship == insideRButton) {
+    	else if (insideRButton.isSelected())
+    	{
+    		///TODO
             x = (int)busX;
-            y = (int)(busY - (3*radius));
+            y = (int)(busY - (radius*MY_OFFSET));
     	}
-    	else if (relationship == insideUButton) {
+    	else if (insideUButton.isSelected())
+    	{
+    		//TODO
     		x = (int)busX;
-            y = (int)(busY - (3*radius));
+            y = (int)(busY - (radius*MY_OFFSET));
     	}
-    	else if (relationship == behindButton) {
-    		x = (int)(busX - (0.5*busX));
-            y = 0;
+    	else if (behindButton.isSelected())
+    	{
+    		x = (int)(-0.5*BUS_LENGTH);
+            y = (int)(BUS_STREET_CONTACT);
     	}
-    	else if (relationship == inFrontButton) {
-        	x = (int)(busX + (0.5*busX));
-        	y = 0;
+    	else if (inFrontButton.isSelected())
+    	{
+        	x = (int)(0.5*BUS_LENGTH);
+        	y = (int)(BUS_STREET_CONTACT);
     	}
-        PhysicsObject ballOb = ObjectManager.getInstance().createCircle(x, y, radius, weight);
+        PhysicsObject ballOb = ObjectManager.getInstance().createCircle(x, y, (radius*MY_OFFSET), weight);
         ObjectManager.getInstance().addObject("leObj", ballOb);
         System.out.println("weight = " + ballOb.getMass());
         System.out.println("radius = " + ((RoundObject)ballOb).getRadius());
-    }  
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+    } 
+    // if the world crashed and died...
+    else 
+    {
+    	System.out.println("failboat");
+    }
 
-    
     this.dispose();
 }//GEN-LAST:event_addButtonActionPerformed
 
@@ -415,6 +443,9 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
  */
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 	this.dispose();
+	MainWindow.addObject.setEnabled(true);
+	MainWindow.editObject.setEnabled(false);
+	MainWindow.runSimulation.setEnabled(false);
 }//GEN-LAST:event_cancelButtonActionPerformed
 
 /**
@@ -466,9 +497,15 @@ private void boxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
  * @param evt
  */
 private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_weightValueStateChanged
-// TODO add your handling code here:
     int tmp = weightValue.getValue();
-    String tmpWeight = Integer.toString(tmp);
+    String tmpWeight = "";
+    switch (tmp)
+    {
+        case 1: tmpWeight = "small";  break;
+        case 2: tmpWeight = "medium"; break;
+        case 3: tmpWeight = "large";  break;
+        case 4: tmpWeight = "xlarge"; break;
+    }
     weightLabelValue.setText(tmpWeight);
 }//GEN-LAST:event_weightValueStateChanged
 
@@ -478,9 +515,15 @@ private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
  * @param evt
  */
 private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radiusValueStateChanged
-// TODO add your handling code here:
     int tmp = radiusValue.getValue();
-    String tmpRadius = Integer.toString(tmp);
+    String tmpRadius = "";
+    switch (tmp)
+    {
+        case 1: tmpRadius = "small";  break;
+        case 2: tmpRadius = "medium"; break;
+        case 3: tmpRadius = "large";  break;
+        case 4: tmpRadius = "xlarge"; break;
+    }
     radiusLabelValue.setText(tmpRadius);
 }//GEN-LAST:event_radiusValueStateChanged
 
@@ -490,9 +533,15 @@ private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
  * @param evt
  */
 private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightValueStateChanged
-// TODO add your handling code here:
     int tmp = heightValue.getValue();
-    String tmpHeight = Integer.toString(tmp);
+    String tmpHeight = "";
+    switch (tmp)
+    {
+        case 1: tmpHeight = "small";  break;
+        case 2: tmpHeight = "medium"; break;
+        case 3: tmpHeight = "large";  break;
+        case 4: tmpHeight = "xlarge"; break;
+    }
     heightLabelValue.setText(tmpHeight);
 }//GEN-LAST:event_heightValueStateChanged
 
@@ -502,9 +551,15 @@ private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
  * @param evt
  */
 private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_widthValueStateChanged
-// TODO add your handling code here:
     int tmp = widthValue.getValue();
-    String tmpWidth = Integer.toString(tmp);
+    String tmpWidth = "";
+    switch (tmp)
+    {
+        case 1: tmpWidth = "small";  break;
+        case 2: tmpWidth = "medium"; break;
+        case 3: tmpWidth = "large";  break;
+        case 4: tmpWidth = "xlarge"; break;
+    }
     widthLabelValue.setText(tmpWidth);
 }//GEN-LAST:event_widthValueStateChanged
 

@@ -44,8 +44,11 @@ public class MainWindow extends javax.swing.JFrame {
     private MainWindow() {
         initComponents();
         
-        // this is disabled until we add an object
+        // edit object and all simulation buttons are disabled until we add an object
         editObject.setEnabled(false);
+        runSimulation.setEnabled(false);
+        stopSimulation.setEnabled(false);
+        pauseSimulation.setEnabled(false);
         this.threadExec.start();
     }
     
@@ -145,19 +148,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        busAcceleration.setMaximum(3);
+        busAcceleration.setMaximum(4);
+        busAcceleration.setMinimum(1);
         busAcceleration.setSnapToTicks(true);
         busAcceleration.setToolTipText("");
-        busAcceleration.setValue(1);
+        busAcceleration.setValue(2);
         busAcceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busAccelerationStateChanged(evt);
             }
         });
 
-        busDeceleration.setMaximum(3);
+        busDeceleration.setMaximum(4);
+        busDeceleration.setMinimum(1);
         busDeceleration.setSnapToTicks(true);
-        busDeceleration.setValue(1);
+        busDeceleration.setValue(2);
         busDeceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busDecelerationStateChanged(evt);
@@ -301,8 +306,10 @@ public class MainWindow extends javax.swing.JFrame {
  */
 private void addObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObjectActionPerformed
     new ObjectUI().setVisible(true);
+    
     editObject.setEnabled(true);
     addObject.setEnabled(false);
+    runSimulation.setEnabled(true);
 }//GEN-LAST:event_addObjectActionPerformed
 
 /**
@@ -338,12 +345,22 @@ private void jInternalFrame1InternalFrameActivated(javax.swing.event.InternalFra
  * @param evt
  */
 private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
-    int busAccel = busAcceleration.getValue();
+    // if no object has been created, this button is not even available.
+	int busAccel = busAcceleration.getValue();
     int busDecel = busDeceleration.getValue();
     editObject.setEnabled(false);
     addObject.setEnabled(false);
     busAcceleration.setEnabled(false);
     busDeceleration.setEnabled(false);
+    // these should only be set WHILE the simulation is running
+    stopSimulation.setEnabled(true);
+    pauseSimulation.setEnabled(true);
+    runSimulation.setEnabled(false);
+    
+    // after the simulation is done running, these should be set
+    stopSimulation.setEnabled(false);
+    pauseSimulation.setEnabled(false);
+    runSimulation.setEnabled(true);
 }//GEN-LAST:event_runSimulationActionPerformed
 
 /**
@@ -369,10 +386,10 @@ private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
     String tmpBusAccel = "";
     switch (tmp)
     {
-        case 0: tmpBusAccel = "small";  break;
-        case 1: tmpBusAccel = "medium"; break;
-        case 2: tmpBusAccel = "large";  break;
-        case 3: tmpBusAccel = "xlarge"; break;
+        case 1: tmpBusAccel = "small";  break;
+        case 2: tmpBusAccel = "medium"; break;
+        case 3: tmpBusAccel = "large";  break;
+        case 4: tmpBusAccel = "xlarge"; break;
     }
     busAccelerationLabelValue.setText(tmpBusAccel);
 }//GEN-LAST:event_busAccelerationStateChanged
@@ -387,10 +404,10 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
     String tmpBusDecel = "";
     switch (tmp)
     {
-        case 0: tmpBusDecel = "small";  break;
-        case 1: tmpBusDecel = "medium"; break;
-        case 2: tmpBusDecel = "large";  break;
-        case 3: tmpBusDecel = "xlarge"; break;
+        case 1: tmpBusDecel = "small";  break;
+        case 2: tmpBusDecel = "medium"; break;
+        case 3: tmpBusDecel = "large";  break;
+        case 4: tmpBusDecel = "xlarge"; break;
     }
     busDecelerationLabelValue.setText(tmpBusDecel);
     busDecelerationLabelValue.setEnabled(true);                   
@@ -403,7 +420,7 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
  */
 private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
     editObject.setEnabled(true);
-    addObject.setEnabled(true);
+    addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
 }//GEN-LAST:event_stopSimulationActionPerformed
@@ -452,14 +469,16 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addObject;
+	// amber - I declared the addObject button as public static so that we can access it in the ObjectUI
+    static javax.swing.JButton addObject;
     private javax.swing.JSlider busAcceleration;
     private javax.swing.JLabel busAccelerationLabel;
     private javax.swing.JLabel busAccelerationLabelValue;
     private javax.swing.JSlider busDeceleration;
     private javax.swing.JLabel busDecelerationLabel;
     private javax.swing.JLabel busDecelerationLabelValue;
-    private javax.swing.JButton editObject;
+ // amber - I declared the editObject button as public static so that we can access it in the ObjectUI
+    static javax.swing.JButton editObject;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -467,7 +486,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton pauseSimulation;
-    private javax.swing.JButton runSimulation;
+    static javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
     private InterfaceComponent comp; 

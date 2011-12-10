@@ -227,7 +227,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="Relationship_Group"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="On Top"/>
+        <Property name="text" type="java.lang.String" value="Inside (with a seatbelt)"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insideRButtonActionPerformed"/>
@@ -238,7 +238,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="Relationship_Group"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Inside (with a seatbelt)"/>
+        <Property name="text" type="java.lang.String" value="Inside (without a seatbelt)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="topButton">
@@ -246,11 +246,8 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="Relationship_Group"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Inside (without a seatbelt)"/>
+        <Property name="text" type="java.lang.String" value="On Top"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="topButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="behindButton">
       <Properties>
