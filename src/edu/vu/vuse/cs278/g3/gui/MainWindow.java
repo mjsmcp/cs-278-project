@@ -97,12 +97,8 @@ public class MainWindow extends javax.swing.JFrame {
         busAcceleration = new javax.swing.JSlider();
         busDeceleration = new javax.swing.JSlider();
         busAccelerationLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        busDecelerationLabel = new javax.swing.JLabel();
         sillyNetLogo = new javax.swing.JInternalFrame();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         busAccelerationLabelValue = new javax.swing.JLabel();
         busDecelerationLabelValue = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -149,12 +145,19 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        busAcceleration.setMaximum(3);
+        busAcceleration.setSnapToTicks(true);
+        busAcceleration.setToolTipText("");
+        busAcceleration.setValue(1);
         busAcceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busAccelerationStateChanged(evt);
             }
         });
 
+        busDeceleration.setMaximum(3);
+        busDeceleration.setSnapToTicks(true);
+        busDeceleration.setValue(1);
         busDeceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busDecelerationStateChanged(evt);
@@ -163,12 +166,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         busAccelerationLabel.setText("Bus Acceleration");
 
-        jLabel2.setText("Bus Deceleration");
+        busDecelerationLabel.setText("Bus Deceleration");
 
         sillyNetLogo.setVisible(true);
         sillyNetLogo.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                //sillyNetLogoInternalFrameActivated(evt);
+                sillyNetLogoInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -184,40 +187,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        comp = new InterfaceComponent(MainWindow.this);
-    	
         javax.swing.GroupLayout sillyNetLogoLayout = new javax.swing.GroupLayout(sillyNetLogo.getContentPane());
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
         sillyNetLogoLayout.setHorizontalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            //.addGap(0, 316, Short.MAX_VALUE)
-            .addComponent(comp)
+            .addGap(0, 316, Short.MAX_VALUE)
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            //.addGap(0, 364, Short.MAX_VALUE)
-            .addComponent(comp)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        
-        //inilialize the embedded NetLogo
-        try {
-          comp.open("./CS278.nlogo");
-        }
-        catch(Exception ex) {
-          ex.printStackTrace();
-        }
-        
-        jLabel3.setText("0");
 
-        jLabel4.setText("100");
+        busAccelerationLabelValue.setText("medium");
 
-        jLabel5.setText("0");
-
-        jLabel6.setText("100");
-
-        busAccelerationLabelValue.setText("50");
-
-        busDecelerationLabelValue.setText("50");
+        busDecelerationLabelValue.setText("medium");
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -247,80 +230,59 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(busAcceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(busDeceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6))))
-                            .addComponent(stopSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(runSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(editObject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addObject, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                            .addComponent(pauseSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(10, 10, 10)
                         .addComponent(busAccelerationLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(busAccelerationLabelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busAccelerationLabelValue))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(busDeceleration, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                        .addComponent(addObject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editObject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(runSimulation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stopSimulation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pauseSimulation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(busAcceleration, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(busDecelerationLabelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
+                        .addComponent(busDecelerationLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busDecelerationLabelValue)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(sillyNetLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(addObject)
-                        .addGap(18, 18, 18)
-                        .addComponent(editObject)
-                        .addGap(18, 18, 18)
-                        .addComponent(runSimulation)
-                        .addGap(18, 18, 18)
-                        .addComponent(stopSimulation)
-                        .addGap(18, 18, 18)
-                        .addComponent(pauseSimulation)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(busAcceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(busAccelerationLabel)
-                            .addComponent(busAccelerationLabelValue))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(busDeceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(busDecelerationLabelValue)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(sillyNetLogo)))
-                .addContainerGap())
+                .addGap(63, 63, 63)
+                .addComponent(addObject)
+                .addGap(18, 18, 18)
+                .addComponent(editObject)
+                .addGap(18, 18, 18)
+                .addComponent(runSimulation)
+                .addGap(18, 18, 18)
+                .addComponent(stopSimulation)
+                .addGap(18, 18, 18)
+                .addComponent(pauseSimulation)
+                .addGap(18, 18, 18)
+                .addComponent(busAcceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(busAccelerationLabel)
+                    .addComponent(busAccelerationLabelValue))
+                .addGap(13, 13, 13)
+                .addComponent(busDeceleration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(busDecelerationLabel)
+                    .addComponent(busDecelerationLabelValue))
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(sillyNetLogo)
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -397,7 +359,14 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
  */
 private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busAccelerationStateChanged
     int tmp = busAcceleration.getValue();
-    String tmpBusAccel = Integer.toString(tmp);
+    String tmpBusAccel = "";
+    switch (tmp)
+    {
+        case 0: tmpBusAccel = "small";  break;
+        case 1: tmpBusAccel = "medium"; break;
+        case 2: tmpBusAccel = "large";  break;
+        case 3: tmpBusAccel = "xlarge"; break;
+    }
     busAccelerationLabelValue.setText(tmpBusAccel);
 }//GEN-LAST:event_busAccelerationStateChanged
 
@@ -408,7 +377,14 @@ private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
  */
 private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busDecelerationStateChanged
     int tmp = busDeceleration.getValue();
-    String tmpBusDecel = Integer.toString(tmp);
+    String tmpBusDecel = "";
+    switch (tmp)
+    {
+        case 0: tmpBusDecel = "small";  break;
+        case 1: tmpBusDecel = "medium"; break;
+        case 2: tmpBusDecel = "large";  break;
+        case 3: tmpBusDecel = "xlarge"; break;
+    }
     busDecelerationLabelValue.setText(tmpBusDecel);
     busDecelerationLabelValue.setEnabled(true);                   
 }//GEN-LAST:event_busDecelerationStateChanged
@@ -474,13 +450,9 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel busAccelerationLabel;
     private javax.swing.JLabel busAccelerationLabelValue;
     private javax.swing.JSlider busDeceleration;
+    private javax.swing.JLabel busDecelerationLabel;
     private javax.swing.JLabel busDecelerationLabelValue;
     private javax.swing.JButton editObject;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -491,6 +463,5 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
-    private InterfaceComponent comp;
     // End of variables declaration//GEN-END:variables
 }

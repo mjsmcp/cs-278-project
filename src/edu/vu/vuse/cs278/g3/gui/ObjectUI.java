@@ -12,6 +12,8 @@ package edu.vu.vuse.cs278.g3.gui;
 import edu.vu.vuse.cs278.g3.model.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Class that handles the Add Object dialog
@@ -66,6 +68,7 @@ public class ObjectUI extends javax.swing.JFrame {
         radiusLabelValue = new javax.swing.JLabel();
         heightLabelValue = new javax.swing.JLabel();
         widthLabelValue = new javax.swing.JLabel();
+        inFrontButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,45 +145,52 @@ public class ObjectUI extends javax.swing.JFrame {
 
         jLabel2.setText("Object Attributes");
 
-        weightValue.setMaximum(4);
+        weightValue.setMaximum(3);
         weightValue.setSnapToTicks(true);
+        weightValue.setValue(1);
         weightValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 weightValueStateChanged(evt);
             }
         });
 
-        radiusValue.setMaximum(4);
+        radiusValue.setMaximum(3);
         radiusValue.setSnapToTicks(true);
+        radiusValue.setValue(1);
         radiusValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radiusValueStateChanged(evt);
             }
         });
 
-        heightValue.setMaximum(4);
+        heightValue.setMaximum(3);
         heightValue.setSnapToTicks(true);
+        heightValue.setValue(1);
         heightValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 heightValueStateChanged(evt);
             }
         });
 
-        widthValue.setMaximum(4);
+        widthValue.setMaximum(3);
         widthValue.setSnapToTicks(true);
+        widthValue.setValue(1);
         widthValue.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 widthValueStateChanged(evt);
             }
         });
 
-        weightLabelValue.setText("0");
+        weightLabelValue.setText("medium");
 
-        radiusLabelValue.setText("0");
+        radiusLabelValue.setText("medium");
 
-        heightLabelValue.setText("0");
+        heightLabelValue.setText("medium");
 
-        widthLabelValue.setText("0");
+        widthLabelValue.setText("medium");
+
+        Relationship_Group.add(inFrontButton);
+        inFrontButton.setText("In Front of");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,41 +218,36 @@ public class ObjectUI extends javax.swing.JFrame {
                                             .addComponent(Weight_Label)
                                             .addComponent(Radius_Label))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(radiusLabelValue))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(weightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(weightLabelValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(heightLabelValue))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(widthValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(widthLabelValue)))))
-                        .addGap(11, 11, 11)))
-                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(widthValue, 0, 0, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(heightValue, 0, 0, Short.MAX_VALUE)
+                                        .addComponent(radiusValue, 0, 0, Short.MAX_VALUE)
+                                        .addComponent(weightValue, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(widthLabelValue)
+                            .addComponent(radiusLabelValue)
+                            .addComponent(weightLabelValue)
+                            .addComponent(heightLabelValue))))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Relationship)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(insideRButton)
-                            .addComponent(insideUButton)
-                            .addComponent(topButton)
-                            .addComponent(behindButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(clearButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelButton)))))
-                .addContainerGap())
+                                .addComponent(cancelButton))
+                            .addComponent(topButton)
+                            .addComponent(insideUButton)
+                            .addComponent(behindButton)
+                            .addComponent(inFrontButton))))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,53 +257,51 @@ public class ObjectUI extends javax.swing.JFrame {
                     .addComponent(Relationship))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(Object_Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ballButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boxButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Object_Label)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ballButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Weight_Label)
-                                    .addComponent(weightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radiusLabelValue)
-                                    .addComponent(Radius_Label)
-                                    .addComponent(radiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(heightLabelValue)
-                                    .addComponent(Height_Label)
-                                    .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Weight_Label)
+                            .addComponent(weightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(widthLabelValue)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Width_Label)
-                                    .addComponent(widthValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(Radius_Label)
+                            .addComponent(radiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(heightLabelValue)
+                            .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Height_Label)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(insideRButton)
                             .addComponent(weightLabelValue))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(insideUButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radiusLabelValue)
+                            .addComponent(insideUButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(topButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(behindButton)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addButton)
-                            .addComponent(clearButton)
-                            .addComponent(cancelButton))))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(behindButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inFrontButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Width_Label)
+                        .addComponent(widthLabelValue)
+                        .addComponent(widthValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton)
+                    .addComponent(clearButton)
+                    .addComponent(cancelButton))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -323,37 +326,48 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     double radius = radiusValue.getValue();
     double height = heightValue.getValue();
     double width = widthValue.getValue();
-    
     int x = 0, y = 0;
-    ButtonModel relationship = Relationship_Group.getSelection();
-    // get bus's coordinates
-    if (relationship == topButton) 
-    {
-        x = 0;
-        y = 0;
-    }
-    else if (relationship == insideRButton) 
-    {
-        x = 0;
-        y = 0;
-    }
-    else if (relationship == insideUButton) 
-    {
-        x = 0;
-        y = 0;
-    }
-    else if (relationship == behindButton)
-    {
-        x = 0;
-        y = 0;
-    }
     
-    System.out.println("Found bus coordinates");
+    // get the bus object
+    PhysicsObject bus = ObjectManager.getInstance().getObject("bus");
+    double busX = bus.getXCoord();
+    double busY = bus.getYCoord();
     
+    // determines the type of object and creates it with the given information
     ButtonModel object = Object_Group.getSelection();
+    if (object==null)
+    {
+    	JOptionPane.showMessageDialog(null,  "Please select either a ball or a box.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    ButtonModel relationship = Relationship_Group.getSelection();
+    if (relationship==null)
+    {
+    	JOptionPane.showMessageDialog(null,  "Please select a relationship for the object.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     if (object.toString().equals("Box"))
     {
     	System.out.println("making box");
+    	if (relationship == topButton) {
+        	x = (int)busX;
+        	y = (int)(busY + radius);
+    	}
+    	else if (relationship == insideRButton) {
+            x = (int)busX;
+            y = (int)(busY - (3*radius));
+    	}
+    	else if (relationship == insideUButton) {
+    		x = (int)busX;
+            y = (int)(busY - (3*radius));
+    	}
+    	else if (relationship == behindButton) {
+    		x = (int)(busX - (0.5*busX));
+            y = 0;
+    	}
+    	else if (relationship == inFrontButton) {
+        	x = (int)(busX + (0.5*busX));
+        	y = 0;
+    	}
+        	
         PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, width, height, weight);
         ObjectManager.getInstance().addObject("leObj", boxOb);
         System.out.println(object.toString());
@@ -364,11 +378,32 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     else
     {
     	System.out.println("making ball");
+    	if (relationship == topButton) {
+        	x = (int)busX;
+        	y = (int)(busY + radius);
+    	}
+    	else if (relationship == insideRButton) {
+            x = (int)busX;
+            y = (int)(busY - (3*radius));
+    	}
+    	else if (relationship == insideUButton) {
+    		x = (int)busX;
+            y = (int)(busY - (3*radius));
+    	}
+    	else if (relationship == behindButton) {
+    		x = (int)(busX - (0.5*busX));
+            y = 0;
+    	}
+    	else if (relationship == inFrontButton) {
+        	x = (int)(busX + (0.5*busX));
+        	y = 0;
+    	}
         PhysicsObject ballOb = ObjectManager.getInstance().createCircle(x, y, radius, weight);
         ObjectManager.getInstance().addObject("leObj", ballOb);
         System.out.println("weight = " + ballOb.getMass());
         System.out.println("radius = " + ((RoundObject)ballOb).getRadius());
-    }
+    }  
+
     
     this.dispose();
 }//GEN-LAST:event_addButtonActionPerformed
@@ -525,6 +560,7 @@ private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FI
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel heightLabelValue;
     private javax.swing.JSlider heightValue;
+    private javax.swing.JRadioButton inFrontButton;
     private javax.swing.JRadioButton insideRButton;
     private javax.swing.JRadioButton insideUButton;
     private javax.swing.JLabel jLabel2;

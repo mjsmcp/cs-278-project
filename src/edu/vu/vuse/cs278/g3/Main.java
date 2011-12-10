@@ -13,10 +13,11 @@ public class Main {
 		 
 	       /* Create and display the form */
 	        try{
-		        java.awt.EventQueue.invokeAndWait(new Runnable() {
+		        java.awt.EventQueue.invokeAndWait(new
+		        		Runnable() {
 		            public void run() {
 		        		MainWindow.getInstance().setVisible(true);
-		             }            
+		             }
 		        });
 	        }
 	        catch (Exception ex) {

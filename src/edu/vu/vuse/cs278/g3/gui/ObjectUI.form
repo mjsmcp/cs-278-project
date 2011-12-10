@@ -35,7 +35,7 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Object_Label" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -54,44 +54,33 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="radiusValue" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="radiusLabelValue" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="1">
-                                      <Component id="weightValue" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="weightLabelValue" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="heightValue" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="heightLabelValue" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="widthValue" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="widthLabelValue" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="widthValue" min="0" pref="0" max="32767" attributes="1"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="heightValue" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                                      <Component id="radiusValue" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                                      <Component id="weightValue" alignment="0" pref="142" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="widthLabelValue" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiusLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="weightLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="heightLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Relationship" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="insideRButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="insideUButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="topButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="behindButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="addButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -99,10 +88,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="topButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="insideUButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="behindButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="inFrontButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,44 +108,28 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="Object_Label" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ballButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="boxButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Object_Label" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ballButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="boxButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Weight_Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="weightValue" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="radiusLabelValue" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Radius_Label" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radiusValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="heightLabelValue" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Height_Label" min="-2" max="-2" attributes="0"/>
-                                  <Component id="heightValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="Weight_Label" min="-2" max="-2" attributes="0"/>
+                          <Component id="weightValue" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="widthLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Width_Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="widthValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="Radius_Label" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiusValue" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="heightLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="heightValue" min="-2" max="-2" attributes="0"/>
+                          <Component id="Height_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -161,21 +138,33 @@
                           <Component id="insideRButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="weightLabelValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="insideUButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="radiusLabelValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insideUButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="topButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="behindButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clearButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="inFrontButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="Width_Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="widthLabelValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="widthValue" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="clearButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -302,8 +291,9 @@
     </Component>
     <Component class="javax.swing.JSlider" name="weightValue">
       <Properties>
-        <Property name="maximum" type="int" value="4"/>
+        <Property name="maximum" type="int" value="3"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="1"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="weightValueStateChanged"/>
@@ -311,8 +301,9 @@
     </Component>
     <Component class="javax.swing.JSlider" name="radiusValue">
       <Properties>
-        <Property name="maximum" type="int" value="4"/>
+        <Property name="maximum" type="int" value="3"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="1"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radiusValueStateChanged"/>
@@ -320,8 +311,9 @@
     </Component>
     <Component class="javax.swing.JSlider" name="heightValue">
       <Properties>
-        <Property name="maximum" type="int" value="4"/>
+        <Property name="maximum" type="int" value="3"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="1"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="heightValueStateChanged"/>
@@ -329,8 +321,9 @@
     </Component>
     <Component class="javax.swing.JSlider" name="widthValue">
       <Properties>
-        <Property name="maximum" type="int" value="4"/>
+        <Property name="maximum" type="int" value="3"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="1"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="widthValueStateChanged"/>
@@ -338,22 +331,30 @@
     </Component>
     <Component class="javax.swing.JLabel" name="weightLabelValue">
       <Properties>
-        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="text" type="java.lang.String" value="medium"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="radiusLabelValue">
       <Properties>
-        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="text" type="java.lang.String" value="medium"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="heightLabelValue">
       <Properties>
-        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="text" type="java.lang.String" value="medium"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="widthLabelValue">
       <Properties>
-        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="text" type="java.lang.String" value="medium"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="inFrontButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="Relationship_Group"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="In Front of"/>
       </Properties>
     </Component>
   </SubComponents>
