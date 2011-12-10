@@ -30,7 +30,7 @@ public class EditObjectUI extends javax.swing.JFrame {
     	int BUS_STREET_CONTACT = -33;
     	int BUS_LENGTH = 286;
     	int BOX_OFFSET = 100;
-    	int TOP_OF_BUS = 33;
+    	int TOP_OF_BUS = 50;
         
         // display the current values for the current object
         PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
@@ -99,20 +99,20 @@ public class EditObjectUI extends javax.swing.JFrame {
         // if the object is a ball
         if (myObj.getClass().equals(RoundObject.class))
         {
-        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
+        	if (x == (int)(0.5*(double)BUS_LENGTH)) {frontButton.setSelected(true); System.out.println("front");}
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) {behindButton.setSelected(true); System.out.println("behind");}
+        	else if (y == ((int)radius + TOP_OF_BUS)) {topButton.setSelected(true); System.out.println("top");}
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(radius*(double)MY_OFFSET)) {insideRButton.setSelected(true);System.out.println("inside");}
         }
         // else if the object is a box
         if (myObj.getClass().equals(SquareObject.class))
         {
-        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
+        	if (x == (int)(0.5*(double)BUS_LENGTH)) {frontButton.setSelected(true); System.out.println("front");}
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) {behindButton.setSelected(true); System.out.println("behind");}
+        	else if (y == width*(double)TOP_OF_BUS) {topButton.setSelected(true); System.out.println("top");}
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(width*(double)MY_OFFSET)) {insideRButton.setSelected(true); System.out.println("inside");}
         }
         
     }
@@ -397,6 +397,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 	int BUS_STREET_CONTACT = -33;
 	int BUS_LENGTH = 286;
 	int BOX_OFFSET = 100;
+	int TOP_OF_BUS = 50;
 	
 	double weight = weightValue.getValue();
     double radius = radiusValue.getValue();
@@ -420,26 +421,26 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	if (topButton.isSelected())
     	{
         	x = (int)busX;
-        	y = (int)(busY + radius*MY_OFFSET);
+        	y = (int)(busY + radius + TOP_OF_BUS);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
-            y = (int)(busY - (radius*MY_OFFSET));
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
-            y = (int)(busY - (radius*MY_OFFSET));
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (behindButton.isSelected())
     	{
-    		x = (int)(-0.5*BUS_LENGTH);
+    		x = (int)(-0.5*(double)BUS_LENGTH);
             y = (int)(BUS_STREET_CONTACT);
     	}
     	else if (frontButton.isSelected())
     	{
-        	x = (int)(0.5*BUS_LENGTH);
+        	x = (int)(0.5*(double)BUS_LENGTH);
         	y = (int)(BUS_STREET_CONTACT);
     	}
         
@@ -457,26 +458,26 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	if (topButton.isSelected())
     	{
         	x = (int)busX;
-        	y = (int)(busY + radius*MY_OFFSET);
+        	y = (int)(busY + width + TOP_OF_BUS);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
-            y = (int)(busY - ((0.5*width)*MY_OFFSET));
+            y = (int)(width*(double)MY_OFFSET);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
-            y = (int)(busY - ((0.5*width)*MY_OFFSET));
+            y = (int) (width*(double)MY_OFFSET);
     	}
     	else if (behindButton.isSelected())
     	{
-    		x = (int)(-0.5*BUS_LENGTH);
+    		x = (int)(-0.5*(double)BUS_LENGTH);
             y = BUS_STREET_CONTACT;
     	}
     	else if (frontButton.isSelected())
     	{
-        	x = (int)(0.5*BUS_LENGTH);
+        	x = (int)(0.5*(double)BUS_LENGTH);
         	y = BUS_STREET_CONTACT;
     	}
         
@@ -519,7 +520,7 @@ private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
  * @param evt
  */
 private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radiusValueStateChanged
-    int tmp = radiusValue.getValue();
+    int tmp = radiusValue2.getValue();
     String tmpRadius = "";
     switch (tmp)
     {

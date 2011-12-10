@@ -309,7 +309,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 	int BUS_STREET_CONTACT = -33;
 	int BUS_LENGTH = 286;
 	int BOX_OFFSET = 100;
-	int TOP_OF_BUS = 48;
+	int TOP_OF_BUS = 50;
 	
     System.out.println("add object");
 	double weight = weightValue.getValue();
@@ -346,12 +346,12 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	}
     	else if (behindButton.isSelected())
     	{
-    		x = (int)(-0.5*BUS_LENGTH);
+    		x = (int)(-0.5*(double)BUS_LENGTH);
             y = BUS_STREET_CONTACT;
     	}
     	else if (inFrontButton.isSelected())
     	{
-        	x = (int)(0.5*BUS_LENGTH);
+        	x = (int)(0.5*(double)BUS_LENGTH);
         	y = BUS_STREET_CONTACT;
     	}
         	
@@ -373,15 +373,13 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	}
     	else if (insideRButton.isSelected())
     	{
-    		///TODO
             x = (int)busX;
-            y = (int)(width*(double)MY_OFFSET);
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (insideUButton.isSelected())
     	{
-    		//TODO
     		x = (int)busX;
-            y = (int)(width*(double)MY_OFFSET);
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (behindButton.isSelected())
     	{
