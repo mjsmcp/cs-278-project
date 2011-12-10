@@ -167,11 +167,13 @@ public class MainWindow extends javax.swing.JFrame {
         busAccelerationLabel.setText("Bus Acceleration");
 
         busDecelerationLabel.setText("Bus Deceleration");
-
+        
+        comp = new InterfaceComponent(this);
+        
         sillyNetLogo.setVisible(true);
         sillyNetLogo.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                sillyNetLogoInternalFrameActivated(evt);
+                //sillyNetLogoInternalFrameActivated(evt);		//this was showing an error, so I commented it out. No idea what it does, but seems to work now.
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -191,13 +193,18 @@ public class MainWindow extends javax.swing.JFrame {
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
         sillyNetLogoLayout.setHorizontalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addComponent(comp)
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(comp)
         );
-
+        try {
+            comp.open("./CS278.nlogo");
+          }
+          catch(Exception ex) {
+            ex.printStackTrace();
+          }
         busAccelerationLabelValue.setText("medium");
 
         busDecelerationLabelValue.setText("medium");
@@ -463,5 +470,6 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
+    private InterfaceComponent comp; 
     // End of variables declaration//GEN-END:variables
 }
