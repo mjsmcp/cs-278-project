@@ -16,6 +16,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
 
+import edu.vu.vuse.cs278.g3.engine.PhysicsEngine;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 
 /**
@@ -358,6 +359,7 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     runSimulation.setEnabled(false);
     
     // do something here
+    PhysicsEngine.getInstance().enable();
     
     // after the simulation is done running, these should be set
     stopSimulation.setEnabled(false);
@@ -421,7 +423,8 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
  * @param evt
  */
 private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
-    editObject.setEnabled(true);
+    PhysicsEngine.getInstance().disable();
+	editObject.setEnabled(true);
     addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
