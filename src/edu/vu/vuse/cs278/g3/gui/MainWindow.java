@@ -357,6 +357,8 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     pauseSimulation.setEnabled(true);
     runSimulation.setEnabled(false);
     
+    // do something here
+    
     // after the simulation is done running, these should be set
     stopSimulation.setEnabled(false);
     pauseSimulation.setEnabled(false);
@@ -489,6 +491,6 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     static javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
-    private InterfaceComponent comp; 
+    private InterfaceComponent comp;
     // End of variables declaration//GEN-END:variables
 }

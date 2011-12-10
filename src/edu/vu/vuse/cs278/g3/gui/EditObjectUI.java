@@ -30,11 +30,11 @@ public class EditObjectUI extends javax.swing.JFrame {
     	int BUS_STREET_CONTACT = -33;
     	int BUS_LENGTH = 286;
     	int BOX_OFFSET = 100;
+    	int TOP_OF_BUS = 33;
         
         // display the current values for the current object
         PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
         int weight = (int)myObj.getMass();
-        int height = 0;
         int width = 0;
         int radius = 0;       
         
@@ -42,18 +42,17 @@ public class EditObjectUI extends javax.swing.JFrame {
         // if the object is a ball
         if(myObj.getClass().equals(RoundObject.class))
         {
-        	radius = (int)((RoundObject)myObj).getRadius();        	
+        	radius = (int)((RoundObject)myObj).getRadius();
+        	radius /= (double)MY_OFFSET;
             widthValue.setEnabled(false);
-        	heightValue.setEnabled(false);
         	radiusValue.setEnabled(true);
         }
         // if the object is a box
         else if (myObj.getClass().equals(SquareObject.class))
         {
-        	height = (int)((SquareObject)myObj).getHeight();
         	width = (int)((SquareObject)myObj).getWidth();
+        	width /= (double)MY_OFFSET;
         	widthValue.setEnabled(true);
-        	heightValue.setEnabled(true);
         	radiusValue.setEnabled(false);
         }
         // if the world crashed and died
@@ -64,7 +63,6 @@ public class EditObjectUI extends javax.swing.JFrame {
         
         // set the sliders with the current values of the dimensions
         weightValue.setValue(weight);
-        heightValue.setValue(height);
         widthValue.setValue(width);
         radiusValue.setValue(radius);
         
@@ -77,15 +75,6 @@ public class EditObjectUI extends javax.swing.JFrame {
 	        case 4: tmpStr = "xlarge"; break;
         }
         weightLabelValue.setText(tmpStr);
-       
-        switch (height)
-        {
-	        case 1: tmpStr = "small"; break;
-	        case 2: tmpStr = "medium"; break;
-	        case 3: tmpStr = "large"; break;
-	        case 4: tmpStr = "xlarge"; break;
-        }
-        heightLabelValue.setText(tmpStr);
         
         switch (width)
         {
@@ -110,20 +99,20 @@ public class EditObjectUI extends javax.swing.JFrame {
         // if the object is a ball
         if (myObj.getClass().equals(RoundObject.class))
         {
-        	if (x == (int)(0.5*BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == (int)(radius*MY_OFFSET)) topButton.setSelected(true);
+        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
+        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(-radius*MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
         }
         // else if the object is a box
         if (myObj.getClass().equals(SquareObject.class))
         {
-        	if (x == (int)(0.5*BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == (int)(height*MY_OFFSET)) topButton.setSelected(true);
+        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
+        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(-0.5*height*MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
         }
         
     }
@@ -136,18 +125,17 @@ public class EditObjectUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        //bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
+//        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         relationshipGroup = new javax.swing.ButtonGroup();
         radiusValue = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        //jLabel1 = new javax.swing.JLabel();
-        //jLabel2 = new javax.swing.JLabel();
-        //jLabel3 = new javax.swing.JLabel();
-        //jLabel4 = new javax.swing.JLabel();
-        //jLabel5 = new javax.swing.JLabel();
-        //jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         topButton = new javax.swing.JRadioButton();
         insideRButton = new javax.swing.JRadioButton();
         insideUButton = new javax.swing.JRadioButton();
@@ -158,11 +146,9 @@ public class EditObjectUI extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         weightValue = new javax.swing.JSlider();
         widthValue = new javax.swing.JSlider();
-        heightValue = new javax.swing.JSlider();
         weightLabelValue = new javax.swing.JLabel();
         radiusLabelValue = new javax.swing.JLabel();
         widthLabelValue = new javax.swing.JLabel();
-        heightLabelValue = new javax.swing.JLabel();
         radiusValue2 = new javax.swing.JSlider();
 
         radiusValue.setMaximum(4);
@@ -177,17 +163,15 @@ public class EditObjectUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
-        //jLabel1.setText("Weight");
+        jLabel1.setText("Weight");
 
-        //jLabel2.setText("Radius");
+        jLabel2.setText("Radius");
 
-        //jLabel3.setText("Width");
+        jLabel3.setText("Width");
 
-        //jLabel4.setText("Height");
+        jLabel5.setText("Relationship to Bus");
 
-        //jLabel5.setText("Relationship to Bus");
-
-        //jLabel6.setText("Object Attributes");
+        jLabel6.setText("Object Attributes");
 
         relationshipGroup.add(topButton);
         topButton.setText("On Top");
@@ -255,30 +239,18 @@ public class EditObjectUI extends javax.swing.JFrame {
             }
         });
 
-        heightValue.setMaximum(4);
-        heightValue.setMinimum(1);
-        heightValue.setSnapToTicks(true);
-        heightValue.setValue(2);
-        heightValue.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                heightValueStateChanged(evt);
-            }
-        });
-
         weightLabelValue.setText("medium");
 
         radiusLabelValue.setText("medium");
 
         widthLabelValue.setText("medium");
 
-        heightLabelValue.setText("medium");
-
-        radiusValue2.setMaximum(3);
+        radiusValue2.setMaximum(4);
+        radiusValue2.setMinimum(1);
         radiusValue2.setSnapToTicks(true);
-        radiusValue2.setValue(1);
 
-        //org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, radiusValue, org.jdesktop.beansbinding.ObjectProperty.create(), radiusValue2, org.jdesktop.beansbinding.BeanProperty.create("value"));
-        //bindingGroup.addBinding(binding);
+//        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, radiusValue, org.jdesktop.beansbinding.ObjectProperty.create(), radiusValue2, org.jdesktop.beansbinding.BeanProperty.create("value"));
+//        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -296,9 +268,7 @@ public class EditObjectUI extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel2))))
+                                        .addComponent(jLabel2)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -312,11 +282,7 @@ public class EditObjectUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(widthValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(widthLabelValue))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(heightLabelValue)))))
+                                        .addComponent(widthLabelValue)))))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -371,22 +337,15 @@ public class EditObjectUI extends javax.swing.JFrame {
                         .addComponent(behindButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(frontButton)))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(heightLabelValue)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(heightValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addComponent(jLabel4))
-                .addGap(22, 22, 22)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(clearButton)
                     .addComponent(editButton))
-                .addGap(93, 93, 93))
+                .addContainerGap())
         );
 
-        //bindingGroup.bind();
+//        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -413,7 +372,6 @@ private void topButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
  */
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
     weightValue.setValue(0);
-    heightValue.setValue(0);
     widthValue.setValue(0);
     radiusValue.setValue(0);
     relationshipGroup.clearSelection();
@@ -442,7 +400,6 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 	
 	double weight = weightValue.getValue();
     double radius = radiusValue.getValue();
-    double height = heightValue.getValue();
     double width = widthValue.getValue();
     
     int x=0, y=0;
@@ -467,13 +424,11 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	}
     	else if (insideRButton.isSelected())
     	{
-    		///TODO
             x = (int)busX;
             y = (int)(busY - (radius*MY_OFFSET));
     	}
     	else if (insideUButton.isSelected())
     	{
-    		//TODO
     		x = (int)busX;
             y = (int)(busY - (radius*MY_OFFSET));
     	}
@@ -490,14 +445,13 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         ((RoundObject)myObj).setXCoord(x);
         ((RoundObject)myObj).setYCoord(y);
-        ObjectManager.getInstance().updateObject("leObj", myObj);
+        //ObjectManager.getInstance().updateObject("leObj", myObj);
     }
     
     // if the object is a box
     else if (myObj.getClass().equals(SquareObject.class))
     {
         myObj.setMass(weight);
-        ((SquareObject)myObj).setHeight(height*BOX_OFFSET);
         ((SquareObject)myObj).setWidth(width*BOX_OFFSET);  
         
     	if (topButton.isSelected())
@@ -507,15 +461,13 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	}
     	else if (insideRButton.isSelected())
     	{
-    		/// TODO
             x = (int)busX;
-            y = (int)(busY - ((0.5*height)*MY_OFFSET));
+            y = (int)(busY - ((0.5*width)*MY_OFFSET));
     	}
     	else if (insideUButton.isSelected())
     	{
-    		/// TODO
     		x = (int)busX;
-            y = (int)(busY - ((0.5*height)*MY_OFFSET));
+            y = (int)(busY - ((0.5*width)*MY_OFFSET));
     	}
     	else if (behindButton.isSelected())
     	{
@@ -530,7 +482,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         myObj.setXCoord(x);
         myObj.setYCoord(y);
-        ObjectManager.getInstance().updateObject("leObj", myObj);
+        //ObjectManager.getInstance().updateObject("leObj", myObj);
     }
     
     // if the world crashed and died...
@@ -539,7 +491,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	System.out.println("failboat");
     }
     
-    
+    myObj.commit();
     this.dispose();
 }//GEN-LAST:event_editButtonActionPerformed
 
@@ -602,19 +554,6 @@ private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FI
  * the current height of the square object (in terms of small, medium, large, extra large)
  * @param evt
  */
-private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightValueStateChanged
-    int tmp = heightValue.getValue();
-    String tmpHeight = "";
-    switch (tmp)
-    {
-        case 1: tmpHeight = "small";  break;
-        case 2: tmpHeight = "medium"; break;
-        case 3: tmpHeight = "large";  break;
-        case 4: tmpHeight = "xlarge"; break;
-    }
-    heightLabelValue.setText(tmpHeight);
-}//GEN-LAST:event_heightValueStateChanged
-
     /**
      * @param args the command line arguments
      */
@@ -656,15 +595,12 @@ private void heightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     private javax.swing.JButton clearButton;
     private javax.swing.JButton editButton;
     private javax.swing.JRadioButton frontButton;
-    private javax.swing.JLabel heightLabelValue;
-    private javax.swing.JSlider heightValue;
     private javax.swing.JRadioButton insideRButton;
     private javax.swing.JRadioButton insideUButton;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;

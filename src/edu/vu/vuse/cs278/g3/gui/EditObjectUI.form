@@ -47,10 +47,7 @@
                                   <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -69,11 +66,6 @@
                                       <Component id="widthValue" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="widthLabelValue" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="heightValue" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="heightLabelValue" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -148,22 +140,13 @@
                       <Component id="frontButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="heightLabelValue" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="heightValue" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="clearButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="editButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -193,11 +176,6 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Width"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Height"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -282,9 +260,10 @@
     </Component>
     <Component class="javax.swing.JSlider" name="weightValue">
       <Properties>
-        <Property name="maximum" type="int" value="3"/>
+        <Property name="maximum" type="int" value="4"/>
+        <Property name="minimum" type="int" value="1"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="value" type="int" value="1"/>
+        <Property name="value" type="int" value="2"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="weightValueStateChanged"/>
@@ -292,22 +271,13 @@
     </Component>
     <Component class="javax.swing.JSlider" name="widthValue">
       <Properties>
-        <Property name="maximum" type="int" value="3"/>
+        <Property name="maximum" type="int" value="4"/>
+        <Property name="minimum" type="int" value="1"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="value" type="int" value="1"/>
+        <Property name="value" type="int" value="2"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="widthValueStateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JSlider" name="heightValue">
-      <Properties>
-        <Property name="maximum" type="int" value="3"/>
-        <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="value" type="int" value="1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="heightValueStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="weightLabelValue">
@@ -325,16 +295,11 @@
         <Property name="text" type="java.lang.String" value="medium"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="heightLabelValue">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="medium"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JSlider" name="radiusValue2">
       <Properties>
-        <Property name="maximum" type="int" value="3"/>
+        <Property name="maximum" type="int" value="4"/>
+        <Property name="minimum" type="int" value="1"/>
         <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="value" type="int" value="1"/>
       </Properties>
       <BindingProperties>
         <BindingProperty name="value" source="radiusValue" target="radiusValue2" targetPath="value" updateStrategy="0" immediately="false">
