@@ -30,7 +30,7 @@ public class EditObjectUI extends javax.swing.JFrame {
     	int BUS_STREET_CONTACT = -33;
     	int BUS_LENGTH = 286;
     	int BOX_OFFSET = 100;
-    	int TOP_OF_BUS = 33;
+    	int TOP_OF_BUS = 50;
         
         // display the current values for the current object
         PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
@@ -403,6 +403,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 	int BUS_STREET_CONTACT = -33;
 	int BUS_LENGTH = 286;
 	int BOX_OFFSET = 100;
+	int TOP_OF_BUS = 50;
 	
 	double weight = weightValue.getValue();
     double radius = radiusValue2.getValue();
@@ -426,26 +427,26 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	if (topButton.isSelected())
     	{
         	x = (int)busX;
-        	y = (int)(busY + radius*MY_OFFSET);
+        	y = (int)(radius + TOP_OF_BUS);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
-            y = (int)(busY - (radius*MY_OFFSET));
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
-            y = (int)(busY - (radius*MY_OFFSET));
+            y = (int)(radius*(double)MY_OFFSET);
     	}
     	else if (behindButton.isSelected())
     	{
-    		x = (int)(-0.5*BUS_LENGTH);
+    		x = (int)(-0.5*(double)BUS_LENGTH);
             y = (int)(BUS_STREET_CONTACT);
     	}
     	else if (frontButton.isSelected())
     	{
-        	x = (int)(0.5*BUS_LENGTH);
+        	x = (int)(0.5*(double)BUS_LENGTH);
         	y = (int)(BUS_STREET_CONTACT);
     	}
         
@@ -463,17 +464,17 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	if (topButton.isSelected())
     	{
         	x = (int)busX;
-        	y = (int)(busY + radius*MY_OFFSET);
+        	y = (int)(width + TOP_OF_BUS);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
-            y = (int)(busY - ((0.5*width)*MY_OFFSET));
+            y = (int)(width*(double)MY_OFFSET);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
-            y = (int)(busY - ((0.5*width)*MY_OFFSET));
+            y = (int)(width*(double)MY_OFFSET);
     	}
     	else if (behindButton.isSelected())
     	{
