@@ -1,5 +1,6 @@
 package edu.vu.vuse.cs278.g3.engine;
 
+import edu.vu.vuse.cs278.g3.model.BusObject;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 import edu.vu.vuse.cs278.g3.model.PhysicsObject;
 import edu.vu.vuse.cs278.g3.model.SquareObject;
@@ -60,7 +61,7 @@ public class PhysicsActions {
 		@Override
 		public void run() {
 			// Retrieve Bus Object
-			SquareObject busObject = (SquareObject) ObjectManager.getInstance().getObject("bus");
+			BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
 			
 			// Update speed of the bus
 			busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
