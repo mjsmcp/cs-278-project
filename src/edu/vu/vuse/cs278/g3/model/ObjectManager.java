@@ -85,8 +85,8 @@ public class ObjectManager {
 	 * @param _height The height of the object
 	 * @return Object reference
 	 */
-	public SquareObject createSquare(double _xCoord, double _yCoord, double _width, double _height, double mass){
-		return new SquareObject(obj_count++, _xCoord, _yCoord, _width, _height, mass);
+	public SquareObject createSquare(double _xCoord, double _yCoord, double _width, double mass){
+		return new SquareObject(obj_count++, _xCoord, _yCoord, _width, mass);
 	}
 	
 	/**

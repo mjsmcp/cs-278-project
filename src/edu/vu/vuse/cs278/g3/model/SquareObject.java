@@ -4,13 +4,13 @@ import edu.vu.vuse.cs278.g3.gui.MainWindow;
 
 public class SquareObject extends PhysicsObject {
 
-	SquareObject(int _array_num, double _xCoord, double _yCoord, double _width, double _height, double mass)
+	SquareObject(int _array_num, double _xCoord, double _yCoord, double _width, double mass)
 	{
 		super(_array_num, _xCoord, _yCoord, 0, 0, mass);
 		array_num = _array_num;
 		width=_width;
-		height=_height;
-
+		
+		restrained = false;
 		//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
 		MainWindow.getInstance().command("create-SquareObjects 1");			//create object at origin
 		commit(); //set location
@@ -24,16 +24,8 @@ public class SquareObject extends PhysicsObject {
 		return yCoord;
 	}
 	
-	public double getHeight() {
-		return height;
-	}
-
 	public double getWidth() {
 		return width;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
 	}
 	
 	public void setWidth(double width) {
@@ -41,7 +33,7 @@ public class SquareObject extends PhysicsObject {
 	}
 	
 	final private int array_num; //number that this object is accessed by in netlogo
-	private double width, height;
+	private double width;
 	private boolean restrained;
 	
 	public void setRestrained(boolean val){

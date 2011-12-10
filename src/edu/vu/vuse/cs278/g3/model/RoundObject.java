@@ -10,7 +10,7 @@ public class RoundObject extends PhysicsObject {
 	RoundObject(int _array_num, double _xCoord, double _yCoord, double _radius, double mass) {
 		super(_array_num, _xCoord, _yCoord, 0,0, mass);
 		radius=_radius;
-		
+		restrained = false;
 		//RoundObjects must be defined in nlogo file: "array [RoundObjects RoundObject]"
 		MainWindow.getInstance().command("create-RoundObjects 1");			//create object at origin
 		MainWindow.getInstance().command("ask RoundObject " + array_num + "[set shape \"circle\"]");
