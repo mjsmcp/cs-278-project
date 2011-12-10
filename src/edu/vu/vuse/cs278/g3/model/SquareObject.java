@@ -13,6 +13,7 @@ public class SquareObject extends PhysicsObject {
 		restrained = false;
 		//SquareObjects must be defined in nlogo file: "array [SquareObjects SquareObject]"
 		MainWindow.getInstance().command("create-SquareObjects 1");			//create object at origin
+		setShape("square");
 		commit(); //set location
 	}
 	
