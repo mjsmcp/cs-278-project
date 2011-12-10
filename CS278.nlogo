@@ -130,6 +130,7 @@ Circle -16777216 true false 24 174 42
 Circle -1 false false 144 174 42
 Circle -1 false false 234 174 42
 Circle -1 false false 24 174 42
+Rectangle -1184463 false false 15 105 210 150
 
 butterfly
 true
@@ -163,6 +164,12 @@ false
 0
 Circle -7500403 true true 0 0 300
 Circle -16777216 true false 30 30 240
+
+circle_belt
+false
+0
+Circle -7500403 true true 0 0 300
+Polygon -16777216 true false 0 270 270 0 285 15 15 285 0 270
 
 cow
 false
@@ -308,6 +315,12 @@ false
 0
 Rectangle -7500403 true true 30 30 270 270
 Rectangle -16777216 true false 60 60 240 240
+
+square_belt
+false
+0
+Rectangle -7500403 true true 30 30 270 270
+Polygon -16777216 true false 0 255 285 0 300 15 15 270 0 255
 
 star
 false

@@ -6,7 +6,7 @@ public class RoundObject extends PhysicsObject {
 	
 	/** The radius of the circle object*/
 	private double radius;
-	
+	private boolean restrained;
 	RoundObject(int _array_num, double _xCoord, double _yCoord, double _radius, double mass) {
 		super(_array_num, _xCoord, _yCoord, 0,0, mass);
 		radius=_radius;
@@ -30,6 +30,15 @@ public class RoundObject extends PhysicsObject {
 		this.radius = radius;
 	}
 	
+	public void setRestrained(boolean val){
+		restrained = val;
+		if (restrained) setShape("circle_belt");
+		else setShape("circle");
+	}
+	
+	public boolean isRestrained(){
+		return restrained;
+	}
 
 	@Override
 	public void commit() {

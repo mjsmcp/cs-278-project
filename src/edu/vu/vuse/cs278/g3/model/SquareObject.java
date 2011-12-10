@@ -42,11 +42,24 @@ public class SquareObject extends PhysicsObject {
 	
 	final private int array_num; //number that this object is accessed by in netlogo
 	private double width, height;
+	private boolean restrained;
+	
+	public void setRestrained(boolean val){
+		restrained = val;
+		if (restrained) setShape("square_belt");
+		else setShape("square");
+	}
+	
+	public boolean isRestrained(){
+		return restrained;
+	}
+
 	
 	@Override
 	public void commit() {
 		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set xcor " + xCoord + "]");	//move to desired location
 		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set ycor " + yCoord + "]");
+		MainWindow.getInstance().command("ask SquareObject " + array_num + " [set size " + width + "]");
 	}
 
 	@Override
