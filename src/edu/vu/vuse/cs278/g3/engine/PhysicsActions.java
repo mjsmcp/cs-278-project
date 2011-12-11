@@ -3,6 +3,8 @@ package edu.vu.vuse.cs278.g3.engine;
 import edu.vu.vuse.cs278.g3.model.BusObject;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 import edu.vu.vuse.cs278.g3.model.PhysicsObject;
+import edu.vu.vuse.cs278.g3.model.RelationshipManager;
+import edu.vu.vuse.cs278.g3.model.RelationshipTypes;
 import edu.vu.vuse.cs278.g3.model.SquareObject;
 
 /**
@@ -32,8 +34,10 @@ public class PhysicsActions {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-			
+			moveBus();
+			updateObjectPosition();
+			PhysicsEngine.getInstance().updateState();
+			loadNextFrame();
 		}
 		
 	}
@@ -42,7 +46,12 @@ public class PhysicsActions {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			decelerateBus();
+			moveBus();
+			decelerateObject();
+			updateObjectPosition();
+			PhysicsEngine.getInstance().updateState();
+			loadNextFrame();
 			
 		}
 		
@@ -88,6 +97,26 @@ public class PhysicsActions {
 		// Update speed of the bus
 		busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
 		
+		ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
+		// Commit changes
+		busObject.commit();
+	
+		
+	}
+	
+	/**
+	 * Calculates the new speed for the bus based on the current speed and the deceleration.
+	 * @author Matthew Shea
+	 *
+	 */
+	private static void decelerateBus() {
+
+		// Retrieve Bus Object
+		BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
+		
+		// Update speed of the bus
+		busObject.setSpeed(busObject.getSpeed() - busObject.getDeceleration() /* 1 Frame */);
+		
 		if(busObject.getAcceleration() > 0) {
 			ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
 		}
@@ -108,8 +137,26 @@ public class PhysicsActions {
 			PhysicsObject object = ObjectManager.getInstance().getObject("object");
 			
 			// Update speed of object
+			object.setSpeed(object.getSpeed() + object.getAcceleration());
+			
+			// Commit changes
+			object.commit();
+		
+	}
+	
+	/**
+	 * Decelerates the object based on the calculated friction and speed of the object
+	 * @author Matthew Shea
+	 *
+	 */
+	private static void decelerateObject () {
+
+			// Retrieve Object
+			PhysicsObject object = ObjectManager.getInstance().getObject("object");
+			
+			// Update speed of object
 			double opposingFrictionalForce = PhysicsFormulas.frictionalForce(null, object.getMass(), 0.125);
-			double modifiedAcceleration = object.getAcceleration() - opposingFrictionalForce/object.getMass();
+			double modifiedAcceleration = object.getDeceleration() - opposingFrictionalForce/object.getMass();
 			object.setSpeed(object.getSpeed() + modifiedAcceleration);
 			
 			// Commit changes
@@ -126,6 +173,7 @@ public class PhysicsActions {
 	public static void updateObjectPosition() {
 
 		PhysicsObject object = ObjectManager.getInstance().getObject("object");
+		RelationshipTypes relationship = RelationshipManager.getInstance().getRelationship("object", "bus");
 		object.setXCoord(object.getXCoord() + object.getSpeed());
 		object.commit();
 		

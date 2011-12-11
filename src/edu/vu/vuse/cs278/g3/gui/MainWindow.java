@@ -392,6 +392,7 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
     }
     else
     {
+    	editObject.setEnabled(false);
     	PhysicsEngine.getInstance().resume(this);
     	pauseSimulation.setText("Pause Simulation");
     }
@@ -479,6 +480,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     stopSimulation.setEnabled(false);
     pauseSimulation.setEnabled(false);
     runSimulation.setEnabled(true);
+    pauseSimulation.setText("Pause Simulation");
 }//GEN-LAST:event_stopSimulationActionPerformed
 /*
     /**
@@ -550,7 +552,12 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
 	@Override
 	public void handleEngineComplete() {
-		// TODO Auto-generated method stub
-		
+		editObject.setEnabled(true);
+	    addObject.setEnabled(false);
+	    busAcceleration.setEnabled(true);
+	    busDeceleration.setEnabled(true);
+	    stopSimulation.setEnabled(false);
+	    pauseSimulation.setEnabled(false);
+	    runSimulation.setEnabled(true);		
 	}
 }
