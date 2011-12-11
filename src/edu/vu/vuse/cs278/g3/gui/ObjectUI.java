@@ -331,26 +331,31 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	{
         	x = (int)busX;
         	y = (int)(busY + width + TOP_OF_BUS);
+        	RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.ABOVE_UNRESTRAINED);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
             y = (int)(width*(double)MY_OFFSET);
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.INSIDE_RESTRAINED);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
             y = (int)(width*(double)MY_OFFSET);
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.INSIDE_UNRESTRAINED);
     	}
     	else if (behindButton.isSelected())
     	{
     		x = (int)(-0.5*(double)BUS_LENGTH);
             y = BUS_STREET_CONTACT;
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.BEHIND_ATTACHED);
     	}
     	else if (inFrontButton.isSelected())
     	{
         	x = (int)(0.5*(double)BUS_LENGTH);
         	y = BUS_STREET_CONTACT;
+        	RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.FRONT);
     	}
         	
         PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, (width*BOX_OFFSET), weight);
