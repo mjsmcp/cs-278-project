@@ -354,7 +354,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	}
         	
         PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, (width*BOX_OFFSET), weight);
-        ObjectManager.getInstance().addObject("leObj", boxOb);
+        ObjectManager.getInstance().addObject("object", boxOb);
         System.out.println("width = " + ((SquareObject)boxOb).getWidth());
         System.out.println("weight = " + boxOb.getMass());
         System.out.println("x = " + x);
@@ -390,7 +390,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         	y = (int)(BUS_STREET_CONTACT);
     	}
         PhysicsObject ballOb = ObjectManager.getInstance().createCircle(x, y, (radius*MY_OFFSET), weight);
-        ObjectManager.getInstance().addObject("leObj", ballOb);
+        ObjectManager.getInstance().addObject("object", ballOb);
         System.out.println("weight = " + ballOb.getMass());
         System.out.println("radius = " + ((RoundObject)ballOb).getRadius());
         System.out.println("x = " + x);
