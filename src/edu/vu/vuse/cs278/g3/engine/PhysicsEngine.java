@@ -16,9 +16,15 @@ public class PhysicsEngine {
 	public static final int ACCELERATION_PHASE = 0;
 	public static final int RUNNING_PHASE = 1;
 	public static final int STOPPING_PHASE = 2;
-
+	private static final int STOPPED_PHASE = 3;
 	private int currentState = 0;
 
+	private int cycles = 0;
+	private static final int ACCELERATION_CYCLES = 100;
+	private static final int RUNNING_CYCLES = 200;
+	private static final int DECELERATION_CYCLES = 50;
+	
+	
 	/** Instance object for the Singleton PhysicsEngine */
 	private static PhysicsEngine instance;
 	
@@ -51,6 +57,8 @@ public class PhysicsEngine {
 	 */
 	public void enable(PhysicsCompleteHandler pch) {
 		this.pch = pch;
+		this.cycles = 0;
+		this.currentState = PhysicsEngine.ACCELERATION_PHASE;
 		if(exec != null && exec.isAlive()) exec.interrupt();
 		exec = new QueueExecutor();
 		exec.start();
@@ -90,6 +98,15 @@ public class PhysicsEngine {
 		return this.currentState;
 	}
 	
+	public void updateState() {
+		if(this.cycles >= PhysicsEngine.ACCELERATION_CYCLES) {
+			this.currentState = PhysicsEngine.RUNNING_PHASE;
+		} else if(this.cycles >= (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES)) {
+			this.currentState =  PhysicsEngine.STOPPING_PHASE;
+		} else if(this.cycles >= (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES + PhysicsEngine.DECELERATION_CYCLES)) {
+			this.currentState = PhysicsEngine.STOPPED_PHASE;
+		}
+	}
 	/**
 	 * This class implemented the Executor interface as a single thread.
 	 * The QueueExecutor executes its queue on a single thread in sequence.
@@ -119,7 +136,7 @@ public class PhysicsEngine {
 			
 				try {
 					while(enabled) {
-						if(!this.paused) {
+						if(this.paused) {
 							synchronized(this) {
 								this.wait();
 							}
@@ -128,7 +145,7 @@ public class PhysicsEngine {
 							// Execute an action
 							Runnable r = this.queue.take();
 							r.run();
-	
+							PhysicsEngine.this.cycles++;
 						}
 					}
 					this.queue.clear();

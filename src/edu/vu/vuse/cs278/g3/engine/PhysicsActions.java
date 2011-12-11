@@ -22,6 +22,7 @@ public class PhysicsActions {
 			moveBus();
 			accelerateObject();
 			updateObjectPosition();
+			PhysicsEngine.getInstance().updateState();
 			loadNextFrame();
 		}
 		
