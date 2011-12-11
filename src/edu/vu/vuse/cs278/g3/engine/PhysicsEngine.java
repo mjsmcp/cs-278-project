@@ -38,29 +38,34 @@ public class PhysicsEngine {
 	/** QueueExecutor on which to execute PhysicsActions */
 	QueueExecutor exec = new QueueExecutor();
 	
+	PhysicsCompleteHandler pch = null;
 	/**
 	 * This method will allow the engine to perform operations in its
 	 * run queue.
 	 */
-	public void enable() {
+	public void enable(PhysicsCompleteHandler pch) {
+		this.pch = pch;
 		if(exec != null && exec.isAlive()) exec.interrupt();
 		exec = new QueueExecutor();
 		exec.start();
 		exec.execute(new PhysicsActions.loadNewFrame());
 	}
 	
-	public void resume() {
+	public void resume(PhysicsCompleteHandler pch) {
+		this.pch = pch;
 		this.exec.paused = false;
 		this.exec.notify();
 	}
-	public void pause() {
+	public void pause(PhysicsCompleteHandler pch) {
+		this.pch = pch;
 		this.exec.paused = true;
 	}
 	/**
 	 * Calling this method will allow the engine to finish it's current operation,
 	 * and then suspend and flush the queue.
 	 */
-	public void disable() {
+	public void disable(PhysicsCompleteHandler pch) {
+		this.pch = pch;
 		this.exec.enabled = false;
 		this.exec.interrupt();
 		this.exec.queue.clear();
@@ -115,6 +120,7 @@ public class PhysicsEngine {
 						}
 					}
 					this.queue.clear();
+					PhysicsEngine.this.pch.handleEngineComplete();
 				} catch (InterruptedException e) {	}
 			
 		}

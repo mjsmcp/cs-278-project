@@ -16,6 +16,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
 
+import edu.vu.vuse.cs278.g3.engine.PhysicsCompleteHandler;
 import edu.vu.vuse.cs278.g3.engine.PhysicsEngine;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 
@@ -23,7 +24,7 @@ import edu.vu.vuse.cs278.g3.model.ObjectManager;
  * This class handles the main window of the program where the NetLogo is embedded.
  * @author Amber Maria
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHandler {
 /**
  * The single instance of the Main Window
  */
@@ -358,7 +359,7 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     pauseSimulation.setEnabled(true);
     runSimulation.setEnabled(false);
     
-    PhysicsEngine.getInstance().enable();
+    PhysicsEngine.getInstance().enable(this);
     
     // after the simulation is done running, these should be set
     stopSimulation.setEnabled(false);
@@ -422,7 +423,7 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
  * @param evt
  */
 private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
-    PhysicsEngine.getInstance().disable();
+    PhysicsEngine.getInstance().disable(this);
 	editObject.setEnabled(true);
     addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
@@ -495,4 +496,10 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JButton stopSimulation;
     private InterfaceComponent comp;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public void handleEngineComplete() {
+		// TODO Auto-generated method stub
+		
+	}
 }
