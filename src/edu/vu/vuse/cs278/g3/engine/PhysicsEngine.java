@@ -63,6 +63,7 @@ public class PhysicsEngine {
 		exec = new QueueExecutor();
 		exec.start();
 		exec.execute(new PhysicsActions.accelerationFrame());
+		System.out.println("enable()");
 	}
 	
 	public void resume(PhysicsCompleteHandler pch) {
@@ -84,6 +85,7 @@ public class PhysicsEngine {
 		this.exec.interrupt();
 		this.exec.queue.clear();
 		exec = null;
+		System.out.println("disable()");
 	}
 	
 	/**
@@ -91,7 +93,8 @@ public class PhysicsEngine {
 	 * @param runnable PhysicsAction for the engine to perform
 	 */
 	public void addtoQueue(Runnable runnable) {
-		exec.execute(runnable);
+		if(exec != null)
+			exec.execute(runnable);
 	}
 	
 	public int getState() {
@@ -146,6 +149,11 @@ public class PhysicsEngine {
 							Runnable r = this.queue.take();
 							r.run();
 							PhysicsEngine.this.cycles++;
+							System.out.println("Executed an action;");
+							if(PhysicsEngine.this.currentState == PhysicsEngine.STOPPED_PHASE)
+								break;
+							Thread.sleep(300);
+							
 						}
 					}
 					this.queue.clear();
