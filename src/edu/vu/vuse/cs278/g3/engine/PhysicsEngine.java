@@ -49,6 +49,13 @@ public class PhysicsEngine {
 		exec.execute(new PhysicsActions.loadNewFrame());
 	}
 	
+	public void resume() {
+		this.exec.paused = false;
+		this.exec.notify();
+	}
+	public void pause() {
+		this.exec.paused = true;
+	}
 	/**
 	 * Calling this method will allow the engine to finish it's current operation,
 	 * and then suspend and flush the queue.
@@ -83,6 +90,7 @@ public class PhysicsEngine {
 		 * False: The Executor will terminate after the current item is executed.*/
 		boolean enabled = true;
 		
+		boolean paused = false;
 		/**
 		 * The work queue for the executor. New Runnables are added to this queue
 		 * for execution.
@@ -97,8 +105,14 @@ public class PhysicsEngine {
 			
 				try {
 					while(enabled) {
-						Runnable r = this.queue.take();
-						r.run();
+						if(!this.paused) {
+							synchronized(this) {
+								this.wait();
+							}
+						} else {
+							Runnable r = this.queue.take();
+							r.run();
+						}
 					}
 					this.queue.clear();
 				} catch (InterruptedException e) {	}
