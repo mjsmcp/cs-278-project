@@ -110,11 +110,11 @@ public class PhysicsEngine {
 	}
 	
 	public void updateState() {
-		if(this.cycles >= PhysicsEngine.ACCELERATION_CYCLES) {
+		if(this.cycles == PhysicsEngine.ACCELERATION_CYCLES) {
 			this.currentState = PhysicsEngine.RUNNING_PHASE;
-		} else if(this.cycles >= (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES)) {
+		} else if(this.cycles == (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES)) {
 			this.currentState =  PhysicsEngine.STOPPING_PHASE;
-		} else if(this.cycles >= (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES + PhysicsEngine.DECELERATION_CYCLES)) {
+		} else if(this.cycles == (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES + PhysicsEngine.DECELERATION_CYCLES)) {
 			this.currentState = PhysicsEngine.STOPPED_PHASE;
 		}
 	}
