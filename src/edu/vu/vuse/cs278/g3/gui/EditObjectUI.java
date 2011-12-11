@@ -29,7 +29,7 @@ public class EditObjectUI extends javax.swing.JFrame {
     	int MY_OFFSET = 5;
     	int BUS_STREET_CONTACT = -33;
     	int BUS_LENGTH = 286;
-    	int BOX_OFFSET = 100;
+    	int BOX_OFFSET = 10;
     	int TOP_OF_BUS = 50;
         
         // display the current values for the current object
@@ -46,13 +46,15 @@ public class EditObjectUI extends javax.swing.JFrame {
         	radius /= (double)MY_OFFSET;
             widthValue.setEnabled(false);
         	radiusValue2.setEnabled(true);
+            radiusValue2.setValue(radius);
         }
         // if the object is a box
         else if (myObj.getClass().equals(SquareObject.class))
         {
         	width = (int)((SquareObject)myObj).getWidth();
-        	width /= (double)MY_OFFSET;
+        	width /= (double)BOX_OFFSET;
         	widthValue.setEnabled(true);
+            widthValue.setValue(width);
         	radiusValue2.setEnabled(false);
         }
         // if the world crashed and died
@@ -60,37 +62,42 @@ public class EditObjectUI extends javax.swing.JFrame {
         {
         	System.out.println("failboat");
         }
-        
+         
         // set the sliders with the current values of the dimensions
+        //weight /= (double)MY_OFFSET;
         weightValue.setValue(weight);
-        widthValue.setValue(width);
-        radiusValue2.setValue(radius);
         
         String tmpStr = "";
+        System.out.println(weight);
         switch (weight)
         {
-	        case 1: tmpStr = "small"; break;
+	        case 1: tmpStr = "light"; break;
 	        case 2: tmpStr = "medium"; break;
-	        case 3: tmpStr = "large"; break;
-	        case 4: tmpStr = "xlarge"; break;
+	        case 3: tmpStr = "heavy"; break;
+	        case 4: tmpStr = "elephant"; break;
+	        default: { tmpStr = "failboat"; System.out.println("weight default"); break;}
         }
         weightLabelValue.setText(tmpStr);
         
+        System.out.println(width);
         switch (width)
         {
 	        case 1: tmpStr = "small"; break;
 	        case 2: tmpStr = "medium"; break;
 	        case 3: tmpStr = "large"; break;
 	        case 4: tmpStr = "xlarge"; break;
+	        default: { tmpStr = "failboat"; System.out.println("width default"); break;}
         }
         widthLabelValue.setText(tmpStr);
         
+        System.out.println(radius);
         switch (radius)
         {
 	        case 1: tmpStr = "small"; break;
 	        case 2: tmpStr = "medium"; break;
 	        case 3: tmpStr = "large"; break;
 	        case 4: tmpStr = "xlarge"; break;
+	        default: { tmpStr = "failboat"; System.out.println("radius default"); break;}
         }
         radiusLabelValue.setText(tmpStr);
         
@@ -99,20 +106,34 @@ public class EditObjectUI extends javax.swing.JFrame {
         // if the object is a ball
         if (myObj.getClass().equals(RoundObject.class))
         {
-        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
+        	x = (int)myObj.getXCoord();
+        	y = (int)myObj.getYCoord();
+        	
+        	if (x == (int)(0.5*(double)BUS_LENGTH))
+        		frontButton.setSelected(true);
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) 
+        		behindButton.setSelected(true);
+        	else if (y == TOP_OF_BUS) 
+        		topButton.setSelected(true);
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(width*(double)MY_OFFSET)) 
+        		insideRButton.setSelected(true);
         }
         // else if the object is a box
         if (myObj.getClass().equals(SquareObject.class))
         {
-        	if (x == (int)(0.5*(double)BUS_LENGTH)) frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS) topButton.setSelected(true);
+        	x = (int)myObj.getXCoord();
+        	y = (int)myObj.getYCoord();
+        	
+        	if (x == (int)(0.5*(double)BUS_LENGTH))
+        		frontButton.setSelected(true);
+        	else if (x == (int)(-0.5*(double)BUS_LENGTH))
+        		behindButton.setSelected(true);
+        	else if (y == TOP_OF_BUS)
+        		topButton.setSelected(true);
         	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET)) insideRButton.setSelected(true);
+        	else if (y == (int)(width*(double)MY_OFFSET))
+        		insideRButton.setSelected(true);
         }
         
     }
@@ -402,7 +423,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 	int MY_OFFSET = 5;
 	int BUS_STREET_CONTACT = -33;
 	int BUS_LENGTH = 286;
-	int BOX_OFFSET = 100;
+	int BOX_OFFSET = 10;
 	int TOP_OF_BUS = 50;
 	
 	double weight = weightValue.getValue();
@@ -421,7 +442,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     // if the object is a ball...
     if(myObj.getClass().equals(RoundObject.class)) 
     {
-        myObj.setMass(weight);
+        myObj.setMass(weight*(double)MY_OFFSET);
         ((RoundObject)myObj).setRadius(radius*MY_OFFSET);
         
     	if (topButton.isSelected())
@@ -452,7 +473,6 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         ((RoundObject)myObj).setXCoord(x);
         ((RoundObject)myObj).setYCoord(y);
-        //ObjectManager.getInstance().updateObject("leObj", myObj);
     }
     
     // if the object is a box
@@ -489,7 +509,6 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         myObj.setXCoord(x);
         myObj.setYCoord(y);
-        //ObjectManager.getInstance().updateObject("leObj", myObj);
     }
     
     // if the world crashed and died...
@@ -512,10 +531,11 @@ private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     String tmpWeight = "";
     switch (tmp)
     {
-        case 1: tmpWeight = "small";  break;
+        case 1: tmpWeight = "light";  break;
         case 2: tmpWeight = "medium"; break;
-        case 3: tmpWeight = "large";  break;
-        case 4: tmpWeight = "xlarge"; break;
+        case 3: tmpWeight = "heavy";  break;
+        case 4: tmpWeight = "elephant"; break;
+        default: tmpWeight = "medium"; break;
     }
     weightLabelValue.setText(tmpWeight);
 }//GEN-LAST:event_weightValueStateChanged
@@ -534,6 +554,7 @@ private void radiusValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
         case 2: tmpRadius = "medium"; break;
         case 3: tmpRadius = "large";  break;
         case 4: tmpRadius = "xlarge"; break;
+        default: tmpRadius = "medium"; break;
     }
     radiusLabelValue.setText(tmpRadius);
 }//GEN-LAST:event_radiusValueStateChanged
@@ -552,6 +573,7 @@ private void widthValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FI
         case 2: tmpWidth = "medium"; break;
         case 3: tmpWidth = "large";  break;
         case 4: tmpWidth = "xlarge"; break;
+        default: tmpWidth = "medium"; break;
     }
     widthLabelValue.setText(tmpWidth);
 }//GEN-LAST:event_widthValueStateChanged

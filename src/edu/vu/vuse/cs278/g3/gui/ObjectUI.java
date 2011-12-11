@@ -308,13 +308,12 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 	int MY_OFFSET = 5;
 	int BUS_STREET_CONTACT = -33;
 	int BUS_LENGTH = 286;
-	int BOX_OFFSET = 100;
+	int BOX_OFFSET = 10;
 	int TOP_OF_BUS = 50;
 	
     System.out.println("add object");
 	double weight = weightValue.getValue();
     double radius = radiusValue.getValue();
-    //double height = heightValue.getValue();
     double width = widthValue.getValue();
     int x = 0, y = 0;
     
@@ -340,7 +339,6 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	}
     	else if (insideUButton.isSelected())
     	{
-    		/// TODO
     		x = (int)busX;
             y = (int)(width*(double)MY_OFFSET);
     	}
@@ -472,10 +470,10 @@ private void weightValueStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-F
     String tmpWeight = "";
     switch (tmp)
     {
-        case 1: tmpWeight = "small";  break;
+        case 1: tmpWeight = "light";  break;
         case 2: tmpWeight = "medium"; break;
-        case 3: tmpWeight = "large";  break;
-        case 4: tmpWeight = "xlarge"; break;
+        case 3: tmpWeight = "heavy";  break;
+        case 4: tmpWeight = "elephant"; break;
     }
     weightLabelValue.setText(tmpWeight);
 }//GEN-LAST:event_weightValueStateChanged

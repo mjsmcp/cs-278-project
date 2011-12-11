@@ -377,7 +377,7 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
     addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
-    
+    pauseSimulation.setText("Resume Simulation");    
 }//GEN-LAST:event_pauseSimulationActionPerformed
 
 /**
