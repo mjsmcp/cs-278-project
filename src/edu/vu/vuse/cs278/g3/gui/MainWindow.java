@@ -364,11 +364,11 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     //Insert way to check if simulation is done running
     if (PhysicsEngine.getInstance().getState() == PhysicsEngine.STOPPED_PHASE)
     {
-    // after the simulation is done running, these should be set
-    stopSimulation.setEnabled(false);
-    pauseSimulation.setEnabled(false);
-    runSimulation.setEnabled(true);
-    editObject.setEnabled(true);
+	    // after the simulation is done running, these should be set
+	    stopSimulation.setEnabled(false);
+	    pauseSimulation.setEnabled(false);
+	    runSimulation.setEnabled(true);
+	    editObject.setEnabled(true);
     }
 }//GEN-LAST:event_runSimulationActionPerformed
 
@@ -390,6 +390,7 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
     else
     {
     	PhysicsEngine.getInstance().resume(this);
+    	pauseSimulation.setText("Pause Simulation");
     }
 }//GEN-LAST:event_pauseSimulationActionPerformed
 
