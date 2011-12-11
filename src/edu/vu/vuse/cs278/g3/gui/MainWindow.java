@@ -358,7 +358,6 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     pauseSimulation.setEnabled(true);
     runSimulation.setEnabled(false);
     
-    // do something here
     PhysicsEngine.getInstance().enable();
     
     // after the simulation is done running, these should be set

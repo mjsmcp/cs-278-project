@@ -33,7 +33,7 @@ public class EditObjectUI extends javax.swing.JFrame {
     	int TOP_OF_BUS = 50;
         
         // display the current values for the current object
-        PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
+        PhysicsObject myObj = ObjectManager.getInstance().getObject("object");
         int weight = (int)myObj.getMass();
         int width = 0;
         int radius = 0;       
@@ -416,7 +416,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     double busX = bus.getXCoord();
     double busY = bus.getYCoord();
     
-    PhysicsObject myObj = ObjectManager.getInstance().getObject("leObj");
+    PhysicsObject myObj = ObjectManager.getInstance().getObject("object");
     
     // if the object is a ball...
     if(myObj.getClass().equals(RoundObject.class)) 
@@ -452,7 +452,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         ((RoundObject)myObj).setXCoord(x);
         ((RoundObject)myObj).setYCoord(y);
-        //ObjectManager.getInstance().updateObject("leObj", myObj);
+        //ObjectManager.getInstance().updateObject("object", myObj);
     }
     
     // if the object is a box
@@ -489,7 +489,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         myObj.setXCoord(x);
         myObj.setYCoord(y);
-        //ObjectManager.getInstance().updateObject("leObj", myObj);
+        //ObjectManager.getInstance().updateObject("object", myObj);
     }
     
     // if the world crashed and died...
