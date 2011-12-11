@@ -474,7 +474,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 */
     // Variables declaration - do not modify//GEN-BEGIN:variables
 	// amber - I declared the addObject button as public static so that we can access it in the ObjectUI
-    static javax.swing.JButton addObject;
+    public javax.swing.JButton addObject;
     private javax.swing.JSlider busAcceleration;
     private javax.swing.JLabel busAccelerationLabel;
     private javax.swing.JLabel busAccelerationLabelValue;
@@ -482,7 +482,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel busDecelerationLabel;
     private javax.swing.JLabel busDecelerationLabelValue;
  // amber - I declared the editObject button as public static so that we can access it in the ObjectUI
-    static javax.swing.JButton editObject;
+    public javax.swing.JButton editObject;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -490,7 +490,7 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton pauseSimulation;
-    static javax.swing.JButton runSimulation;
+    public javax.swing.JButton runSimulation;
     private javax.swing.JInternalFrame sillyNetLogo;
     private javax.swing.JButton stopSimulation;
     private InterfaceComponent comp;

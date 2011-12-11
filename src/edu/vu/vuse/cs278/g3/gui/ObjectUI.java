@@ -412,9 +412,9 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
  */
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 	this.dispose();
-	MainWindow.addObject.setEnabled(true);
-	MainWindow.editObject.setEnabled(false);
-	MainWindow.runSimulation.setEnabled(false);
+	MainWindow.getInstance().addObject.setEnabled(true);
+	MainWindow.getInstance().editObject.setEnabled(false);
+	MainWindow.getInstance().runSimulation.setEnabled(false);
 }//GEN-LAST:event_cancelButtonActionPerformed
 
 /**
