@@ -70,6 +70,9 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
     		while(true) {
     			try {
 					MainWindow.getInstance().comp.command(this.queue.take());
+					if(this.queue.size() == 0) {
+						PhysicsEngine.getInstance().netLogoDoneUpdating();
+					}
 				} catch (CompilerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -404,12 +407,28 @@ private void busAccelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
     String tmpBusAccel = "";
     switch (tmp)
     {
-        case 1: tmpBusAccel = "small";  break;
-        case 2: tmpBusAccel = "medium"; break;
-        case 3: tmpBusAccel = "large";  break;
-        case 4: tmpBusAccel = "xlarge"; break;
+        case 1:
+        	tmpBusAccel = "small";
+        	ObjectManager.getInstance().getObject("bus").setAcceleration(1);
+        	break;
+        	
+        case 2:
+        	tmpBusAccel = "medium";
+        	ObjectManager.getInstance().getObject("bus").setAcceleration(2);
+        	break;
+        	
+        case 3:
+        	tmpBusAccel = "large";
+        	ObjectManager.getInstance().getObject("bus").setAcceleration(4);
+        	break;
+        
+        case 4:
+        	tmpBusAccel = "xlarge";
+        	ObjectManager.getInstance().getObject("bus").setAcceleration(6);
+        	break;
     }
     busAccelerationLabelValue.setText(tmpBusAccel);
+    
 }//GEN-LAST:event_busAccelerationStateChanged
 
 /**
@@ -422,10 +441,25 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
     String tmpBusDecel = "";
     switch (tmp)
     {
-        case 1: tmpBusDecel = "small";  break;
-        case 2: tmpBusDecel = "medium"; break;
-        case 3: tmpBusDecel = "large";  break;
-        case 4: tmpBusDecel = "xlarge"; break;
+    case 1:
+    	tmpBusDecel = "small";
+    	ObjectManager.getInstance().getObject("bus").setDecleration(1);
+    	break;
+    	
+    case 2:
+    	tmpBusDecel = "medium";
+    	ObjectManager.getInstance().getObject("bus").setDecleration(2);
+    	break;
+    	
+    case 3:
+    	tmpBusDecel = "large";
+    	ObjectManager.getInstance().getObject("bus").setDecleration(4);
+    	break;
+    
+    case 4:
+    	tmpBusDecel = "xlarge";
+    	ObjectManager.getInstance().getObject("bus").setDecleration(6);
+    	break;
     }
     busDecelerationLabelValue.setText(tmpBusDecel);
     busDecelerationLabelValue.setEnabled(true);                   

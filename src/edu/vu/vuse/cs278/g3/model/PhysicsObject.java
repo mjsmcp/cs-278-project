@@ -15,6 +15,9 @@ public abstract class PhysicsObject {
 	/** The acceleration of the object, measured in pixels per frame per frame */
 	protected double acceleration = 0;
 	
+	/** The deceleration of the object, measured in pixels per frame per frame */
+	protected double deceleration = 0;
+	
 	/** The mass of the object in kg */
 	protected double mass = 0;
 	
@@ -72,6 +75,8 @@ public abstract class PhysicsObject {
 		this.acceleration = acc;
 	}
 	
+	public void setDecleration(double dec) { this.deceleration = dec; };
+	public double getDeceleration() { return this.deceleration; }
 	/**
 	 * Returns the x coordinate of the object
 	 * @return The object's X coordinate

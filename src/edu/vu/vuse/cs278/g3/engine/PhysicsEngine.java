@@ -90,6 +90,12 @@ public class PhysicsEngine {
 		System.out.println("disable()");
 	}
 	
+	private Object netlogoLock = new Object();
+	public void netLogoDoneUpdating() {
+		synchronized(this.netlogoLock) {
+			this.netlogoLock.notifyAll();
+		}
+	}
 	/**
 	 * Adds an item to the queue for the thread to execute.
 	 * @param runnable PhysicsAction for the engine to perform
@@ -154,7 +160,9 @@ public class PhysicsEngine {
 							System.out.println("Executed an action;");
 							if(PhysicsEngine.this.currentState == PhysicsEngine.STOPPED_PHASE)
 								break;
-							Thread.sleep(300);
+							synchronized(PhysicsEngine.this.netlogoLock) {
+								PhysicsEngine.this.netlogoLock.wait();
+							}
 							
 						}
 					}
