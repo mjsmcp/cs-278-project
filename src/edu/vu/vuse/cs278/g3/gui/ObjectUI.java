@@ -356,7 +356,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     	}
         	
         PhysicsObject boxOb = ObjectManager.getInstance().createSquare(x, y, (width*BOX_OFFSET), weight);
-        ObjectManager.getInstance().addObject("leObj", boxOb);
+        ObjectManager.getInstance().addObject("object", boxOb);
         System.out.println("width = " + ((SquareObject)boxOb).getWidth());
         System.out.println("weight = " + boxOb.getMass());
         System.out.println("x = " + x);
