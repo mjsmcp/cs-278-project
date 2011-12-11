@@ -35,6 +35,20 @@ public class PhysicsActions {
 		
 	}
 	
+
+	public static class loadAccelerationFrame implements Runnable {
+		@Override
+		public void run() {
+			PhysicsEngine.getInstance().addtoQueue(new accelerateBus());
+			PhysicsEngine.getInstance().addtoQueue(new moveBus());
+			PhysicsEngine.getInstance().addtoQueue(new accelerateObject());
+			PhysicsEngine.getInstance().addtoQueue(new updateObjectPosition());
+			
+		}
+		
+	}
+
+
 	/**
 	 * The bus itself should never move on the screen. 
 	 * We will simulate movement by adjusting the position of the background.

@@ -13,6 +13,12 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class PhysicsEngine {
 
+	public static final int ACCELERATION_PHASE = 0;
+	public static final int RUNNING_PHASE = 1;
+	public static final int STOPPING_PHASE = 2;
+
+	private int currentState = 0;
+
 	/** Instance object for the Singleton PhysicsEngine */
 	private static PhysicsEngine instance;
 	
@@ -48,7 +54,7 @@ public class PhysicsEngine {
 		if(exec != null && exec.isAlive()) exec.interrupt();
 		exec = new QueueExecutor();
 		exec.start();
-		exec.execute(new PhysicsActions.loadNewFrame());
+		exec.execute(new PhysicsActions.loadAccelerationFrame());
 	}
 	
 	public void resume(PhysicsCompleteHandler pch) {
@@ -115,8 +121,24 @@ public class PhysicsEngine {
 								this.wait();
 							}
 						} else {
+							
+							// If there is nothing on the queue, we need to load a new frame
+							if(this.queue.size() == 0) {
+								switch(PhysicsEngine.this.currentState) {
+								case PhysicsEngine.ACCELERATION_PHASE:
+									this.execute(new PhysicsActions.loadAccelerationFrame());
+									break;
+								case PhysicsEngine.RUNNING_PHASE:
+									break;
+								case PhysicsEngine.STOPPING_PHASE:
+									break;
+								}
+							}
+							
+							// Execute an action
 							Runnable r = this.queue.take();
 							r.run();
+	
 						}
 					}
 					this.queue.clear();
