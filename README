@@ -15,5 +15,11 @@ Still To Do:
 	Fix floating objects around the bus
 	Move the bus further to the right so that objects behind the bus can be seen
 	Make the top and the back of the bus thicker
-	
+	Make object stay within certain bounds:
+	- Inside bus (unrestrained): object stays in bus
+	- Inside bus (restrained): object stays approx. in same position (maybe with a few pixels of "wiggle room"
+	- In front of bus: object stays in front of bus
+	- Behind bus: object stays behind bus with certain max distance from bus (as if attached by cable/rope)
+	- On top of bus: maybe make it fall off the bus?
+		
 	     
