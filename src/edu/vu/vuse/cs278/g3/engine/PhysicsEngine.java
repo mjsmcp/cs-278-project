@@ -54,7 +54,7 @@ public class PhysicsEngine {
 		if(exec != null && exec.isAlive()) exec.interrupt();
 		exec = new QueueExecutor();
 		exec.start();
-		exec.execute(new PhysicsActions.loadAccelerationFrame());
+		exec.execute(new PhysicsActions.accelerationFrame());
 	}
 	
 	public void resume(PhysicsCompleteHandler pch) {
@@ -86,6 +86,9 @@ public class PhysicsEngine {
 		exec.execute(runnable);
 	}
 	
+	public int getState() {
+		return this.currentState;
+	}
 	
 	/**
 	 * This class implemented the Executor interface as a single thread.
@@ -121,19 +124,6 @@ public class PhysicsEngine {
 								this.wait();
 							}
 						} else {
-							
-							// If there is nothing on the queue, we need to load a new frame
-							if(this.queue.size() == 0) {
-								switch(PhysicsEngine.this.currentState) {
-								case PhysicsEngine.ACCELERATION_PHASE:
-									this.execute(new PhysicsActions.loadAccelerationFrame());
-									break;
-								case PhysicsEngine.RUNNING_PHASE:
-									break;
-								case PhysicsEngine.STOPPING_PHASE:
-									break;
-								}
-							}
 							
 							// Execute an action
 							Runnable r = this.queue.take();

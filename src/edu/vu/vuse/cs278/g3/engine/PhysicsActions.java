@@ -14,38 +14,52 @@ import edu.vu.vuse.cs278.g3.model.SquareObject;
  */
 public class PhysicsActions {
 
-	/**
-	 * This Runnable adds the sequence of other runnables to the physics engine
-	 * and then itself at the end. This is added to the PhysicsEngine's work queue
-	 * on the enable() call.
-	 * @author Matthew Shea
-	 *
-	 */
-	public static class loadNewFrame implements Runnable {
+
+	public static class accelerationFrame implements Runnable {
+		@Override
+		public void run() {
+			accelerateBus();
+			moveBus();
+			accelerateObject();
+			updateObjectPosition();
+			loadNextFrame();
+		}
+		
+	}
+	
+	public static class runningFrame implements Runnable {
 
 		@Override
 		public void run() {
-			PhysicsEngine.getInstance().addtoQueue(new accelerateBus());
-			PhysicsEngine.getInstance().addtoQueue(new moveBus());
-			PhysicsEngine.getInstance().addtoQueue(new accelerateObject());
-			PhysicsEngine.getInstance().addtoQueue(new updateObjectPosition());
-			PhysicsEngine.getInstance().addtoQueue(new loadNewFrame());
+			// TODO Auto-generated method stub
 			
 		}
 		
 	}
 	
+	public static class deccelerationFrame implements Runnable {
 
-	public static class loadAccelerationFrame implements Runnable {
 		@Override
 		public void run() {
-			PhysicsEngine.getInstance().addtoQueue(new accelerateBus());
-			PhysicsEngine.getInstance().addtoQueue(new moveBus());
-			PhysicsEngine.getInstance().addtoQueue(new accelerateObject());
-			PhysicsEngine.getInstance().addtoQueue(new updateObjectPosition());
+			// TODO Auto-generated method stub
 			
 		}
 		
+	}
+	private static void loadNextFrame() {
+		switch(PhysicsEngine.getInstance().getState()) {
+		
+		case PhysicsEngine.ACCELERATION_PHASE:
+			PhysicsEngine.getInstance().addtoQueue(new accelerationFrame());
+			break;
+		case PhysicsEngine.RUNNING_PHASE:
+			PhysicsEngine.getInstance().addtoQueue(new runningFrame());
+			break;
+		case PhysicsEngine.STOPPING_PHASE:
+			PhysicsEngine.getInstance().addtoQueue(new deccelerationFrame());
+			break;
+		
+		}
 	}
 
 
@@ -55,13 +69,8 @@ public class PhysicsActions {
 	 * @author Matthew Shea
 	 *
 	 */
-	public static class moveBus implements Runnable{
+	private static void moveBus() {
 
-		@Override
-		public void run() {
-			// TODO Update the background or something to make things appear that they are moving
-		}
-		
 	}
 	
 	
@@ -70,22 +79,20 @@ public class PhysicsActions {
 	 * @author Matthew Shea
 	 *
 	 */
-	public static class accelerateBus implements Runnable {
+	private static void accelerateBus() {
 
-		@Override
-		public void run() {
-			// Retrieve Bus Object
-			BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
-			
-			// Update speed of the bus
-			busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
-			
-			if(busObject.getAcceleration() > 0) {
-				ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
-			}
-			// Commit changes
-			busObject.commit();
+		// Retrieve Bus Object
+		BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
+		
+		// Update speed of the bus
+		busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
+		
+		if(busObject.getAcceleration() > 0) {
+			ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
 		}
+		// Commit changes
+		busObject.commit();
+	
 		
 	}
 	
@@ -94,10 +101,8 @@ public class PhysicsActions {
 	 * @author Matthew Shea
 	 *
 	 */
-	public static class accelerateObject implements Runnable {
+	private static void accelerateObject () {
 
-		@Override
-		public void run() {
 			// Retrieve Object
 			PhysicsObject object = ObjectManager.getInstance().getObject("object");
 			
@@ -108,7 +113,6 @@ public class PhysicsActions {
 			
 			// Commit changes
 			object.commit();
-		}
 		
 	}
 	
@@ -118,15 +122,12 @@ public class PhysicsActions {
 	 * @author Matthew Shea
 	 *
 	 */
-	public static class updateObjectPosition implements Runnable {
+	public static void updateObjectPosition() {
 
-		@Override
-		public void run() {
-			PhysicsObject object = ObjectManager.getInstance().getObject("object");
-			object.setXCoord(object.getXCoord() + object.getSpeed());
-			object.commit();
-			
-		}
+		PhysicsObject object = ObjectManager.getInstance().getObject("object");
+		object.setXCoord(object.getXCoord() + object.getSpeed());
+		object.commit();
+		
 		
 	}
 }
