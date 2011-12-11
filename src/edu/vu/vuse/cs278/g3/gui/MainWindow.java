@@ -361,10 +361,15 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     
     PhysicsEngine.getInstance().enable(this);
     
+    //Insert way to check if simulation is done running
+    if (PhysicsEngine.getInstance().getState() == PhysicsEngine.STOPPED_PHASE)
+    {
     // after the simulation is done running, these should be set
     stopSimulation.setEnabled(false);
     pauseSimulation.setEnabled(false);
     runSimulation.setEnabled(true);
+    editObject.setEnabled(true);
+    }
 }//GEN-LAST:event_runSimulationActionPerformed
 
 /**
@@ -377,7 +382,15 @@ private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//G
     addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
-    pauseSimulation.setText("Resume Simulation");    
+    if (pauseSimulation.getText() == "Pause Simulation")
+    {
+    	PhysicsEngine.getInstance().pause(this);
+    	pauseSimulation.setText("Resume Simulation");    
+    }
+    else
+    {
+    	PhysicsEngine.getInstance().resume(this);
+    }
 }//GEN-LAST:event_pauseSimulationActionPerformed
 
 /**
@@ -428,6 +441,9 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     addObject.setEnabled(false);
     busAcceleration.setEnabled(true);
     busDeceleration.setEnabled(true);
+    stopSimulation.setEnabled(false);
+    pauseSimulation.setEnabled(false);
+    runSimulation.setEnabled(true);
 }//GEN-LAST:event_stopSimulationActionPerformed
 /*
     /**

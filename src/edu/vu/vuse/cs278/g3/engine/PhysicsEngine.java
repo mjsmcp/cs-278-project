@@ -16,7 +16,7 @@ public class PhysicsEngine {
 	public static final int ACCELERATION_PHASE = 0;
 	public static final int RUNNING_PHASE = 1;
 	public static final int STOPPING_PHASE = 2;
-	private static final int STOPPED_PHASE = 3;
+	public static final int STOPPED_PHASE = 3;
 	private int currentState = 0;
 
 	private int cycles = 0;
