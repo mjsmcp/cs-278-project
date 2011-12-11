@@ -69,7 +69,9 @@ public class PhysicsEngine {
 	public void resume(PhysicsCompleteHandler pch) {
 		this.pch = pch;
 		this.exec.paused = false;
-		this.exec.notify();
+		synchronized(this.exec) {
+			this.exec.notifyAll();
+		}
 	}
 	public void pause(PhysicsCompleteHandler pch) {
 		this.pch = pch;
