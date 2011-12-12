@@ -155,7 +155,7 @@ Circle -7500403 true true 195 195 58
 circle
 false
 0
-Circle -7500403 true true 0 0 300
+Circle -2674135 true false 0 0 300
 
 circle 2
 false
@@ -166,7 +166,7 @@ Circle -16777216 true false 30 30 240
 circle_belt
 false
 0
-Circle -7500403 true true 0 0 300
+Circle -2674135 true false 0 0 300
 Polygon -16777216 true false 0 270 270 0 285 15 15 285 0 270
 
 cow
@@ -306,7 +306,7 @@ Circle -16777216 true false 165 76 116
 square
 false
 0
-Rectangle -7500403 true true 30 30 270 270
+Rectangle -2674135 true false 30 30 270 270
 
 square 2
 false
@@ -317,7 +317,7 @@ Rectangle -16777216 true false 60 60 240 240
 square_belt
 false
 0
-Rectangle -7500403 true true 30 30 270 270
+Rectangle -2674135 true false 30 30 270 270
 Polygon -16777216 true false 0 255 285 0 300 15 15 270 0 255
 
 star
