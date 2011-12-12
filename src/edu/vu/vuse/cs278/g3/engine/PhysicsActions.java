@@ -175,28 +175,29 @@ public class PhysicsActions {
 		PhysicsObject object = ObjectManager.getInstance().getObject("object");
 		RelationshipTypes relationship = RelationshipManager.getInstance().getRelationship("object", "bus");
 		
-		switch(relationship) {
-			
-		case INSIDE_UNRESTRAINED:
-			//set bounds to be front/back of bus
-			object.setXCoord(object.getXCoord() + object.getSpeed());
-			break;
-		case INSIDE_RESTRAINED:
-			// do nothing; position should not change
-			break;
-		case ABOVE_UNRESTRAINED:
-			// set bounds to edges of screen
-			object.setXCoord(object.getXCoord() + object.getSpeed());
-			break;
-		case BEHIND_ATTACHED:
-			// set bounds to back of bus and some x distance of "rope" behind bus
-			object.setXCoord(object.getXCoord() + object.getSpeed());
-			break;
-		case FRONT:
-			// set bounds to front of bus and edge of screen
-			object.setXCoord(object.getXCoord() + object.getSpeed());
-			break;
-		}
+//		switch(relationship) {
+//			
+//		case INSIDE_UNRESTRAINED:
+//			//set bounds to be front/back of bus
+//			object.setXCoord(object.getXCoord() + object.getSpeed());
+//			break;
+//		case INSIDE_RESTRAINED:
+//			// do nothing; position should not change
+//			break;
+//		case ABOVE_UNRESTRAINED:
+//			// set bounds to edges of screen
+//			object.setXCoord(object.getXCoord() + object.getSpeed());
+//			break;
+//		case BEHIND_ATTACHED:
+//			// set bounds to back of bus and some x distance of "rope" behind bus
+//			object.setXCoord(object.getXCoord() + object.getSpeed());
+//			break;
+//		case FRONT:
+//			// set bounds to front of bus and edge of screen
+//			object.setXCoord(object.getXCoord() + object.getSpeed());
+//			break;
+//		}
+		object.setXCoord(object.getXCoord() + object.getSpeed());
 		object.commit();
 		
 		
