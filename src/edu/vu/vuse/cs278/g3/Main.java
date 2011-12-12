@@ -32,7 +32,7 @@ public class Main {
 			 ObjectManager.getInstance().getObject("bus").setDecleration(2);
 			 
 			 //create tree to show movement of bus.
-			 ObjectManager.getInstance().addObject("tree", ObjectManager.getInstance().createSquare(750, 8, 30, 0));
+			 ObjectManager.getInstance().addObject("tree", ObjectManager.getInstance().createSquare(700, 8, 30, 0));
 			 SquareObject tree = (SquareObject) ObjectManager.getInstance().getObject("tree");
 			 tree.setShape("tree");
 			 

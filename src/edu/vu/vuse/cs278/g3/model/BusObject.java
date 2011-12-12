@@ -3,7 +3,7 @@ package edu.vu.vuse.cs278.g3.model;
 import edu.vu.vuse.cs278.g3.gui.MainWindow;
 public class BusObject extends PhysicsObject{
 
-	final static int MINXCOR = -125, MAXXCOR = 800;
+	final static int MINXCOR = -175, MAXXCOR = 750;
 	
 	/** The length if the bus object*/
 	private double length;
