@@ -170,7 +170,7 @@ public class PhysicsActions {
 		case ABOVE_UNRESTRAINED:
 			// set bounds to edges of screen
 			upperXBound = 735;
-			lowerXBound = -175;
+			lowerXBound = -120;
 			break;
 		case BEHIND_ATTACHED:
 			// set bounds to back of bus and some x distance of "rope" behind bus
@@ -183,17 +183,28 @@ public class PhysicsActions {
 			lowerXBound = 140;
 			break;
 		}
+		
 		double newObjectLocation = object.getXCoord() + object.getSpeed() - bus.getSpeed();
+		System.out.println(newObjectLocation);
 		if (newObjectLocation <= lowerXBound)
 		{
+			// if object goes off back of screen, it stays hidden
+			if (object.getXCoord() <= -185)
+			{
+				newObjectLocation = -185;
+			}
 			if(relationship == RelationshipTypes.ABOVE_UNRESTRAINED)
 			{
 				//makes ball fall off of bus
-				//do gravity things
+				object.setYCoord(object.getYCoord() - 2);
+				object.setXCoord(newObjectLocation);
 			}
-			object.setXCoord(lowerXBound);
-			object.setAcceleration(bus.getAcceleration());
-			object.setSpeed(bus.getSpeed());
+			else
+			{
+				object.setXCoord(lowerXBound);
+				object.setAcceleration(bus.getAcceleration());
+				object.setSpeed(bus.getSpeed());
+			}
 		}
 		else if (newObjectLocation >= upperXBound)
 		{
