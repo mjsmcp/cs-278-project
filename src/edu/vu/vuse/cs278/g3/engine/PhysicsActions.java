@@ -5,7 +5,6 @@ import edu.vu.vuse.cs278.g3.model.ObjectManager;
 import edu.vu.vuse.cs278.g3.model.PhysicsObject;
 import edu.vu.vuse.cs278.g3.model.RelationshipManager;
 import edu.vu.vuse.cs278.g3.model.RelationshipTypes;
-import edu.vu.vuse.cs278.g3.model.SquareObject;
 
 /**
  * Class that contains inner classes that implement the Runnable interface.
@@ -136,9 +135,10 @@ public class PhysicsActions {
 
 			// Retrieve Object
 			PhysicsObject object = ObjectManager.getInstance().getObject("object");
+			BusObject bus = (BusObject) ObjectManager.getInstance().getObject("bus");
 			
-			// Update speed of object
-			object.setSpeed(object.getSpeed() + object.getAcceleration());
+			// Update speed of object (relative to bus)
+			object.setSpeed(object.getSpeed() + object.getAcceleration() - bus.getSpeed());
 			
 			// Commit changes
 			object.commit();
@@ -154,11 +154,12 @@ public class PhysicsActions {
 
 			// Retrieve Object
 			PhysicsObject object = ObjectManager.getInstance().getObject("object");
+			BusObject bus = (BusObject) ObjectManager.getInstance().getObject("bus");
 			
-			// Update speed of object
+			// Update speed of object (relative to the bus)
 			double opposingFrictionalForce = PhysicsFormulas.frictionalForce(null, object.getMass(), 0.125);
-			double modifiedAcceleration = object.getDeceleration() - opposingFrictionalForce/object.getMass();
-			object.setSpeed(object.getSpeed() + modifiedAcceleration);
+			double modifiedAcceleration = object.getDeceleration() + opposingFrictionalForce/object.getMass();
+			object.setSpeed(object.getSpeed() - modifiedAcceleration - bus.getSpeed());
 			
 			// Commit changes
 			object.commit();
