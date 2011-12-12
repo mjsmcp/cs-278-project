@@ -337,12 +337,12 @@ Circle -7500403 true true 120 120 60
 tree
 false
 0
-Circle -7500403 true true 118 3 94
+Circle -10899396 true false 118 3 94
 Rectangle -6459832 true false 120 195 180 300
-Circle -7500403 true true 65 21 108
-Circle -7500403 true true 116 41 127
-Circle -7500403 true true 45 90 120
-Circle -7500403 true true 104 74 152
+Circle -10899396 true false 65 21 108
+Circle -10899396 true false 116 41 127
+Circle -10899396 true false 45 90 120
+Circle -10899396 true false 104 74 152
 
 triangle
 false

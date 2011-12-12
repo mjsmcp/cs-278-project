@@ -1,9 +1,10 @@
 package edu.vu.vuse.cs278.g3.model;
 
 import edu.vu.vuse.cs278.g3.gui.MainWindow;
-
 public class BusObject extends PhysicsObject{
 
+	final static int MINXCOR = -125, MAXXCOR = 800;
+	
 	/** The length if the bus object*/
 	private double length;
 	
@@ -28,6 +29,17 @@ public class BusObject extends PhysicsObject{
 		yCoord = ycoord;
 	}
 	
+	public void moveForward(double amt){
+		SquareObject tree = (SquareObject) ObjectManager.getInstance().getObject("tree");
+		
+		double newx = tree.getXCoord()-amt;
+		if (newx < MINXCOR){
+			newx = MAXXCOR - (MINXCOR - newx);
+		}
+			
+		tree.updatePosition(newx, tree.getYCoord());
+		tree.commit();
+	}
 	
 	@Override
 	public void commit() {
