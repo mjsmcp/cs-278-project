@@ -103,39 +103,21 @@ public class EditObjectUI extends javax.swing.JFrame {
         
         // find the relationship so we can set it
         int x=0, y=0;
-        // if the object is a ball
-        if (myObj.getClass().equals(RoundObject.class))
-        {
-        	x = (int)myObj.getXCoord();
-        	y = (int)myObj.getYCoord();
-        	
-        	if (x == (int)(0.5*(double)BUS_LENGTH))
-        		frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH)) 
-        		behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS) 
-        		topButton.setSelected(true);
-        	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET)) 
-        		insideRButton.setSelected(true);
-        }
-        // else if the object is a box
-        if (myObj.getClass().equals(SquareObject.class))
-        {
-        	x = (int)myObj.getXCoord();
-        	y = (int)myObj.getYCoord();
-        	
-        	if (x == (int)(0.5*(double)BUS_LENGTH))
-        		frontButton.setSelected(true);
-        	else if (x == (int)(-0.5*(double)BUS_LENGTH))
-        		behindButton.setSelected(true);
-        	else if (y == TOP_OF_BUS)
-        		topButton.setSelected(true);
-        	// we're going to default to this, unless someone knows a better way of getting the relationship other than x/y coords
-        	else if (y == (int)(width*(double)MY_OFFSET))
-        		insideRButton.setSelected(true);
-        }
-        
+    	x = (int)myObj.getXCoord();
+    	y = (int)myObj.getYCoord();
+    	// relationship is not dependent on object type
+    	if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.FRONT)
+    		frontButton.setSelected(true);
+    	else if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.BEHIND_ATTACHED) 
+    		behindButton.setSelected(true);
+    	else if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.ABOVE_UNRESTRAINED) 
+    		topButton.setSelected(true);
+    	else if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.INSIDE_RESTRAINED) 
+    		insideRButton.setSelected(true);
+    	else if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.INSIDE_UNRESTRAINED)
+    		insideUButton.setSelected(true);
+    	else if (RelationshipManager.getInstance().getRelationship("object", "bus") == RelationshipTypes.NO_RELATIONSHIP)
+    		System.out.println("edit object fail boat");
     }
 
     /** This method is called from within the constructor to
@@ -491,31 +473,35 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     	{
         	x = (int)busX;
         	y = (int)(width + TOP_OF_BUS);
+        	RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.ABOVE_UNRESTRAINED);
     	}
     	else if (insideRButton.isSelected())
     	{
             x = (int)busX;
             y = (int)(width*(double)MY_OFFSET);
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.INSIDE_RESTRAINED);
     	}
     	else if (insideUButton.isSelected())
     	{
     		x = (int)busX;
             y = (int)(width*(double)MY_OFFSET);
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.INSIDE_UNRESTRAINED);
     	}
     	else if (behindButton.isSelected())
     	{
     		x = (int)(-0.5*BUS_LENGTH);
             y = BUS_STREET_CONTACT;
+            RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.BEHIND_ATTACHED);
     	}
     	else if (frontButton.isSelected())
     	{
         	x = (int)(0.5*BUS_LENGTH);
         	y = BUS_STREET_CONTACT;
+        	RelationshipManager.getInstance().setRelationship("object", "bus", RelationshipTypes.FRONT);
     	}
         
         myObj.setXCoord(x);
         myObj.setYCoord(y);
-        //ObjectManager.getInstance().updateObject("object", myObj);
     }
     
     // if the world crashed and died...
