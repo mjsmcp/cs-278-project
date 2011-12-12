@@ -175,33 +175,48 @@ public class PhysicsActions {
 
 		PhysicsObject object = ObjectManager.getInstance().getObject("object");
 		RelationshipTypes relationship = RelationshipManager.getInstance().getRelationship("object", "bus");
-		
-//		switch(relationship) {
-//			
-//		case INSIDE_UNRESTRAINED:
-//			//set bounds to be front/back of bus
-//			object.setXCoord(object.getXCoord() + object.getSpeed());
-//			break;
-//		case INSIDE_RESTRAINED:
-//			// do nothing; position should not change
-//			break;
-//		case ABOVE_UNRESTRAINED:
-//			// set bounds to edges of screen
-//			object.setXCoord(object.getXCoord() + object.getSpeed());
-//			break;
-//		case BEHIND_ATTACHED:
-//			// set bounds to back of bus and some x distance of "rope" behind bus
-//			object.setXCoord(object.getXCoord() + object.getSpeed());
-//			break;
-//		case FRONT:
-//			// set bounds to front of bus and edge of screen
-//			object.setXCoord(object.getXCoord() + object.getSpeed());
-//			break;
-//		}
-		System.out.println("XCoord: " + object.getXCoord());
-		System.out.println(" Speed: " + ObjectManager.getInstance().getObject("bus").getSpeed());
-		System.out.println("");
-		object.setXCoord(object.getXCoord() + object.getSpeed());
+		double upperXBound = 0, lowerXBound = 0;
+		switch(relationship) {
+			
+		case INSIDE_UNRESTRAINED:
+			// set bounds to inside of bus
+			upperXBound = 50;
+			lowerXBound = -100;
+			break;
+		case INSIDE_RESTRAINED:
+			// should not move since object is restrained
+			upperXBound = object.getXCoord();
+			lowerXBound = object.getXCoord();			
+			break;
+		case ABOVE_UNRESTRAINED:
+			// set bounds to edges of screen
+			upperXBound = 745;
+			lowerXBound = -175;
+			break;
+		case BEHIND_ATTACHED:
+			// set bounds to back of bus and some x distance of "rope" behind bus
+			upperXBound = -130;
+			lowerXBound = -170;
+			break;
+		case FRONT:
+			// set bounds to front of bus and edge of screen
+			upperXBound = 745;
+			lowerXBound = 140;
+			break;
+		}
+		double newObjectLocation = object.getXCoord() + object.getSpeed();
+		if (newObjectLocation <= lowerXBound)
+		{
+			object.setXCoord(lowerXBound);
+		}
+		else if (newObjectLocation >= upperXBound)
+		{
+			object.setXCoord(upperXBound);
+		}
+		else
+		{
+			object.setXCoord(newObjectLocation);
+		}
 		object.commit();
 		
 		
