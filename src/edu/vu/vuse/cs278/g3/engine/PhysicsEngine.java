@@ -4,6 +4,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import edu.vu.vuse.cs278.g3.model.ObjectManager;
+
 /**
  * This class is a singleton wrapper around a QueueExecutor that
  * runs the physics calculations and updates the display. Most
@@ -87,6 +89,8 @@ public class PhysicsEngine {
 		this.exec.interrupt();
 		this.exec.queue.clear();
 		exec = null;
+		ObjectManager.getInstance().getObject("object").setSpeed(0);
+		ObjectManager.getInstance().getObject("bus").setSpeed(0);
 		System.out.println("disable()");
 	}
 	

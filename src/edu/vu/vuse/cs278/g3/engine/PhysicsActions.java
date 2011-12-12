@@ -41,13 +41,13 @@ public class PhysicsActions {
 		
 	}
 	
-	public static class deccelerationFrame implements Runnable {
+	public static class decelerationFrame implements Runnable {
 
 		@Override
 		public void run() {
 			decelerateBus();
 			moveBus();
-			decelerateObject();
+			accelerateObject();
 			updateObjectPosition();
 			PhysicsEngine.getInstance().updateState();
 			loadNextFrame();
@@ -65,7 +65,7 @@ public class PhysicsActions {
 			PhysicsEngine.getInstance().addtoQueue(new runningFrame());
 			break;
 		case PhysicsEngine.STOPPING_PHASE:
-			PhysicsEngine.getInstance().addtoQueue(new deccelerationFrame());
+			PhysicsEngine.getInstance().addtoQueue(new decelerationFrame());
 			break;
 		
 		}
@@ -94,10 +94,8 @@ public class PhysicsActions {
 		BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
 		
 		// Update speed of the bus
-		
 		busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
-		
-		ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
+		System.out.println(busObject.getSpeed());
 		// Commit changes
 		busObject.commit();
 	
@@ -117,9 +115,7 @@ public class PhysicsActions {
 		// Update speed of the bus
 		busObject.setSpeed(busObject.getSpeed() - busObject.getDeceleration() /* 1 Frame */);
 		
-		if(busObject.getAcceleration() > 0) {
-			ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
-		}
+		System.out.println(busObject.getSpeed());
 		// Commit changes
 		busObject.commit();
 	
@@ -138,35 +134,16 @@ public class PhysicsActions {
 			BusObject bus = (BusObject) ObjectManager.getInstance().getObject("bus");
 			
 			// Update speed of object (relative to bus)
-			object.setSpeed(object.getSpeed() + object.getAcceleration() - bus.getSpeed());
-			
-			// Commit changes
-			object.commit();
-		
-	}
-	
-	/**
-	 * Decelerates the object based on the calculated friction and speed of the object
-	 * @author Matthew Shea
-	 *
-	 */
-	private static void decelerateObject () {
-
-			// Retrieve Object
-			PhysicsObject object = ObjectManager.getInstance().getObject("object");
-			BusObject bus = (BusObject) ObjectManager.getInstance().getObject("bus");
-			
-			// Update speed of object (relative to the bus)
 			double opposingFrictionalForce = PhysicsFormulas.frictionalForce(null, object.getMass(), 0.125);
-			double modifiedAcceleration = object.getDeceleration() + opposingFrictionalForce/object.getMass();
-			object.setSpeed(object.getSpeed() - modifiedAcceleration - bus.getSpeed());
+			double modifiedAcceleration = object.getAcceleration();// - opposingFrictionalForce/object.getMass();
+			object.setSpeed(object.getSpeed() + modifiedAcceleration);
+			System.out.println(object.getSpeed());
 			
 			// Commit changes
 			object.commit();
 		
 	}
-	
-	
+		
 	/**
 	 * Updates the object's position on the netlogo display
 	 * @author Matthew Shea
@@ -175,6 +152,7 @@ public class PhysicsActions {
 	public static void updateObjectPosition() {
 
 		PhysicsObject object = ObjectManager.getInstance().getObject("object");
+		BusObject bus = (BusObject) ObjectManager.getInstance().getObject("bus");
 		RelationshipTypes relationship = RelationshipManager.getInstance().getRelationship("object", "bus");
 		double upperXBound = 0, lowerXBound = 0;
 		switch(relationship) {
@@ -201,18 +179,22 @@ public class PhysicsActions {
 			break;
 		case FRONT:
 			// set bounds to front of bus and edge of screen
-			upperXBound = 745;
+			upperXBound = 735;
 			lowerXBound = 140;
 			break;
 		}
-		double newObjectLocation = object.getXCoord() + object.getSpeed();
+		double newObjectLocation = object.getXCoord() + object.getSpeed() - bus.getSpeed();
 		if (newObjectLocation <= lowerXBound)
 		{
 			object.setXCoord(lowerXBound);
+			object.setAcceleration(bus.getAcceleration());
+			object.setSpeed(bus.getSpeed());
 		}
 		else if (newObjectLocation >= upperXBound)
 		{
 			object.setXCoord(upperXBound);
+			object.setAcceleration(- bus.getDeceleration());
+			object.setSpeed(bus.getSpeed());
 		}
 		else
 		{
