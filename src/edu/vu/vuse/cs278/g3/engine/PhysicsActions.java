@@ -95,6 +95,7 @@ public class PhysicsActions {
 		BusObject busObject = (BusObject) ObjectManager.getInstance().getObject("bus");
 		
 		// Update speed of the bus
+		
 		busObject.setSpeed(busObject.getSpeed() + busObject.getAcceleration() /* 1 Frame */);
 		
 		ObjectManager.getInstance().getObject("object").setSpeed(busObject.getSpeed());
@@ -197,6 +198,9 @@ public class PhysicsActions {
 //			object.setXCoord(object.getXCoord() + object.getSpeed());
 //			break;
 //		}
+		System.out.println("XCoord: " + object.getXCoord());
+		System.out.println(" Speed: " + ObjectManager.getInstance().getObject("bus").getSpeed());
+		System.out.println("");
 		object.setXCoord(object.getXCoord() + object.getSpeed());
 		object.commit();
 		

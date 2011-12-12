@@ -54,8 +54,8 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         this.threadExec.start();
     }
     
-   
-    /** Sends arg to embedded NetLogo  
+
+        /** Sends arg to embedded NetLogo  
      * @param arg
      */
     public void command(String arg){

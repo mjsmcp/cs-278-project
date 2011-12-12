@@ -11,6 +11,9 @@ import org.nlogo.lite.InterfaceComponent;
 public class Main {
 	 public static void main(String[] argv) {
 		 
+
+	        //create the bus, 250cm, 10000kg
+	        
 	       /* Create and display the form */
 	        try{
 		        java.awt.EventQueue.invokeAndWait(new
@@ -23,8 +26,15 @@ public class Main {
 	        catch (Exception ex) {
 	            ex.printStackTrace();
 	        }
-	        //create the bus, 250cm, 10000kg
-	        ObjectManager.getInstance().addObject("bus",ObjectManager.getInstance().createBus(0, 0, 250, 10000));
+	        initializeBus();
 	 }
+	 
+	 
+	 public static void initializeBus() {
+		 ObjectManager.getInstance().addObject("bus", ObjectManager.getInstance().createBus(0, 0, 250, 10000));
+		 ObjectManager.getInstance().getObject("bus").setAcceleration(2);
+		 ObjectManager.getInstance().getObject("bus").setDecleration(2);
+	    }
+
 	 
 }
