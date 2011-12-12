@@ -552,6 +552,9 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
 	@Override
 	public void handleEngineComplete() {
+		ObjectManager.getInstance().getObject("bus").setSpeed(0);
+		ObjectManager.getInstance().getObject("object").setSpeed(0);
+		ObjectManager.getInstance().getObject("object").setAcceleration(0);
 		editObject.setEnabled(true);
 	    addObject.setEnabled(false);
 	    busAcceleration.setEnabled(true);

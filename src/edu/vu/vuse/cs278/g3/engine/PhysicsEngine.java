@@ -161,7 +161,7 @@ public class PhysicsEngine {
 							Runnable r = this.queue.take();
 							r.run();
 							PhysicsEngine.this.cycles++;
-							System.out.println("Executed an action;");
+							System.out.println("Executed an action!");
 							if(PhysicsEngine.this.currentState == PhysicsEngine.STOPPED_PHASE)
 								break;
 							synchronized(PhysicsEngine.this.netlogoLock) {
