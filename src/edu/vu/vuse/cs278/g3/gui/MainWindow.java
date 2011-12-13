@@ -155,19 +155,21 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
             }
         });
 
-        busAcceleration.setMaximum(3);
+        busAcceleration.setMaximum(4);
+        busAcceleration.setMinimum(1);
         busAcceleration.setSnapToTicks(true);
         busAcceleration.setToolTipText("");
-        busAcceleration.setValue(1);
+        busAcceleration.setValue(2);
         busAcceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busAccelerationStateChanged(evt);
             }
         });
 
-        busDeceleration.setMaximum(3);
+        busDeceleration.setMaximum(4);
+        busDeceleration.setMinimum(1);
         busDeceleration.setSnapToTicks(true);
-        busDeceleration.setValue(1);
+        busDeceleration.setValue(2);
         busDeceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busDecelerationStateChanged(evt);
@@ -177,7 +179,7 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         busAccelerationLabel.setText("Bus Acceleration");
 
         busDecelerationLabel.setText("Bus Deceleration");
-        
+
         comp = new InterfaceComponent(this);
 
         sillyNetLogo.setVisible(true);
@@ -208,7 +210,7 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addComponent(comp)
         );
         try {
         	comp.open("./CS278.nlogo");
