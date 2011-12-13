@@ -587,8 +587,8 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
 	@Override
 	public void cycleComplete() {
-		int speed = (int)ObjectManager.getInstance().getObject("bus").getSpeed();
-		busSpeed.setText(Integer.toString(speed));
+		int speed = (int)(ObjectManager.getInstance().getObject("bus").getSpeed())/8;
+		busSpeed.setText(Integer.toString(speed) + "mph");
 	}
 	
 }
