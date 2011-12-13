@@ -24,7 +24,7 @@ public class PhysicsEngine {
 	private int cycles = 0;
 	private static final int ACCELERATION_CYCLES = 100;
 	private static final int RUNNING_CYCLES = 200;
-	private static final int DECELERATION_CYCLES = 50;
+	private static final int DECELERATION_CYCLES = Integer.MAX_VALUE;
 	
 	
 	/** Instance object for the Singleton PhysicsEngine */
@@ -130,6 +130,8 @@ public class PhysicsEngine {
 		} else if(this.cycles == (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES)) {
 			this.currentState =  PhysicsEngine.STOPPING_PHASE;
 		} else if(this.cycles == (PhysicsEngine.ACCELERATION_CYCLES + PhysicsEngine.RUNNING_CYCLES + PhysicsEngine.DECELERATION_CYCLES)) {
+			this.currentState = PhysicsEngine.STOPPED_PHASE;
+		} else if(ObjectManager.getInstance().getObject("bus").getSpeed() <= 0) {
 			this.currentState = PhysicsEngine.STOPPED_PHASE;
 		}
 	}

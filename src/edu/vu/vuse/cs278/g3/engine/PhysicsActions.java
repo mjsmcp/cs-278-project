@@ -80,6 +80,7 @@ public class PhysicsActions {
 	 */
 	private static void moveBus() {
 		((BusObject)ObjectManager.getInstance().getObject("bus")).moveForward(10);
+		
 	}
 	
 	
