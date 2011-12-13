@@ -109,6 +109,8 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         sillyNetLogo = new javax.swing.JInternalFrame();
         busAccelerationLabelValue = new javax.swing.JLabel();
         busDecelerationLabelValue = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        busSpeed = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -153,21 +155,19 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
             }
         });
 
-        busAcceleration.setMaximum(4);
-        busAcceleration.setMinimum(1);
+        busAcceleration.setMaximum(3);
         busAcceleration.setSnapToTicks(true);
         busAcceleration.setToolTipText("");
-        busAcceleration.setValue(2);
+        busAcceleration.setValue(1);
         busAcceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busAccelerationStateChanged(evt);
             }
         });
 
-        busDeceleration.setMaximum(4);
-        busDeceleration.setMinimum(1);
+        busDeceleration.setMaximum(3);
         busDeceleration.setSnapToTicks(true);
-        busDeceleration.setValue(2);
+        busDeceleration.setValue(1);
         busDeceleration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 busDecelerationStateChanged(evt);
@@ -179,11 +179,11 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         busDecelerationLabel.setText("Bus Deceleration");
         
         comp = new InterfaceComponent(this);
-        
+
         sillyNetLogo.setVisible(true);
         sillyNetLogo.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                //sillyNetLogoInternalFrameActivated(evt);		//this was showing an error, so I commented it out. No idea what it does, but seems to work now.
+                //sillyNetLogoInternalFrameActivated(evt);
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -203,21 +203,27 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
         sillyNetLogo.getContentPane().setLayout(sillyNetLogoLayout);
         sillyNetLogoLayout.setHorizontalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 316, Short.MAX_VALUE)
             .addComponent(comp)
         );
         sillyNetLogoLayout.setVerticalGroup(
             sillyNetLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(comp)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
         try {
-            comp.open("./CS278.nlogo");
-          }
-          catch(Exception ex) {
-            ex.printStackTrace();
-          }
+        	comp.open("./CS278.nlogo");
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+
         busAccelerationLabelValue.setText("medium");
 
         busDecelerationLabelValue.setText("medium");
+
+        jLabel1.setText("Bus Speed:");
+
+        busSpeed.setText("0");
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +272,11 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
                         .addGap(10, 10, 10)
                         .addComponent(busDecelerationLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(busDecelerationLabelValue)))
+                        .addComponent(busDecelerationLabelValue))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(busSpeed)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(sillyNetLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -296,7 +306,11 @@ public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHan
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(busDecelerationLabel)
                     .addComponent(busDecelerationLabelValue))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(busSpeed))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sillyNetLogo)
                 .addGap(19, 19, 19))
@@ -530,7 +544,6 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-	// amber - I declared the addObject button as public static so that we can access it in the ObjectUI
     public javax.swing.JButton addObject;
     private javax.swing.JSlider busAcceleration;
     private javax.swing.JLabel busAccelerationLabel;
@@ -538,8 +551,9 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JSlider busDeceleration;
     private javax.swing.JLabel busDecelerationLabel;
     private javax.swing.JLabel busDecelerationLabelValue;
- // amber - I declared the editObject button as public static so that we can access it in the ObjectUI
+    private javax.swing.JLabel busSpeed;
     public javax.swing.JButton editObject;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -566,4 +580,5 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 	    pauseSimulation.setEnabled(false);
 	    runSimulation.setEnabled(true);		
 	}
+	
 }
