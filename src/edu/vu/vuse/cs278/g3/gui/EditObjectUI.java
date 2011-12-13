@@ -35,8 +35,10 @@ public class EditObjectUI extends javax.swing.JFrame {
         // display the current values for the current object
         PhysicsObject myObj = ObjectManager.getInstance().getObject("object");
         int weight = (int)myObj.getMass();
-        int width = 0;
-        int radius = 0;       
+        int width = 1;
+        widthValue.setValue(1);
+        int radius = 1;
+        radiusValue2.setValue(1);
         
         // determine what needs to be active and what doesn't and get current dimensions of objects
         // if the object is a ball
