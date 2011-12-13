@@ -159,7 +159,7 @@ public class PhysicsActions {
 			
 		case INSIDE_UNRESTRAINED:
 			// set bounds to inside of bus
-			upperXBound = 50;
+			upperXBound = 37;
 			lowerXBound = -100;
 			break;
 		case INSIDE_RESTRAINED:

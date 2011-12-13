@@ -381,10 +381,10 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
  * @param evt
  */
 private void pauseSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSimulationActionPerformed
-    editObject.setEnabled(true);
+    editObject.setEnabled(false);
     addObject.setEnabled(false);
-    busAcceleration.setEnabled(true);
-    busDeceleration.setEnabled(true);
+    busAcceleration.setEnabled(false);
+    busDeceleration.setEnabled(false);
     if (pauseSimulation.getText() == "Pause Simulation")
     {
     	PhysicsEngine.getInstance().pause(this);
@@ -472,6 +472,9 @@ private void busDecelerationStateChanged(javax.swing.event.ChangeEvent evt) {//G
  * @param evt
  */
 private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
+	ObjectManager.getInstance().getObject("bus").setSpeed(0);
+	ObjectManager.getInstance().getObject("object").setSpeed(0);
+	ObjectManager.getInstance().getObject("object").setAcceleration(0);
     PhysicsEngine.getInstance().disable(this);
 	editObject.setEnabled(true);
     addObject.setEnabled(false);

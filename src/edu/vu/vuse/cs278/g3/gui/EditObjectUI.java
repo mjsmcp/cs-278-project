@@ -35,6 +35,7 @@ public class EditObjectUI extends javax.swing.JFrame {
         // display the current values for the current object
         PhysicsObject myObj = ObjectManager.getInstance().getObject("object");
         int weight = (int)myObj.getMass();
+        System.out.println("cur weight = " + weight);
         int width = 1;
         widthValue.setValue(1);
         int radius = 1;
@@ -66,7 +67,6 @@ public class EditObjectUI extends javax.swing.JFrame {
         }
          
         // set the sliders with the current values of the dimensions
-        //weight /= (double)MY_OFFSET;
         weightValue.setValue(weight);
         
         String tmpStr = "";
@@ -426,7 +426,7 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     // if the object is a ball...
     if(myObj.getClass().equals(RoundObject.class)) 
     {
-        myObj.setMass(weight*(double)MY_OFFSET);
+        myObj.setMass(weight);
         ((RoundObject)myObj).setRadius(radius*MY_OFFSET);
         
     	if (topButton.isSelected())
@@ -462,7 +462,6 @@ private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         ((RoundObject)myObj).setXCoord(x);
         ((RoundObject)myObj).setYCoord(y);
-        //ObjectManager.getInstance().updateObject("object", myObj);
     }
     
     // if the object is a box
