@@ -109,9 +109,20 @@ public class PhysicsEngine {
 			exec.execute(runnable);
 	}
 	
+	PhysicsCycleCompleteHandler cycleHandler = null;
+	public void setCycleHandler(PhysicsCycleCompleteHandler handler) {
+		this.cycleHandler = handler;
+	}
+	
+	public void notifyCycleComplete() {
+		if(this.cycleHandler != null)
+			this.cycleHandler.cycleComplete();
+	}
+	
 	public int getState() {
 		return this.currentState;
 	}
+	
 	
 	public void updateState() {
 		if(this.cycles == PhysicsEngine.ACCELERATION_CYCLES) {
@@ -161,7 +172,7 @@ public class PhysicsEngine {
 							Runnable r = this.queue.take();
 							r.run();
 							PhysicsEngine.this.cycles++;
-							System.out.println("Executed an action!");
+							PhysicsEngine.this.notifyCycleComplete();
 							if(PhysicsEngine.this.currentState == PhysicsEngine.STOPPED_PHASE)
 								break;
 							synchronized(PhysicsEngine.this.netlogoLock) {

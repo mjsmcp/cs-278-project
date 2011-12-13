@@ -17,6 +17,7 @@ import org.nlogo.lite.InterfaceComponent;
 import org.nlogo.api.CompilerException;
 
 import edu.vu.vuse.cs278.g3.engine.PhysicsCompleteHandler;
+import edu.vu.vuse.cs278.g3.engine.PhysicsCycleCompleteHandler;
 import edu.vu.vuse.cs278.g3.engine.PhysicsEngine;
 import edu.vu.vuse.cs278.g3.model.ObjectManager;
 
@@ -24,7 +25,7 @@ import edu.vu.vuse.cs278.g3.model.ObjectManager;
  * This class handles the main window of the program where the NetLogo is embedded.
  * @author Amber Maria
  */
-public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHandler {
+public class MainWindow extends javax.swing.JFrame implements PhysicsCompleteHandler, PhysicsCycleCompleteHandler {
 /**
  * The single instance of the Main Window
  */
@@ -369,6 +370,7 @@ private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     // if no object has been created, this button is not even available.
 	int busAccel = busAcceleration.getValue();
     int busDecel = busDeceleration.getValue();
+    PhysicsEngine.getInstance().setCycleHandler(this);
     editObject.setEnabled(false);
     addObject.setEnabled(false);
     busAcceleration.setEnabled(false);
@@ -581,6 +583,12 @@ private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GE
 	    stopSimulation.setEnabled(false);
 	    pauseSimulation.setEnabled(false);
 	    runSimulation.setEnabled(true);		
+	}
+
+	@Override
+	public void cycleComplete() {
+		ObjectManager.getInstance().getObject("bus").getSpeed();
+		
 	}
 	
 }
